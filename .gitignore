@@ -13,3 +13,4 @@ ignore_this.txt
 *.ignore.*
 .ruff_cache/
 outputs/
+.history/
