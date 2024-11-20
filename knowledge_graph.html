@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 100vh;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#bdeae9", "description": "\"Editor who produced this eBook for Project Gutenberg.\"\u003cSEP\u003e\"Suzanne Shell is an editor who produced and distributed this eBook.\"", "entity_type": "\"PERSON\"", "id": "\"SUZANNE SHELL\"", "label": "\"SUZANNE SHELL\"", "shape": "dot", "size": 10, "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"}, {"color": "#627531", "description": "\"A nonprofit digital library that distributes the eBook.\"\u003cSEP\u003e\"Project Gutenberg is a nonprofit digital library that provides free access to eBooks, including this one by Project Gutenberg.\"", "entity_type": "\"ORGANIZATION\"", "id": "\"PROJECT GUTENBERG\"", "label": "\"PROJECT GUTENBERG\"", "shape": "dot", "size": 10, "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"}, {"color": "#69d837", "description": "\"J. B. Lippincott Company published the first printings of this novel.\"\u003cSEP\u003e\"Published the first printings of A Christmas Carol.\"", "entity_type": "\"ORGANIZATION\"", "id": "\"J. B. LIPPINCOTT COMPANY\"", "label": "\"J. B. LIPPINCOTT COMPANY\"", "shape": "dot", "size": 10, "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"}, {"color": "#ac0c60", "description": "\"Co-editor with Suzanne Shell of this eBook distribution.\"\u003cSEP\u003e\"Janet Blenkinship was the co-editor with Suzanne Shell of this eBook distribution.\"", "entity_type": "\"PERSON\"", "id": "\"JANET BLENKINSHIP\"", "label": "\"JANET BLENKINSHIP\"", "shape": "dot", "size": 10, "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"}, {"color": "#e7edbd", "description": "\"Arthur Rackham illustrated Charles Dickens\u0027 A Christmas Carol.\"\u003cSEP\u003e\"Illustrated artist for A Christmas Carol.\"", "entity_type": "\"PERSON\"", "id": "\"ARTHUR RACKHAM\"", "label": "\"ARTHUR RACKHAM\"", "shape": "dot", "size": 10, "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"}, {"color": "#d245e3", "description": "\"Author of A Christmas Carol.\"\u003cSEP\u003e\"Charles Dickens is the author of A Christmas Carol.\"", "entity_type": "\"PERSON\"", "id": "\"CHARLES DICKENS\"", "label": "\"CHARLES DICKENS\"", "shape": "dot", "size": 10, "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"}, {"color": "#6f52f7", "description": "\"Old Marley was the deceased partner of Scrooge, known to business associates by both names and represented as a symbolic figure throughout the story.\"", "entity_type": "\"PERSON\"", "id": "\"MARLEY\"", "label": "\"MARLEY\"", "shape": "dot", "size": 10, "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"}, {"color": "#70c8ec", "description": "\"Scrooge is a central character in the story, characterized by miserliness and hostility towards Christmas celebrations.\"\u003cSEP\u003e\"Scrooge is characterized as a miserly and unfeeling character who initially resists Christmas celebrations.\"\u003cSEP\u003e\"Scrooge is portrayed as a tight-fisted and grudging man who continues to use his former partner\u0027s name after Marley\u0027s death, symbolizing Marley\u0027s enduring influence on his business practices.\"\u003cSEP\u003e\"Scrooge is presented as a cold and selfish man who dislikes Christmas and finds it to be a \u0027humbug\u0027 and \u0027merry Christmas! What right have you to be merry?\u0027\"\"\u003cSEP\u003e\"Scrooge represents the typical miserly and unfeeling character during Christmas time. He dislikes the holiday season and resists attempts to make him feel joyful by his nephew.\"", "entity_type": "\"PERSON\"", "id": "\"SCROOGE\"", "label": "\"SCROOGE\"", "shape": "dot", "size": 10, "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0\u003cSEP\u003echunk-89777b838d5447c7bd1ec11282c4ee89\u003cSEP\u003echunk-5dac41b3f9eeaf794f0147400b1718cd"}, {"color": "#f6759e", "description": "\"Old Sinner is described as a cold and sharp individual, carrying his own low temperature always about him, who had no warmth of heart or feelings for others.\"\u003cSEP\u003e\"The old sinner is described as a cold and sharp individual with an icy personality.\"", "entity_type": "\"PERSON\"", "id": "\"OLD SINNER\"", "label": "\"OLD SINNER\"", "shape": "dot", "size": 10, "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0"}, {"color": "#ce64eb", "description": "\"The nephew of Scrooge, who tries to make Scrooge feel joyful.\"", "entity_type": "\"PERSON\"", "id": "\"CHRISTMAS EVE UNCLE\"", "label": "\"CHRISTMAS EVE UNCLE\"", "shape": "dot", "size": 10, "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0"}, {"color": "#84de40", "description": "\"Christmas is the focal point of the story, where Scrooge\u0027s nephew attempts to bring him happiness and goodwill.\"\u003cSEP\u003e\"The festive season of giving and sharing, which is a significant context for the events described.\"", "entity_type": "\"EVENT\"", "id": "\"CHRISTMAS\"", "label": "\"CHRISTMAS\"", "shape": "dot", "size": 10, "source_id": "chunk-65055e8d89ae84108617cb5e7b84b1b9\u003cSEP\u003echunk-5dac41b3f9eeaf794f0147400b1718cd"}, {"color": "#e8bdd4", "description": "\"The nephew attempts to persuade his uncle to embrace Christmas, showing warmth and good will towards him.\"\u003cSEP\u003e\"The nephew is Scrooge\u0027s son-in-law who tries to improve his uncle\u0027s attitude towards Christmas.\"", "entity_type": "\"PERSON\"", "id": "\"NEPHEW\"", "label": "\"NEPHEW\"", "shape": "dot", "size": 10, "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"}, {"color": "#573576", "description": "\"Merry Christmas is a positive holiday greeting that the nephew tries to bring to Scrooge.\"\u003cSEP\u003e\"The concept of \u0027Merry Christmas\u0027 symbolizes a positive and friendly celebration, which contrasts with Scrooge\u0027s negative attitude towards it.\"", "entity_type": "\"CONCEPT\"", "id": "\"MERRY CHRISTMAS\"", "label": "\"MERRY CHRISTMAS\"", "shape": "dot", "size": 10, "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"}, {"color": "#5951e0", "description": "\"The office setting is where the interactions between Scrooge and his nephew take place.\"", "entity_type": "\"GEO\"", "id": "\"OFFICE\"", "label": "\"OFFICE\"", "shape": "dot", "size": 10, "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"}, {"color": "#a7865c", "description": "\"Mr. Scrooge is the main character, a miserly businessman who refuses to give any money or assistance to the poor during Christmas.\"", "entity_type": "\"PERSON\"", "id": "\"MR. SCROOGE\"", "label": "\"MR. SCROOGE\"", "shape": "dot", "size": 10, "source_id": "chunk-65055e8d89ae84108617cb5e7b84b1b9"}, {"color": "#618a35", "description": "\"People incarcerated due to law violations or sentencing.\"\u003cSEP\u003e\"Prisons are places where prisoners, including those incarcerated for violating laws or receiving sentences, are detained.\"", "entity_type": "\"GEO\"", "id": "\"PRISONERS\"", "label": "\"PRISONERS\"", "shape": "dot", "size": 10, "source_id": "chunk-65055e8d89ae84108617cb5e7b84b1b9"}, {"color": "#f4622c", "description": "\"He is a charitable individual who attempts to assist the destitute during Christmas.\"\u003cSEP\u003e\"The gentleman is a charitable figure who attempts to assist the destitute and poor.\"", "entity_type": "\"ORGANIZATION\"", "id": "\"THE GENTLEMAN\"", "label": "\"THE GENTLEMAN\"", "shape": "dot", "size": 10, "source_id": "chunk-65055e8d89ae84108617cb5e7b84b1b9"}, {"color": "#4fa226", "description": "\"Place where destitute individuals are cared for by the government during the Industrial Revolution.\"\u003cSEP\u003e\"Union Workhouses refer to charitable institutions established by the British government during the Industrial Revolution to care for the poor and destitute who could not be accommodated in prisons.\"", "entity_type": "\"GEO\"", "id": "\"UNION WORKHOUSES\"", "label": "\"UNION WORKHOUSES\"", "shape": "dot", "size": 10, "source_id": "chunk-65055e8d89ae84108617cb5e7b84b1b9"}, {"color": "#764b7d", "description": "\"Both Treadmill and Poor Law systems are described as being \u0027in full vigour\u0027, indicating their continued operation despite the gentleman\u0027s efforts to improve conditions.\"", "entity_type": "\"UNKNOWN\"", "id": "\"EVENT\"", "label": "\"EVENT\"", "shape": "dot", "size": 10, "source_id": "chunk-65055e8d89ae84108617cb5e7b84b1b9"}, {"color": "#27eb40", "description": "\"Both Treadmill and Poor Law systems are described as being \u0027in full vigour\u0027, indicating their continued operation despite the gentleman\u0027s efforts to improve conditions.\"", "entity_type": "\"UNKNOWN\"", "id": "\"TREADMILL AND POOR LAW\"", "label": "\"TREADMILL AND POOR LAW\"", "shape": "dot", "size": 10, "source_id": "chunk-65055e8d89ae84108617cb5e7b84b1b9"}, {"color": "#0e6f01", "description": "\"Old Marley refers to the physical location where Marley\u0027s body was buried, marking the end of his earthly existence and serving as a reminder of his death.\"\u003cSEP\u003e\"The physical location where Marley was buried.\"", "entity_type": "\"GEO\"", "id": "\"OLD MARLEY\"", "label": "\"OLD MARLEY\"", "shape": "dot", "size": 10, "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"}, {"color": "#d36ee6", "description": "\"Christmas Eve is portrayed as a day when Scrooge\u2019s nephew tries to engage with him, highlighting the contrast between Scrooge and his family member during this time of year.\"\u003cSEP\u003e\"Christmas Eve is the day that happens once upon a time, for all the good days in the year.\"", "entity_type": "\"EVENT\"", "id": "\"CHRISTMAS EVE\"", "label": "\"CHRISTMAS EVE\"", "shape": "dot", "size": 10, "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0"}, {"color": "#80b749", "description": "\"The nephew represents the warm and kind spirit that contrasts with Scrooge\u0027s cold disposition. He tries to make his uncle feel joyful by making merry, thus emphasizing their contrasting natures.\"", "entity_type": "\"PERSON\"", "id": "\"SCROOGE\u0027S NEPHEW\"", "label": "\"SCROOGE\u0027S NEPHEW\"", "shape": "dot", "size": 10, "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0"}, {"color": "#7fa9a1", "description": "\"Christmas Day represents the festive season where Scrooge and his nephew attempt to interact with each other.\"", "entity_type": "\"EVENT\"", "id": "\"CHRISTMAS DAY\"", "label": "\"CHRISTMAS DAY\"", "shape": "dot", "size": 10, "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"}, {"color": "#568c85", "description": "\"Uncle is the term used for a male relative, typically father-in-law in this context.\"", "entity_type": "\"PERSON\"", "id": "\"UNCLE\"", "label": "\"UNCLE\"", "shape": "dot", "size": 10, "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"}]);
+                  edges = new vis.DataSet([{"description": "\"Suzanne Shell and Janet Blenkinship were involved in producing this eBook for Project Gutenberg.\"", "from": "\"SUZANNE SHELL\"", "keyword": "\"collaboration", "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43", "to": "\"PROJECT GUTENBERG\"", "width": 8.0}, {"description": "\"Produced this eBook which was distributed by J. B. Lippincott Company.\"\u003cSEP\u003e\"Suzanne Shell and Janet Blenkinship produced the eBook for J. B. Lippincott Company\u0027s distribution of this novel.\"", "from": "\"SUZANNE SHELL\"", "keyword": "\"distribution", "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43", "to": "\"J. B. LIPPINCOTT COMPANY\"", "width": 18.0}, {"description": "\"Janet Blenkinship was also involved in the production of this eBook for Project Gutenberg.\"", "from": "\"JANET BLENKINSHIP\"", "keyword": "\"co-production", "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43", "to": "\"PROJECT GUTENBERG\"", "width": 7.0}, {"description": "\"Both Suzanne Shell and Janet Blenkinship produced the eBook for J. B. Lippincott Company\u0027s distribution of this novel.\"", "from": "\"JANET BLENKINSHIP\"", "keyword": "\"co-distribution", "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43", "to": "\"J. B. LIPPINCOTT COMPANY\"", "width": 8.0}, {"description": "\"Provides free access to eBooks including this one illustrated by Arthur Rackham.\"", "from": "\"PROJECT GUTENBERG\"", "keyword": "\"distribution", "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43", "to": "\"ARTHUR RACKHAM\"", "width": 8.0}, {"description": "\"The author of A Christmas Carol and the illustrator.\"", "from": "\"CHARLES DICKENS\"", "keyword": "\"creation", "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43", "to": "\"ARTHUR RACKHAM\"", "width": 8.0}, {"description": "\"Published the first printings of A Christmas Carol.\"", "from": "\"CHARLES DICKENS\"", "keyword": "\"publication", "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43", "to": "\"J. B. LIPPINCOTT COMPANY\"", "width": 7.0}, {"description": "\"Marley\u0027s name is continued by Scrooge in business practices, symbolizing the enduring influence of the deceased partner on the current owner of the warehouse.\")\u003c|\"business continuity, symbolic continuation\"", "from": "\"MARLEY\"", "keyword": "8", "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89", "to": "\"SCROOGE\"", "width": 16.0}, {"description": "\"Old Sinner is the opposite or contrasting character to Scrooge\u0027s cold and selfish nature.\"", "from": "\"SCROOGE\"", "keyword": "\"contrasting personality\"", "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0", "to": "\"OLD SINNER\"", "width": 6.0}, {"description": "\"The nephew tries to make Scrooge feel joyful, but Scrooge resists his attempts due to his dislike for Christmas.\"", "from": "\"SCROOGE\"", "keyword": "\"attempted joy", "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0", "to": "\"CHRISTMAS EVE UNCLE\"", "width": 5.0}, {"description": "\"Scrooge refuses to embrace Christmas and its spirit, showing his miserly nature in contrast to the nephew\u0027s attempts to improve him.\"", "from": "\"SCROOGE\"", "keyword": "\"resistance", "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd", "to": "\"CHRISTMAS\"", "width": 2.0}, {"description": "\"Scrooge initially resists Christmas celebrations, but is eventually influenced by his nephew\u0027s positive greetings and goodwill.\"", "from": "\"SCROOGE\"", "keyword": "\"resistance to change", "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd", "to": "\"NEPHEW\"", "width": 4.0}, {"description": "\"The nephew seeks to bring a positive atmosphere by offering greetings, hoping to influence Scrooge towards adopting a more cheerful attitude.\"", "from": "\"NEPHEW\"", "keyword": "\"positive influence", "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd", "to": "\"MERRY CHRISTMAS\"", "width": 5.0}, {"description": "\"The office setting allows the nephew to actively participate in influencing Scrooge during Christmas time.\"", "from": "\"NEPHEW\"", "keyword": "\"setting influence", "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd", "to": "\"OFFICE\"", "width": 6.0}, {"description": "\"Scrooge refuses to support prisoners, highlighting his miserly nature.\"", "from": "\"MR. SCROOGE\"", "keyword": "\"miserliness", "source_id": "chunk-65055e8d89ae84108617cb5e7b84b1b9", "to": "\"PRISONERS\"", "width": 2.0}, {"description": "\"The gentleman criticizes the Union workhouses as still in operation, suggesting he believes they do not provide enough assistance.\"", "from": "\"THE GENTLEMAN\"", "keyword": "\"criticism", "source_id": "chunk-65055e8d89ae84108617cb5e7b84b1b9", "to": "\"UNION WORKHOUSES\"", "width": 3.0}, {"description": "\"Both Treadmill and Poor Law systems are described as being \u0027in full vigour\u0027, indicating their continued operation despite the gentleman\u0027s efforts to improve conditions.\"", "from": "\"EVENT\"", "keyword": "\"status quo", "source_id": "chunk-65055e8d89ae84108617cb5e7b84b1b9", "to": "\"TREADMILL AND POOR LAW\"", "width": 4.0}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
