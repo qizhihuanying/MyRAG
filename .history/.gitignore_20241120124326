@@ -1,0 +1,12 @@
+__pycache__
+*.egg-info
+lightrag-dev/
+.idea/
+dist/
+env/
+local_neo4jWorkDir/
+neo4jWorkDir/
+ignore_this.txt
+.venv/
+*.ignore.*
+.ruff_cache/

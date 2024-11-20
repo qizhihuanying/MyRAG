@@ -1,0 +1,13 @@
+2024-11-19 23:42:09,845 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-11-19 23:42:09,846 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-11-19 23:42:09,847 - lightrag - INFO - Load KV full_docs with 0 data
+2024-11-19 23:42:09,847 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-11-19 23:42:09,850 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-11-19 23:42:10,151 - lightrag - INFO - [New Chunks] inserting 42 chunks
+2024-11-19 23:42:10,151 - lightrag - INFO - Inserting 42 vectors to chunks
+2024-11-19 23:42:12,849 - lightrag - INFO - [Entity Extraction]...
+2024-11-20 03:55:52,494 - lightrag - INFO - Inserting 212 vectors to entities
+2024-11-20 03:55:57,231 - lightrag - INFO - Inserting 430 vectors to relationships
+2024-11-20 03:56:03,917 - lightrag - INFO - Writing graph with 240 nodes, 430 edges
+2024-11-20 03:56:04,094 - lightrag - INFO - Truncate 42 to 3 chunks
+2024-11-20 03:58:31,638 - lightrag - INFO - Global query uses 56 entites, 60 relations, 3 text units
