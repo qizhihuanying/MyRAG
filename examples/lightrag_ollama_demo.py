@@ -11,7 +11,23 @@ total_start_time = time.time()
 WORKING_DIR = "./dickens"
 time_records = {}  
 
-logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
+
+logging.basicConfig(
+    format="%(asctime)s %(levelname)s:%(name)s:%(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+    level=logging.INFO
+)
+httpx_logger = logging.getLogger("httpx")
+httpx_logger.setLevel(logging.INFO) 
+httpx_logger.propagate = False
+httpx_logger.handlers = []
+stream_handler = logging.StreamHandler()
+stream_handler.setFormatter(logging.Formatter(
+    "%(asctime)s %(levelname)s:%(name)s:%(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+))
+httpx_logger.addHandler(stream_handler)
+
 
 if not os.path.exists(WORKING_DIR):
     os.mkdir(WORKING_DIR)
