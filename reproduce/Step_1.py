@@ -1,3 +1,4 @@
+import logging
 import os
 import json
 import time
@@ -6,6 +7,23 @@ import numpy as np
 from lightrag import LightRAG
 from lightrag.utils import EmbeddingFunc
 from lightrag.llm import ollama_embedding, ollama_model_complete
+
+
+logging.basicConfig(
+    format="%(asctime)s %(levelname)s:%(name)s:%(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+    level=logging.INFO
+)
+httpx_logger = logging.getLogger("httpx")
+httpx_logger.setLevel(logging.INFO) 
+httpx_logger.propagate = False
+httpx_logger.handlers = []
+stream_handler = logging.StreamHandler()
+stream_handler.setFormatter(logging.Formatter(
+    "%(asctime)s %(levelname)s:%(name)s:%(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S"
+))
+httpx_logger.addHandler(stream_handler)
 
 def insert_text(rag, file_path):
     with open(file_path, mode="r", encoding="utf-8") as f:
@@ -24,7 +42,7 @@ def insert_text(rag, file_path):
     if retries == max_retries:
         print("Insertion failed after exceeding the maximum number of retries")
 
-datasets = ["agriculture", "cs", "legal", "mix"]
+datasets = ["mix", "agriculture", "cs", "legal"]
 
 for cls in datasets:
     WORKING_DIR = f"../{cls}"
