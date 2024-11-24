@@ -23,14 +23,15 @@ logger = logging.getLogger("lightrag")
 def set_logger(log_file: str):
     logger.setLevel(logging.DEBUG)
 
-    file_handler = logging.FileHandler(log_file)
+    # 使用 'utf-8' 编码创建 FileHandler
+    file_handler = logging.FileHandler(log_file, encoding='utf-8')
     file_handler.setLevel(logging.DEBUG)
 
-    formatter = logging.Formatter(
-        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-    )
+    # 定义日志格式
+    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
     file_handler.setFormatter(formatter)
 
+    # 添加 FileHandler，如果尚未添加
     if not logger.handlers:
         logger.addHandler(file_handler)
 
