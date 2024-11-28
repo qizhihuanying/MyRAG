@@ -549,7 +549,7 @@ async def _build_local_query_context(
     entities_context = list_of_list_to_csv(entites_section_list)
 
     relations_section_list = [
-        ["id", "source", "target", "description", "keywords", "weight", "rank"]
+        ["id", "source", "target", "description", "keyword", "weight", "rank"]
     ]
     for i, e in enumerate(use_relations):
         relations_section_list.append(
@@ -558,7 +558,7 @@ async def _build_local_query_context(
                 e["src_tgt"][0],
                 e["src_tgt"][1],
                 e["description"],
-                e["keywords"],
+                e["keyword"],
                 e["weight"],
                 e["rank"],
             ]
@@ -676,16 +676,20 @@ async def _find_most_related_edges_from_entities(
         all_edges.update([tuple(sorted(e)) for e in this_edges])
     all_edges = list(all_edges)
     all_edges_pack = await asyncio.gather(
-        *[knowledge_graph_inst.get_edge(e[0], e[1]) for e in all_edges]
+        *[knowledge_graph_inst.get_edge(e[0], e[1], keyword=None) for e in all_edges]
     )
     all_edges_degree = await asyncio.gather(
         *[knowledge_graph_inst.edge_degree(e[0], e[1]) for e in all_edges]
     )
-    all_edges_data = [
-        {"src_tgt": k, "rank": d, **v}
-        for k, v, d in zip(all_edges, all_edges_pack, all_edges_degree)
-        if v is not None
-    ]
+    all_edges_data = []
+    for k, v, d in zip(all_edges, all_edges_pack, all_edges_degree):
+        if v is not None:
+            for keyword, keyword_data in v.items():
+                all_edges_data.append({
+                    "src_tgt": k,  
+                    "rank": d,    
+                    **keyword_data, 
+                })
     all_edges_data = sorted(
         all_edges_data, key=lambda x: (x["rank"], x["weight"]), reverse=True
     )

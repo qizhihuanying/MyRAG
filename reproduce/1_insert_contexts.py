@@ -52,7 +52,8 @@ def start_ollama_server(port, gpu_id):
 def process_dataset(cls, port):
     time.sleep(10) 
 
-    WORKING_DIR = f"../{cls}"
+    model = "lightrag"
+    WORKING_DIR = f"./results/{model}/index_results/{cls}"
 
     if not os.path.exists(WORKING_DIR):
         os.mkdir(WORKING_DIR)
@@ -73,20 +74,20 @@ def process_dataset(cls, port):
         ),
     )
 
-    file_path = f"../datasets/unique_contexts/{cls}_unique_contexts.json"
+    file_path = f"./datasets/unique_contexts/{cls}_unique_contexts.json"
     insert_text(rag, file_path)
 
 if __name__ == "__main__":
     datasets = ["mix", "agriculture", "cs", "legal"]
-    ports = [11434, 11435, 11436, 11437]  # 每个 Ollama 服务器实例的端口
-    gpu_ids = [0, 1, 2, 3]  # 分配给每个进程的 GPU ID
+    ports = [11434, 11435, 11436, 11437] 
+    gpu_ids = [0, 1, 2, 3]  
 
     servers = []
     for port, gpu_id in zip(ports, gpu_ids):
         server = start_ollama_server(port, gpu_id)
         servers.append(server)
 
-    time.sleep(10)  # 稍微延长时间以确保服务器完全启动
+    time.sleep(10)  
 
     processes = []
     for cls, port in zip(datasets, ports):

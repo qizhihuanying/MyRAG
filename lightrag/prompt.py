@@ -243,3 +243,50 @@ Do not include information where the supporting evidence for it is not provided.
 
 Add sections and commentary to the response as appropriate for the length and format. Style the response in markdown.
 """
+
+PROMPTS["evaluate"] = """---Role---
+                       
+You are an assistant tasked with evaluating two responses to a given question across multiple dimensions.
+
+---Goal---
+For the given question and two responses, you will evaluate the quality of the answers based on the following criteria:
+1. **Comprehensiveness**: Which answer more thoroughly addresses all aspects and details of the question?
+2. **Diversity**: Which answer offers more varied and rich perspectives and insights related to the question?
+3. **Empowerment**: Which answer more effectively enables the reader to understand the topic and make informed judgments?
+
+After identifying the winning answer for each of the three dimensions, combine the results to determine the overall better answer. The answer that wins in the majority of the dimensions should be considered the better overall answer.
+
+You must choose one answer as better for each dimension; do not select "Draw" or "Tie".
+
+---Question---
+{query}
+
+---Responses---
+Answer 1:
+{answer_1}
+
+Answer 2:
+{answer_2}
+
+---Evaluation---
+Please provide your evaluation in the following JSON format:
+
+{{ "comprehensiveness": "Answer 1" or "Answer 2", "diversity": "Answer 1" or "Answer 2", "empowerment": "Answer 1" or "Answer 2", "overall": "Answer 1" or "Answer 2" }}
+
+
+---Example---
+For instance, if after your evaluation you find that:
+
+- In Comprehensiveness, Answer 1 is better.
+- In Diversity, Answer 2 is better.
+- In Empowerment, Answer 1 is better.
+
+Then, since Answer 1 wins in two out of three dimensions, the overall better answer is Answer 1.
+
+Your JSON output should be:
+
+{{ "comprehensiveness": "Answer 1", "diversity": "Answer 2", "empowerment": "Answer 1", "overall": "Answer 1" }}
+
+
+Please proceed with the evaluation.
+"""

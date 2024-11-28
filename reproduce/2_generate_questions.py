@@ -1,23 +1,21 @@
 import json
-from openai import OpenAI
 from transformers import GPT2Tokenizer
+from ollama import Client  
 
-
-def openai_complete_if_cache(
-    model="gpt-4o", prompt=None, system_prompt=None, history_messages=[], **kwargs
+def ollama_complete_if_cache(
+    model="qwen2.5:7b", prompt=None, system_prompt=None, history_messages=[], **kwargs
 ) -> str:
-    openai_client = OpenAI()
-
+    host = kwargs.pop("host", "http://localhost:11434") 
+    ollama_client = Client(host=host)  
+    
     messages = []
     if system_prompt:
         messages.append({"role": "system", "content": system_prompt})
     messages.extend(history_messages)
     messages.append({"role": "user", "content": prompt})
 
-    response = openai_client.chat.completions.create(
-        model=model, messages=messages, **kwargs
-    )
-    return response.choices[0].message.content
+    response = ollama_client.chat(model=model, messages=messages, **kwargs)
+    return response["message"]["content"]
 
 
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
@@ -36,9 +34,9 @@ def get_summary(context, tot_tokens=2000):
     return summary
 
 
-clses = ["agriculture"]
+clses = ["agriculture", "cs", "legal", "mix"]
 for cls in clses:
-    with open(f"../datasets/unique_contexts/{cls}_unique_contexts.json", mode="r") as f:
+    with open(f"./datasets/unique_contexts/{cls}_unique_contexts.json", mode="r", encoding="utf-8") as f:
         unique_contexts = json.load(f)
 
     summaries = [get_summary(context) for context in unique_contexts]
@@ -69,10 +67,10 @@ for cls in clses:
         ...
     """
 
-    result = openai_complete_if_cache(model="gpt-4o", prompt=prompt)
+    result = ollama_complete_if_cache(model="qwen2.5:14b", prompt=prompt)
 
-    file_path = f"../datasets/questions/{cls}_questions.txt"
-    with open(file_path, "w") as file:
+    file_path = f"./datasets/questions/{cls}_questions.txt"
+    with open(file_path, "w", encoding="utf-8") as file:
         file.write(result)
 
     print(f"{cls}_questions written to {file_path}")
