@@ -15,6 +15,7 @@ from .operate import (
     local_query,
     global_query,
     hybrid_query,
+    my_query,
     naive_query,
 )
 
@@ -309,8 +310,7 @@ class LightRAG:
         return loop.run_until_complete(self.aquery(query, param))
 
     async def aquery(self, query: str, param: QueryParam = QueryParam()):
-        if param.mode == "local":
-            response = await local_query(
+        response = await my_query(
                 query,
                 self.chunk_entity_relation_graph,
                 self.entities_vdb,
@@ -319,36 +319,6 @@ class LightRAG:
                 param,
                 asdict(self),
             )
-        elif param.mode == "global":
-            response = await global_query(
-                query,
-                self.chunk_entity_relation_graph,
-                self.entities_vdb,
-                self.relationships_vdb,
-                self.text_chunks,
-                param,
-                asdict(self),
-            )
-        elif param.mode == "hybrid":
-            response = await hybrid_query(
-                query,
-                self.chunk_entity_relation_graph,
-                self.entities_vdb,
-                self.relationships_vdb,
-                self.text_chunks,
-                param,
-                asdict(self),
-            )
-        elif param.mode == "naive":
-            response = await naive_query(
-                query,
-                self.chunks_vdb,
-                self.text_chunks,
-                param,
-                asdict(self),
-            )
-        else:
-            raise ValueError(f"Unknown mode {param.mode}")
         await self._query_done()
         return response
 

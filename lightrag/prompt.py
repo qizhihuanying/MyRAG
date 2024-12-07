@@ -168,18 +168,20 @@ Add sections and commentary to the response as appropriate for the length and fo
 
 PROMPTS["keywords_extraction"] = """---Role---
 
-You are a helpful assistant tasked with identifying both high-level and low-level keywords in the user's query.
+You are a helpful assistant tasked with identifying both entity keywords and relation keywords in the user's query to assist in constructing a knowledge graph.
 
 ---Goal---
 
-Given the query, list both high-level and low-level keywords. High-level keywords focus on overarching concepts or themes, while low-level keywords focus on specific entities, details, or concrete terms.
+Given the query, list both entity_keywords and relation_keywords. 
+- **entity_keywords** correspond to the names of entities.
+- **relation_keywords** correspond to the keywords that describe the relationships between entities.
 
 ---Instructions---
 
 - Output the keywords in JSON format.
 - The JSON should have two keys:
-  - "high_level_keywords" for overarching concepts or themes.
-  - "low_level_keywords" for specific entities or details.
+  - "entity_keywords" for the names of entities.
+  - "relation_keywords" for the keywords that describe the relationships between entities.
 
 ######################
 -Examples-
@@ -190,8 +192,8 @@ Query: "How does international trade influence global economic stability?"
 ################
 Output:
 {{
-  "high_level_keywords": ["International trade", "Global economic stability", "Economic impact"],
-  "low_level_keywords": ["Trade agreements", "Tariffs", "Currency exchange", "Imports", "Exports"]
+  "entity_keywords": ["International trade", "Global economic stability"],
+  "relation_keywords": ["influence"]
 }}
 #############################
 Example 2:
@@ -200,8 +202,8 @@ Query: "What are the environmental consequences of deforestation on biodiversity
 ################
 Output:
 {{
-  "high_level_keywords": ["Environmental consequences", "Deforestation", "Biodiversity loss"],
-  "low_level_keywords": ["Species extinction", "Habitat destruction", "Carbon emissions", "Rainforest", "Ecosystem"]
+  "entity_keywords": ["Deforestation", "Environmental consequences", "Biodiversity"],
+  "relation_keywords": ["impact on"]
 }}
 #############################
 Example 3:
@@ -210,8 +212,8 @@ Query: "What is the role of education in reducing poverty?"
 ################
 Output:
 {{
-  "high_level_keywords": ["Education", "Poverty reduction", "Socioeconomic development"],
-  "low_level_keywords": ["School access", "Literacy rates", "Job training", "Income inequality"]
+  "entity_keywords": ["Education", "Poverty"],
+  "relation_keywords": ["role in reducing"]
 }}
 #############################
 -Real Data-
@@ -221,6 +223,8 @@ Query: {query}
 Output:
 
 """
+
+
 
 PROMPTS["naive_rag_response"] = """---Role---
 
