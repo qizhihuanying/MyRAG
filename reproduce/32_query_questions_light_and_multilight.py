@@ -84,7 +84,7 @@ def run_queries_and_save_to_json(
 if __name__ == "__main__":
 
     classes = ["agriculture", "cs", "legal", "mix"]
-    models = ["multi_lightrag"]
+    models = ["multi_lightrag", "lightrag"]
 
     for cls in classes:
         for model in models:

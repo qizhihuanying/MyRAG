@@ -104,6 +104,6 @@ def main():
     for category in categories:
         category_results = compare_modes(category)
         all_results.extend(category_results)
-    save_results_to_csv(all_results, './reproduce/evaluation_results.csv')
+    save_results_to_csv(all_results, './reproduce/result_csvs/naive_vs_light_results.csv')
 
 main()

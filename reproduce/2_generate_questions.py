@@ -1,25 +1,33 @@
 import json
+import os
+import requests
 from transformers import GPT2Tokenizer
-from ollama import Client  
 
-def ollama_complete_if_cache(
-    model="qwen2.5:7b", prompt=None, system_prompt=None, history_messages=[], **kwargs
-) -> str:
-    host = kwargs.pop("host", "http://localhost:11434") 
-    ollama_client = Client(host=host)  
-    
+# 定义发送请求到智谱API的函数
+def send_request_to_zhipu(model, messages, api_key):
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': f'Bearer {api_key}'
+    }
+    data = {
+        'model': model,
+        'messages': messages
+    }
+    response = requests.post('https://open.bigmodel.cn/api/paas/v4/chat/completions', headers=headers, json=data)
+    return response.json()
+
+# 修改ollama_complete_if_cache函数，使其使用智谱API
+def zhipu_complete_if_cache(model="glm-4-long", prompt=None, system_prompt=None, history_messages=[], api_key="", **kwargs) -> str:
     messages = []
     if system_prompt:
         messages.append({"role": "system", "content": system_prompt})
     messages.extend(history_messages)
     messages.append({"role": "user", "content": prompt})
 
-    response = ollama_client.chat(model=model, messages=messages, **kwargs)
-    return response["message"]["content"]
-
+    response = send_request_to_zhipu(model, messages, api_key)
+    return response["choices"][0]["message"]["content"]
 
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
-
 
 def get_summary(context, tot_tokens=2000):
     tokens = tokenizer.tokenize(context)
@@ -33,8 +41,9 @@ def get_summary(context, tot_tokens=2000):
 
     return summary
 
-
 clses = ["agriculture", "cs", "legal", "mix"]
+api_key = "bd998c01c6d796ae0e26ec3a4b7b72d0.NBESrCLvKtSscWET"  
+
 for cls in clses:
     with open(f"./datasets/unique_contexts/{cls}_unique_contexts.json", mode="r", encoding="utf-8") as f:
         unique_contexts = json.load(f)
@@ -67,7 +76,9 @@ for cls in clses:
         ...
     """
 
-    result = ollama_complete_if_cache(model="qwen2.5:14b", prompt=prompt)
+    result = zhipu_complete_if_cache(model="glm-4-flash", prompt=prompt, api_key=api_key)
+    
+    os.makedirs("./datasets/questions", exist_ok=True)
 
     file_path = f"./datasets/questions/{cls}_questions.txt"
     with open(file_path, "w", encoding="utf-8") as file:

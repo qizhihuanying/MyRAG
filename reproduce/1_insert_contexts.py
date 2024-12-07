@@ -1,9 +1,15 @@
 import multiprocessing
 import logging
 import os
-import json
+import sys
 import time
 import subprocess
+import json
+import re
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
 
 from lightrag import LightRAG
 from lightrag.utils import EmbeddingFunc
@@ -49,14 +55,13 @@ def start_ollama_server(port, gpu_id):
     process = subprocess.Popen(["ollama", "serve"], env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     return process
 
-def process_dataset(cls, port):
-    time.sleep(10) 
+def process_dataset(cls, port, gpu_id):
+    time.sleep(10)
 
     model = "lightrag"
     WORKING_DIR = f"./results/{model}/index_results/{cls}"
 
-    if not os.path.exists(WORKING_DIR):
-        os.mkdir(WORKING_DIR)
+    os.makedirs(WORKING_DIR, exist_ok=True)
 
     rag = LightRAG(
         working_dir=WORKING_DIR,
@@ -77,27 +82,60 @@ def process_dataset(cls, port):
     file_path = f"./datasets/unique_contexts/{cls}_unique_contexts.json"
     insert_text(rag, file_path)
 
+def get_free_gpu(threshold=18):
+    free_gpus = set()
+
+    nvidia_smi_output = subprocess.check_output(["nvidia-smi", "--query-gpu=index,memory.free", "--format=csv,noheader,nounits"])
+    nvidia_smi_output = nvidia_smi_output.decode("utf-8").strip().splitlines()
+
+    for line in nvidia_smi_output:
+        gpu_id, memory_free = map(str.strip, line.split(','))
+        memory_free = int(memory_free.split()[0]) 
+        if memory_free >= threshold * 1024:  
+            free_gpus.add(int(gpu_id))
+
+    return free_gpus
+
+def assign_gpus(datasets, ports, gpu_ids):
+    assigned_gpus = set()
+    tasks_to_assign = list(zip(datasets, ports))
+
+    while tasks_to_assign:
+        free_gpus = get_free_gpu()
+        free_gpus -= assigned_gpus
+
+        if free_gpus:
+            gpu_id = free_gpus.pop()
+            cls, port = tasks_to_assign.pop(0)
+
+            print(f"Assigning task for {cls} to GPU {gpu_id} on port {port}")
+            assigned_gpus.add(gpu_id)
+
+            p = multiprocessing.Process(target=process_dataset, args=(cls, port, gpu_id))
+            p.start()
+
+        else:
+            print("No free GPU available. Waiting...")
+            time.sleep(5)
+
+    return tasks_to_assign  
+
 if __name__ == "__main__":
     datasets = ["mix", "agriculture", "cs", "legal"]
-    ports = [11434, 11435, 11436, 11437] 
-    gpu_ids = [0, 1, 2, 3]  
+    ports = [11434, 11435, 11436, 11437]
+    gpu_ids = [0, 1, 2, 3, 4, 5, 6, 7]  
 
     servers = []
     for port, gpu_id in zip(ports, gpu_ids):
         server = start_ollama_server(port, gpu_id)
         servers.append(server)
 
-    time.sleep(10)  
-
-    processes = []
-    for cls, port in zip(datasets, ports):
-        p = multiprocessing.Process(target=process_dataset, args=(cls, port))
-        processes.append(p)
-        p.start()
-
-    for p in processes:
+    remaining_tasks = assign_gpus(datasets, ports, gpu_ids)
+    for p in multiprocessing.active_children():
         p.join()
 
     for server in servers:
         server.terminate()
-        server.wait() 
+        server.wait()
+
+    print("All tasks completed.")
