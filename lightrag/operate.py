@@ -3,15 +3,12 @@ import json
 import math
 import random
 import re
-from typing import List, Tuple, Union
+from typing import Any, Dict, List, Tuple, Union
 from collections import Counter, defaultdict
 import warnings
 
 from numpy import dot
 from torch import norm
-
-from examples.lightrag_openai_compatible_demo import embedding_func
-from lightrag.lightrag import LightRAG
 from lightrag.llm import ollama_embedding, ollama_model_complete
 from lightrag.storage import NetworkXStorage
 from .utils import (
@@ -441,21 +438,13 @@ async def extract_entities(
     return knowledge_graph_inst
 
 
-rag = LightRAG(
-    working_dir="./results/",
-    llm_model_func=ollama_model_complete,
-    llm_model_name="qwen2.5:7b",
-    llm_model_max_async=4,
-    llm_model_max_token_size=32768,
-    llm_model_kwargs={"host": "http://localhost:11434", "options": {"num_ctx": 32768}},
-    embedding_func=EmbeddingFunc(
+embedding_func=EmbeddingFunc(
         embedding_dim=768,
         max_token_size=8192,
         func=lambda texts: ollama_embedding(
             texts, embed_model="nomic-embed-text", host="http://localhost:11434"
         ),
     ),
-)
 
 async def my_query(
     query: str,
@@ -481,6 +470,7 @@ async def my_query(
         relation_keywords = ", ".join(relation_keywords)
         entity_keywords = ", ".join(entity_keywords)
     except json.JSONDecodeError:
+        # 尝试另一种解析
         try:
             result = (
                 result.replace(kw_prompt[:-1], "")
@@ -502,6 +492,7 @@ async def my_query(
         return PROMPTS["fail_response"]
 
     # 第2步：利用关键词从entities_vdb和relationships_vdb中检索初始实体和关系集合
+    # 通过entity关键词检索实体
     entity_results = await entities_vdb.query(entity_keywords, top_k=query_param.top_k) if entity_keywords else []
     relation_results = await relationships_vdb.query(relation_keywords, top_k=query_param.top_k) if relation_keywords else []
 
@@ -515,16 +506,13 @@ async def my_query(
         initial_edges.append((r["src_id"], r["tgt_id"], r["keyword"]))
 
     # 将关系对应的节点加入初始节点集合
-    for (s, t, _) in initial_edges:
+    for (s, _, _) in initial_edges:
         initial_nodes.add(s)
-        initial_nodes.add(t)
 
     initial_nodes = list(initial_nodes)
 
     # 第3步：基于多重图的加权随机游走（Weighted RWR）
     # 实现Weighted RWR的核心函数
-    # edge_info包含: { "keyword": str, "weight": float, "description": str }
-
     async def keyword_similarity(edge_keyword: str, query_keywords: str, embedding_func) -> float:
         # 使用embedding_func对edge_keyword和query_keywords进行嵌入
         embeddings = await embedding_func([edge_keyword, query_keywords])
@@ -534,17 +522,15 @@ async def my_query(
 
     async def perform_weighted_rwr(
         start_nodes: List[str],
-        graph: "NetworkXStorage",
+        graph: "BaseGraphStorage",
         entity_kw: str,
         relation_kw: str,
         walk_steps: int = 100,
         restart_prob: float = 0.15,
-        paths_to_collect: int = 50
-    ) -> List[List[dict]]:
+        paths_to_collect: int = 500
+    ) -> List[List[Tuple[str, Dict[str, Any]]]]:
         # 返回paths结构：List[Path], Path是List[ (node, edge_info) ]
         paths = []
-        current_nodes = start_nodes[:]
-
         for start_node in start_nodes:
             for _ in range(paths_to_collect // max(1, len(start_nodes))):
                 path = []
@@ -553,27 +539,27 @@ async def my_query(
                     edges = await graph.get_node_edges(current_node)
                     if not edges:
                         break
+                    # edges为[(src, tgt, keyword, data), ...]
                     # 计算转移概率
                     weights = []
-                    p_sum = 0.0
-                    for (s, t, e_info) in edges:
-                        w = e_info.get("weight", 1.0)
-                        print("weight", w)
+                    total_weight = 0.0
+                    for (s, t, edge_keyword, data) in edges:
+                        w = data.get("weight", 1.0)
                         # 关键词匹配度
-                        k_sim = await keyword_similarity(e_info.get("keyword", ""), entity_kw + " " + relation_kw, embedding_func)
+                        k_sim = await keyword_similarity(edge_keyword, entity_kw + " " + relation_kw, embedding_func)
                         # 最终概率 = w * k_sim
                         p = w * k_sim
-                        weights.append((t, e_info, p))
-                        p_sum += p
-                    if p_sum == 0:
+                        weights.append((t, data, p))
+                        total_weight += p
+                    if total_weight == 0:
                         break
-                    # 归一化
+                    # 归一化并随机选择下一步
                     rand_val = random.random()
                     cumulative = 0.0
                     chosen_node = None
                     chosen_edge = None
                     for (tnode, e_info, p) in weights:
-                        cp = p / p_sum
+                        cp = p / total_weight
                         cumulative += cp
                         if rand_val <= cumulative:
                             chosen_node = tnode
@@ -599,28 +585,28 @@ async def my_query(
         relation_kw=relation_keywords,
         walk_steps=50,           # 可调优
         restart_prob=0.15,       # 可调优
-        paths_to_collect=50      # 可调优
+        paths_to_collect=500      # 可调优
     )
 
     # 第4步：对路径进行评分和筛选
-    def score_path(path: List[tuple]) -> float:
+    def score_path(path: List[Tuple[str, Dict[str, Any]]]) -> float:
         # path: [(node, edge_info), ...]
         # 去除最后None的边信息
         edges_info = [e for (_, e) in path if e is not None]
-        # 简单评分示例
-        # 评分考虑: sum(edge_weight) + sum(keyword_sim) - path_length
+        # 评分考虑: sum(edge_weight) + sum(keyword_sim) + sum(node_degrees) - path_length
         total_edge_weight = 0.0
         total_kw_match = 0.0
+        node_degree_sum = 0.0
         for e in edges_info:
             w = e.get("weight", 1.0)
             total_edge_weight += w
             # 简化关键词匹配得分
             total_kw_match += 1.0 if e["keyword"] in (entity_keywords + " " + relation_keywords) else 0.5
+            # 假设节点度数为1.0，实际应根据节点数据获取
+            node_degree_sum += 1.0
         path_length = len(path)
         # 参数设定可调
         alpha, beta, gamma, delta = 1.0, 1.0, 0.5, 0.5
-        # 节点度数之和(可选，简化假设为全部1.0)
-        node_degree_sum = float(len(path))
         score = alpha * total_edge_weight + beta * total_kw_match + gamma * node_degree_sum - delta * path_length
         return score
 
@@ -636,26 +622,17 @@ async def my_query(
     selected_nodes = set()
     selected_edges = []
     for path in top_paths:
-        for i, (n, e_info) in enumerate(path):
-            selected_nodes.add(n)
-            if e_info is not None:
-                # 我们需要知道edge的source和target
-                # path中存储方式 (current_node, edge_info)
-                # 当前node是source，下一项的node是target
-                # 但由于path最后项的edge_info是None，只对有e_info项计数
-                pass
-
-    # 为了获取真实边，我们重新从path里提取边关系
-    # 由于path存储(current_node, edge_info)并无下一个节点信息，仅当i+1项存在时才是edge的target
-    # 但path中下一个节点即为i+1项的node
-    final_edges = []
-    for path in top_paths:
-        for i in range(len(path)-1):
+        for i in range(len(path) - 1):
             src_node = path[i][0]
-            tgt_node = path[i+1][0]
-            e_info = path[i][1]
-            if e_info is not None:
-                final_edges.append((src_node, tgt_node, e_info))
+            edge_info = path[i][1]
+            tgt_node = path[i + 1][0]
+            if edge_info is not None:
+                selected_nodes.add(src_node)
+                selected_nodes.add(tgt_node)
+                selected_edges.append((src_node, tgt_node, edge_info))
+        # 添加路径最后一个节点
+        if path:
+            selected_nodes.add(path[-1][0])
 
     selected_nodes = list(selected_nodes)
 
@@ -674,7 +651,6 @@ async def my_query(
 
     # 获取文本信息
     # 节点中有source_id，通过text_chunks_db获取文本块
-    # 同时从edges中尝试获取描述字段
     all_text_ids = set()
     for n in node_datas:
         if "source_id" in n:
@@ -682,10 +658,12 @@ async def my_query(
             for cid in cids:
                 all_text_ids.add(cid)
 
-    for (s,t,e) in final_edges:
-        # edge_info中如有source_id同样处理
-        # 此处假设edge_info中没有source_id，只有description。若有可扩展
-        pass
+    # 处理边的source_id，如果存在
+    for (_, _, e_info) in selected_edges:
+        if "source_id" in e_info:
+            cids = split_string_by_multi_markers(e_info["source_id"], [GRAPH_FIELD_SEP])
+            for cid in cids:
+                all_text_ids.add(cid)
 
     all_text_units = []
     for cid in all_text_ids:
@@ -700,9 +678,9 @@ async def my_query(
         max_token_size=query_param.max_token_for_text_unit,
     )
 
-    # 对edges进行简单结构化处理
+    # 对edges进行结构化处理
     edges_context_data = []
-    for i, (s, t, e_info) in enumerate(final_edges):
+    for i, (s, t, e_info) in enumerate(selected_edges):
         # 计算edge的rank(即edge_degree)
         deg = await knowledge_graph_inst.edge_degree(s, t)
         edges_context_data.append({
@@ -770,7 +748,6 @@ csv
 {text_units_context}
 
 """
-
     if query_param.only_need_context:
         return context
 

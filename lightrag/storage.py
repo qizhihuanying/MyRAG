@@ -259,7 +259,9 @@ class NetworkXStorage(BaseGraphStorage):
 
     async def get_node_edges(self, source_node_id: str):
         if self._graph.has_node(source_node_id):
-            return list(self._graph.edges(source_node_id))
+            edges_with_keys_and_data = self._graph.edges(source_node_id, data=True, keys=True)
+            formatted_edges = [(u, v, k, d) for u, v, k, d in edges_with_keys_and_data]
+            return formatted_edges
         return None
 
     async def upsert_node(self, node_id: str, node_data: dict[str, str]):

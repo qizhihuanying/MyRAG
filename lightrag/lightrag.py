@@ -12,11 +12,11 @@ from .llm import (
 from .operate import (
     chunking_by_token_size,
     extract_entities,
-    local_query,
-    global_query,
-    hybrid_query,
+    # local_query,
+    # global_query,
+    # hybrid_query,
     my_query,
-    naive_query,
+    # naive_query,
 )
 
 from .utils import (

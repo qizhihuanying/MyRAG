@@ -8,7 +8,7 @@ from lightrag.utils import EmbeddingFunc
 
 total_start_time = time.time()
 
-WORKING_DIR = "./dickens"
+WORKING_DIR = "./results/multi_lightrag/index_results/cs"
 time_records = {}  
 
 
@@ -50,8 +50,8 @@ rag = LightRAG(
     ),
 )
 
-with open("./book.txt", "r", encoding="utf-8") as f:
-    rag.insert(f.read())
+# with open("./book.txt", "r", encoding="utf-8") as f:
+#     rag.insert(f.read())
 
 db_end_time = time.time()
 time_records['Database construction'] = db_end_time - db_start_time
@@ -70,7 +70,7 @@ def save_search_results(query, mode, filename):
 
 model_name = rag.llm_model_name.replace(":", "_")
 
-save_search_results("What are the top themes in this article?", "naive", f"outputs/{model_name}_naive_results.md")
+# save_search_results("What are the top themes in this article?", "naive", f"outputs/{model_name}_naive_results.md")
 
 save_search_results("What are the top themes in this article?", "local", f"outputs/{model_name}_local_results.md")
 
