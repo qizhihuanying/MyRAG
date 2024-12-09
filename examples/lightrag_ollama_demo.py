@@ -11,13 +11,13 @@ total_start_time = time.time()
 WORKING_DIR = "./results/multi_lightrag/index_results/cs"
 time_records = {}  
 
-
 logging.basicConfig(
     format="%(asctime)s %(levelname)s:%(name)s:%(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
     level=logging.INFO
 )
 httpx_logger = logging.getLogger("httpx")
+httpx_logger.disabled = True # Disable httpx logger
 httpx_logger.setLevel(logging.INFO) 
 httpx_logger.propagate = False
 httpx_logger.handlers = []
@@ -74,9 +74,9 @@ model_name = rag.llm_model_name.replace(":", "_")
 
 save_search_results("What are the top themes in this article?", "local", f"outputs/{model_name}_local_results.md")
 
-save_search_results("What are the top themes in this article?", "global", f"outputs/{model_name}_global_results.md")
+# save_search_results("What are the top themes in this article?", "global", f"outputs/{model_name}_global_results.md")
 
-save_search_results("What are the top themes in this article?", "hybrid", f"outputs/{model_name}_hybrid_results.md")
+# save_search_results("What are the top themes in this article?", "hybrid", f"outputs/{model_name}_hybrid_results.md")
 
 
 total_end_time = time.time()

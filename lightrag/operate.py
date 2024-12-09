@@ -6,9 +6,12 @@ import re
 from typing import Any, Dict, List, Tuple, Union
 from collections import Counter, defaultdict
 import warnings
+import numpy as np
 
 from numpy import dot
 from torch import norm
+import torch
+from tqdm import tqdm
 from lightrag.llm import ollama_embedding, ollama_model_complete
 from lightrag.storage import NetworkXStorage
 from .utils import (
@@ -437,14 +440,61 @@ async def extract_entities(
 
     return knowledge_graph_inst
 
-
 embedding_func=EmbeddingFunc(
         embedding_dim=768,
         max_token_size=8192,
         func=lambda texts: ollama_embedding(
             texts, embed_model="nomic-embed-text", host="http://localhost:11434"
         ),
-    ),
+    )
+
+class MY_Cache:
+    def __init__(self, embedding_func, batch_size=128):
+        self.embedding_func = embedding_func
+        self.embedding_cache = {}
+        self.edge_cache = {}
+        self.similarity_cache = {}
+        self.lock = asyncio.Lock()
+        self.batch_size = batch_size
+
+    async def get_embeddings(self, keywords: List[str]) -> Dict[str, List[float]]:
+        missing = [kw for kw in keywords if kw not in self.embedding_cache]
+        if missing:
+            for i in range(0, len(missing), self.batch_size):
+                batch = missing[i:i + self.batch_size]
+                embeddings = await self.embedding_func.func(batch)
+                async with self.lock:
+                    for kw, emb in zip(batch, embeddings):
+                        self.embedding_cache[kw] = emb
+        return {kw: self.embedding_cache[kw] for kw in keywords}
+    
+    async def get_similarity(self, relation_kw: str, edge_kw: str) -> float:
+        if relation_kw not in self.similarity_cache:
+            self.similarity_cache[relation_kw] = {}
+        if edge_kw not in self.similarity_cache[relation_kw]:
+            sim = await self.compute_similarity(relation_kw, edge_kw)
+            self.similarity_cache[relation_kw][edge_kw] = sim
+        return self.similarity_cache[relation_kw][edge_kw]
+
+    async def compute_similarity(self, relation_kw: str, edge_kw: str) -> float:
+        embeddings = await self.get_embeddings([relation_kw, edge_kw])
+        v1 = np.array(embeddings[relation_kw])
+        v2 = np.array(embeddings[edge_kw])
+        if np.linalg.norm(v1) == 0 or np.linalg.norm(v2) == 0:
+            return 0.0
+        sim = np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
+        return sim
+    
+    async def get_edges(self, node: str, graph: "BaseGraphStorage") -> List[tuple]:
+        if node not in self.edge_cache:
+            edges = await graph.get_node_edges(node)
+            self.edge_cache[node] = edges
+        return self.edge_cache[node]
+
+# 初始化全局缓存
+my_cache = MY_Cache(embedding_func)
+
+
 
 async def my_query(
     query: str,
@@ -465,10 +515,8 @@ async def my_query(
 
     try:
         keywords_data = json.loads(json_text)
-        relation_keywords = keywords_data.get("relation_keywords", [])
         entity_keywords = keywords_data.get("entity_keywords", [])
-        relation_keywords = ", ".join(relation_keywords)
-        entity_keywords = ", ".join(entity_keywords)
+        relation_keywords = keywords_data.get("relation_keywords", [])
     except json.JSONDecodeError:
         # 尝试另一种解析
         try:
@@ -480,10 +528,8 @@ async def my_query(
             )
             result = "{" + result.split("{")[1].split("}")[0] + "}"
             keywords_data = json.loads(result)
-            relation_keywords = keywords_data.get("relation_keywords", [])
             entity_keywords = keywords_data.get("entity_keywords", [])
-            relation_keywords = ", ".join(relation_keywords)
-            entity_keywords = ", ".join(entity_keywords)
+            relation_keywords = keywords_data.get("relation_keywords", [])
         except json.JSONDecodeError as e:
             print(f"JSON parsing error: {e}")
             return PROMPTS["fail_response"]
@@ -491,102 +537,120 @@ async def my_query(
     if not entity_keywords and not relation_keywords:
         return PROMPTS["fail_response"]
 
-    # 第2步：利用关键词从entities_vdb和relationships_vdb中检索初始实体和关系集合
-    # 通过entity关键词检索实体
-    entity_results = await entities_vdb.query(entity_keywords, top_k=query_param.top_k) if entity_keywords else []
-    relation_results = await relationships_vdb.query(relation_keywords, top_k=query_param.top_k) if relation_keywords else []
+    # 设置总需要的Top K数量
+    total_k = 5
+    num_entities = len(entity_keywords)
+    num_relations = len(relation_keywords)
 
-    # 将所有涉及的节点和关系提取为初始节点集和初始边集
+    # 计算每个entity和relation的Top K
+    entity_k = total_k // num_entities if num_entities > 0 else total_k
+    relation_k = total_k // num_relations if num_relations > 0 else total_k
+
+    # 第2步：利用关键词从entities_vdb和relationships_vdb中检索初始实体和关系集合
+    # 2.1 对每个entity_keyword单独查询
+    entity_tasks = [
+        entities_vdb.query(kw, top_k=entity_k) for kw in entity_keywords
+    ]
+    entity_results_list = await asyncio.gather(*entity_tasks)
+    entity_results = [item for sublist in entity_results_list for item in sublist]
+
+    # 2.2 对每个relation_keyword单独查询
+    relation_tasks = [
+        relationships_vdb.query(kw, top_k=relation_k) for kw in relation_keywords
+    ]
+    relation_results_list = await asyncio.gather(*relation_tasks)
+
+    # 2.3 聚集实体
     initial_nodes = set()
     for r in entity_results:
         initial_nodes.add(r["entity_name"])
 
-    initial_edges = []
-    for r in relation_results:
-        initial_edges.append((r["src_id"], r["tgt_id"], r["keyword"]))
+    # 2.4 处理每个relation_keyword的关系
+    relation_initial_nodes_groups = []  # 每个group对应一个relation_keyword
+    for idx, relation_results in enumerate(relation_results_list):
+        current_relation_kw = relation_keywords[idx]
+        # 提取relations
+        current_relations = [ (r["src_id"], r["tgt_id"], r["keyword"]) for r in relation_results ]
+        initial_edges = current_relations
 
-    # 将关系对应的节点加入初始节点集合
-    for (s, _, _) in initial_edges:
-        initial_nodes.add(s)
+        # 将关系对应的节点加入初始节点集合
+        current_initial_nodes = set(initial_nodes)  
+        for (s, _, _) in initial_edges:
+            current_initial_nodes.add(s)
 
-    initial_nodes = list(initial_nodes)
+        relation_initial_nodes_groups.append( (current_relation_kw, list(current_initial_nodes)) )
 
-    # 第3步：基于多重图的加权随机游走（Weighted RWR）
-    # 实现Weighted RWR的核心函数
-    async def keyword_similarity(edge_keyword: str, query_keywords: str, embedding_func) -> float:
-        # 使用embedding_func对edge_keyword和query_keywords进行嵌入
-        embeddings = await embedding_func([edge_keyword, query_keywords])
-        v1, v2 = embeddings[0], embeddings[1]
-        sim = dot(v1, v2) / (norm(v1)*norm(v2))
-        return sim
-
+    # 第3步：基于多重图的加权随机游走（Weighted RWR） - 对每个relation_keyword单独执行          
     async def perform_weighted_rwr(
         start_nodes: List[str],
         graph: "BaseGraphStorage",
-        entity_kw: str,
         relation_kw: str,
-        walk_steps: int = 100,
+        walk_steps: int = 5,           # 调整后的步数
         restart_prob: float = 0.15,
-        paths_to_collect: int = 500
-    ) -> List[List[Tuple[str, Dict[str, Any]]]]:
-        # 返回paths结构：List[Path], Path是List[ (node, edge_info) ]
+        paths_to_collect: int = 10      # 调整后的路径数
+    ) -> List[List[tuple]]:
         paths = []
-        for start_node in start_nodes:
-            for _ in range(paths_to_collect // max(1, len(start_nodes))):
-                path = []
-                current_node = start_node
-                for _ in range(walk_steps):
-                    edges = await graph.get_node_edges(current_node)
-                    if not edges:
-                        break
-                    # edges为[(src, tgt, keyword, data), ...]
-                    # 计算转移概率
-                    weights = []
-                    total_weight = 0.0
-                    for (s, t, edge_keyword, data) in edges:
-                        w = data.get("weight", 1.0)
-                        # 关键词匹配度
-                        k_sim = await keyword_similarity(edge_keyword, entity_kw + " " + relation_kw, embedding_func)
-                        # 最终概率 = w * k_sim
-                        p = w * k_sim
-                        weights.append((t, data, p))
-                        total_weight += p
-                    if total_weight == 0:
-                        break
-                    # 归一化并随机选择下一步
-                    rand_val = random.random()
-                    cumulative = 0.0
-                    chosen_node = None
-                    chosen_edge = None
-                    for (tnode, e_info, p) in weights:
-                        cp = p / total_weight
-                        cumulative += cp
-                        if rand_val <= cumulative:
-                            chosen_node = tnode
-                            chosen_edge = e_info
+        total_paths = len(start_nodes) * (paths_to_collect // max(1, len(start_nodes)))
+
+        with tqdm(total=total_paths, desc="Performing Weighted RWR", mininterval=1.0) as pbar:
+            for start_node in start_nodes:
+                for _ in range(paths_to_collect // max(1, len(start_nodes))):
+                    path = []
+                    current_node = start_node
+                    for _ in range(walk_steps):
+                        edges = await my_cache.get_edges(current_node, graph)
+
+                        if not edges:
                             break
-                    if chosen_node is None:
-                        break
-                    path.append((current_node, chosen_edge))
-                    current_node = chosen_node
-                    # 重启机制
-                    if random.random() < restart_prob:
-                        current_node = start_node
-                # 将终点节点也加入信息
-                if path:
-                    path.append((current_node, None))
-                    paths.append(path)
+
+                        edge_scores = []
+                        for edge in edges:
+                            _, tgt, edge_kw, data = edge
+                            sim = await my_cache.get_similarity(relation_kw, edge_kw)
+                            w = data.get("weight", 1.0)
+                            score = w * sim
+                            edge_scores.append((tgt, data, score))
+
+                        if not edge_scores:
+                            break
+
+                        # 选择得分最高的边
+                        max_p_edge = max(edge_scores, key=lambda x: x[2], default=None)
+                        if not max_p_edge:
+                            break
+
+                        chosen_node, chosen_edge, _ = max_p_edge
+                        path.append((current_node, chosen_edge))
+                        current_node = chosen_node
+
+                        # 重启机制
+                        if random.random() < restart_prob:
+                            current_node = start_node
+
+                    if path:
+                        path.append((current_node, None))
+                        paths.append(path)
+                    pbar.update(1)
+
         return paths
 
-    paths = await perform_weighted_rwr(
-        start_nodes=initial_nodes,
-        graph=knowledge_graph_inst,
-        entity_kw=entity_keywords,
-        relation_kw=relation_keywords,
-        walk_steps=50,           # 可调优
-        restart_prob=0.15,       # 可调优
-        paths_to_collect=500      # 可调优
-    )
+    all_paths = []
+    tasks = []
+    for relation_kw, start_nodes in relation_initial_nodes_groups:
+        task = perform_weighted_rwr(
+            start_nodes=start_nodes,
+            graph=knowledge_graph_inst,
+            relation_kw=relation_kw,
+            walk_steps=5,           # 调整后的步数
+            restart_prob=0.15,       # 调整后的重启概率
+            paths_to_collect=10      # 调整后的路径数
+        )
+        tasks.append(task)
+
+    # 并行执行所有RWR任务
+    all_paths_results = await asyncio.gather(*tasks)
+    for paths in all_paths_results:
+        all_paths.extend(paths)
 
     # 第4步：对路径进行评分和筛选
     def score_path(path: List[Tuple[str, Dict[str, Any]]]) -> float:
@@ -601,7 +665,7 @@ async def my_query(
             w = e.get("weight", 1.0)
             total_edge_weight += w
             # 简化关键词匹配得分
-            total_kw_match += 1.0 if e["keyword"] in (entity_keywords + " " + relation_keywords) else 0.5
+            total_kw_match += 1.0 if e["keyword"] in (entity_keywords + relation_keywords) else 0.5
             # 假设节点度数为1.0，实际应根据节点数据获取
             node_degree_sum += 1.0
         path_length = len(path)
@@ -610,7 +674,7 @@ async def my_query(
         score = alpha * total_edge_weight + beta * total_kw_match + gamma * node_degree_sum - delta * path_length
         return score
 
-    scored_paths = [(p, score_path(p)) for p in paths]
+    scored_paths = [(p, score_path(p)) for p in all_paths]
     scored_paths.sort(key=lambda x: x[1], reverse=True)
     top_paths = [p for p, s in scored_paths[:query_param.top_k]] if scored_paths else []
 
@@ -741,13 +805,13 @@ csv
 
 -----Relationships-----
 csv
-
 {relations_context}
 -----Sources-----
 csv
 {text_units_context}
 
 """
+
     if query_param.only_need_context:
         return context
 
