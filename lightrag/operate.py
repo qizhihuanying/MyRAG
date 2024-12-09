@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Tuple, Union
 from collections import Counter, defaultdict
 import warnings
 import numpy as np
-
+import torch.nn.functional as F
 from numpy import dot
 from torch import norm
 import torch
@@ -450,14 +450,29 @@ embedding_func=EmbeddingFunc(
 
 class MY_Cache:
     def __init__(self, embedding_func, batch_size=128):
+        """
+        初始化缓存类。
+
+        :param embedding_func: 一个具有`func`方法的对象，用于生成嵌入。
+        :param batch_size: 批处理大小。
+        """
         self.embedding_func = embedding_func
-        self.embedding_cache = {}
-        self.edge_cache = {}
-        self.similarity_cache = {}
+        self.embedding_cache: Dict[str, torch.Tensor] = {}
+        self.edge_cache: Dict[str, List[tuple]] = {}
+        self.similarity_cache: Dict[str, Dict[str, float]] = {}
         self.lock = asyncio.Lock()
         self.batch_size = batch_size
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        if self.device.type == 'cpu':
+            print("警告：未检测到可用的GPU，所有计算将在CPU上进行。")
 
-    async def get_embeddings(self, keywords: List[str]) -> Dict[str, List[float]]:
+    async def get_embeddings(self, keywords: List[str]) -> Dict[str, torch.Tensor]:
+        """
+        获取关键词的嵌入。如果缓存中不存在，则生成并缓存。
+
+        :param keywords: 关键词列表。
+        :return: 关键词到嵌入的映射。
+        """
         missing = [kw for kw in keywords if kw not in self.embedding_cache]
         if missing:
             for i in range(0, len(missing), self.batch_size):
@@ -465,10 +480,18 @@ class MY_Cache:
                 embeddings = await self.embedding_func.func(batch)
                 async with self.lock:
                     for kw, emb in zip(batch, embeddings):
-                        self.embedding_cache[kw] = emb
+                        tensor = torch.tensor(emb, dtype=torch.float32, device=self.device)
+                        self.embedding_cache[kw] = tensor
         return {kw: self.embedding_cache[kw] for kw in keywords}
-    
+
     async def get_similarity(self, relation_kw: str, edge_kw: str) -> float:
+        """
+        获取两个关键词之间的相似度。如果缓存中不存在，则计算并缓存。
+
+        :param relation_kw: 关系关键词。
+        :param edge_kw: 边缘关键词。
+        :return: 相似度分数。
+        """
         if relation_kw not in self.similarity_cache:
             self.similarity_cache[relation_kw] = {}
         if edge_kw not in self.similarity_cache[relation_kw]:
@@ -477,22 +500,68 @@ class MY_Cache:
         return self.similarity_cache[relation_kw][edge_kw]
 
     async def compute_similarity(self, relation_kw: str, edge_kw: str) -> float:
+        """
+        计算两个关键词之间的余弦相似度。
+
+        :param relation_kw: 关系关键词。
+        :param edge_kw: 边缘关键词。
+        :return: 余弦相似度分数。
+        """
         embeddings = await self.get_embeddings([relation_kw, edge_kw])
-        v1 = np.array(embeddings[relation_kw])
-        v2 = np.array(embeddings[edge_kw])
-        if np.linalg.norm(v1) == 0 or np.linalg.norm(v2) == 0:
+        v1 = embeddings[relation_kw]
+        v2 = embeddings[edge_kw]
+        if torch.norm(v1) == 0 or torch.norm(v2) == 0:
             return 0.0
-        sim = np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
+        sim = F.cosine_similarity(v1.unsqueeze(0), v2.unsqueeze(0)).item()
         return sim
-    
+
+    async def compute_batch_similarity(self, pairs: List[Tuple[str, str]]) -> Dict[Tuple[str, str], float]:
+        """
+        批量计算多个关键词对之间的余弦相似度。
+
+        :param pairs: 关键词对列表。
+        :return: 关键词对到相似度分数的映射。
+        """
+        relations, edges = zip(*pairs)
+        unique_keywords = list(set(relations + edges))
+        embeddings = await self.get_embeddings(unique_keywords)
+
+        rel_tensor = torch.stack([embeddings[rel] for rel in relations]).to(self.device)  # [batch_size, dim]
+        edge_tensor = torch.stack([embeddings[edge] for edge in edges]).to(self.device)  # [batch_size, dim]
+
+        # 计算余弦相似度
+        sims = F.cosine_similarity(rel_tensor, edge_tensor, dim=1)  # [batch_size]
+
+        # 转换为Python float
+        sims = sims.cpu().tolist()
+
+        # 构建结果字典
+        similarity_dict = {}
+        for pair, sim in zip(pairs, sims):
+            if torch.norm(embeddings[pair[0]]) == 0 or torch.norm(embeddings[pair[1]]) == 0:
+                similarity_dict[pair] = 0.0
+            else:
+                similarity_dict[pair] = sim if not torch.isnan(torch.tensor(sim)) else 0.0
+
+        return similarity_dict
+
     async def get_edges(self, node: str, graph: "BaseGraphStorage") -> List[tuple]:
+        """
+        获取节点的边缘。
+
+        :param node: 节点名称。
+        :param graph: 图存储实例。
+        :return: 边缘列表。
+        """
         if node not in self.edge_cache:
             edges = await graph.get_node_edges(node)
             self.edge_cache[node] = edges
         return self.edge_cache[node]
 
+
 # 初始化全局缓存
 my_cache = MY_Cache(embedding_func)
+rwr_semaphore = asyncio.Semaphore(10)
 
 
 
@@ -579,69 +648,75 @@ async def my_query(
             current_initial_nodes.add(s)
 
         relation_initial_nodes_groups.append( (current_relation_kw, list(current_initial_nodes)) )
+      
+    # 定义一个异步锁用于同步进度条更新
+    pbar_lock = asyncio.Lock()
 
-    # 第3步：基于多重图的加权随机游走（Weighted RWR） - 对每个relation_keyword单独执行          
+    # 第3步：基于多重图的加权随机游走（Weighted RWR） - 对每个relation_keyword单独执行
     async def perform_weighted_rwr(
-        start_nodes: List[str],
-        graph: "BaseGraphStorage",
+        my_cache: MY_Cache,
+        start_nodes_name: List[str],
+        graph: BaseGraphStorage,
         relation_kw: str,
-        walk_steps: int = 5,           # 调整后的步数
+        walk_steps: int = 50,
         restart_prob: float = 0.15,
-        paths_to_collect: int = 10      # 调整后的路径数
+        paths_to_collect: int = 10
     ) -> List[List[tuple]]:
         paths = []
-        total_paths = len(start_nodes) * (paths_to_collect // max(1, len(start_nodes)))
+        paths_per_node = paths_to_collect // max(1, len(start_nodes_name))
 
-        with tqdm(total=total_paths, desc="Performing Weighted RWR", mininterval=1.0) as pbar:
-            for start_node in start_nodes:
-                for _ in range(paths_to_collect // max(1, len(start_nodes))):
-                    path = []
-                    current_node = start_node
-                    for _ in range(walk_steps):
-                        edges = await my_cache.get_edges(current_node, graph)
+        for _ in range(paths_per_node):
+            for start_node in start_nodes_name:
+                path = []
+                current_node = start_node
+                for _ in range(walk_steps):
+                    edges = await my_cache.get_edges(current_node, graph)
+                    if not edges:
+                        break
 
-                        if not edges:
-                            break
+                    # 准备批量计算相似度
+                    pairs = [(relation_kw, edge[2]) for edge in edges]
+                    similarities = await my_cache.compute_batch_similarity(pairs)
 
-                        edge_scores = []
-                        for edge in edges:
-                            _, tgt, edge_kw, data = edge
-                            sim = await my_cache.get_similarity(relation_kw, edge_kw)
-                            w = data.get("weight", 1.0)
-                            score = w * sim
-                            edge_scores.append((tgt, data, score))
+                    # 计算分数（权重 * 相似度）
+                    scores = []
+                    for edge, sim in zip(edges, similarities.values()):
+                        w = edge[3].get("weight", 1.0)
+                        score = w * sim
+                        scores.append(score)
 
-                        if not edge_scores:
-                            break
+                    if not scores or sum(scores) == 0:
+                        break
 
-                        # 选择得分最高的边
-                        max_p_edge = max(edge_scores, key=lambda x: x[2], default=None)
-                        if not max_p_edge:
-                            break
+                    # 选择下一个节点
+                    probabilities = torch.tensor(scores) / sum(scores)
+                    chosen_index = torch.multinomial(probabilities, 1).item()
+                    chosen_edge = edges[chosen_index]
+                    chosen_node = chosen_edge[1]
 
-                        chosen_node, chosen_edge, _ = max_p_edge
-                        path.append((current_node, chosen_edge))
-                        current_node = chosen_node
+                    # 标记路径
+                    path.append((current_node, chosen_edge[3]))
+                    current_node = chosen_node
 
-                        # 重启机制
-                        if random.random() < restart_prob:
-                            current_node = start_node
+                    # 重启机制
+                    if torch.rand(1).item() < restart_prob:
+                        current_node = start_node
 
-                    if path:
-                        path.append((current_node, None))
-                        paths.append(path)
-                    pbar.update(1)
+                path.append((current_node, None))
+                paths.append(path)
+                print(path)
 
         return paths
-
+    
     all_paths = []
     tasks = []
-    for relation_kw, start_nodes in relation_initial_nodes_groups:
+    for relation_kw, start_nodes_name in relation_initial_nodes_groups:
         task = perform_weighted_rwr(
-            start_nodes=start_nodes,
+            my_cache=my_cache,
+            start_nodes_name=start_nodes_name,
             graph=knowledge_graph_inst,
             relation_kw=relation_kw,
-            walk_steps=5,           # 调整后的步数
+            walk_steps=50,           # 调整后的步数
             restart_prob=0.15,       # 调整后的重启概率
             paths_to_collect=10      # 调整后的路径数
         )
@@ -819,6 +894,7 @@ csv
         return PROMPTS["fail_response"]
 
     # 第6步：调用模型生成最终回答
+    print("Start querying model...")
     sys_prompt_temp = PROMPTS["rag_response"]
     sys_prompt = sys_prompt_temp.format(
         context_data=context, response_type=query_param.response_type

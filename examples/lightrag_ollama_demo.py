@@ -2,11 +2,16 @@ import os
 import sys
 import logging
 import time
+
+import torch
 from lightrag import LightRAG, QueryParam
 from lightrag.llm import ollama_model_complete, ollama_embedding
 from lightrag.utils import EmbeddingFunc
 
 total_start_time = time.time()
+
+device = "cuda:0" if torch.cuda.is_available() else "cpu"
+print(torch.cuda.is_available())
 
 WORKING_DIR = "./results/multi_lightrag/index_results/cs"
 time_records = {}  
