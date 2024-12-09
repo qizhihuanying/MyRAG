@@ -468,22 +468,30 @@ class MY_Cache:
                         self.embedding_cache[kw] = emb
         return {kw: self.embedding_cache[kw] for kw in keywords}
     
-    async def get_similarity(self, relation_kw: str, edge_kw: str) -> float:
-        if relation_kw not in self.similarity_cache:
-            self.similarity_cache[relation_kw] = {}
-        if edge_kw not in self.similarity_cache[relation_kw]:
-            sim = await self.compute_similarity(relation_kw, edge_kw)
-            self.similarity_cache[relation_kw][edge_kw] = sim
-        return self.similarity_cache[relation_kw][edge_kw]
+    async def get_similarities_batch(self, edge_pairs: set) -> Dict[tuple, float]:
+        """
+        Computes similarities for a batch of (relation_kw, edge_kw) pairs.
+        Returns a dictionary mapping (relation_kw, edge_kw) to similarity.
+        """
+        # Collect unique keywords for embeddings computation
+        keywords = set()
+        for relation_kw, edge_kw in edge_pairs:
+            keywords.add(relation_kw)
+            keywords.add(edge_kw)
+        
+        embeddings = await self.get_embeddings(list(keywords))
 
-    async def compute_similarity(self, relation_kw: str, edge_kw: str) -> float:
-        embeddings = await self.get_embeddings([relation_kw, edge_kw])
-        v1 = np.array(embeddings[relation_kw])
-        v2 = np.array(embeddings[edge_kw])
-        if np.linalg.norm(v1) == 0 or np.linalg.norm(v2) == 0:
-            return 0.0
-        sim = np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
-        return sim
+        similarities = {}
+        for relation_kw, edge_kw in edge_pairs:
+            v1 = np.array(embeddings[relation_kw])
+            v2 = np.array(embeddings[edge_kw])
+            if np.linalg.norm(v1) == 0 or np.linalg.norm(v2) == 0:
+                similarities[(relation_kw, edge_kw)] = 0.0
+            else:
+                sim = np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
+                similarities[(relation_kw, edge_kw)] = sim
+        
+        return similarities
     
     async def get_edges(self, node: str, graph: "BaseGraphStorage") -> List[tuple]:
         if node not in self.edge_cache:
@@ -608,23 +616,40 @@ async def my_query(
             async def walk(start_node_name: str) -> List[List[tuple]]:
                 local_paths = []
                 visited_edges = set()
+                
+                # Collect all unique (relation_kw, edge_kw) pairs for batch similarity computation
+                all_edge_pairs = set()
+
                 for _ in range(paths_to_collect // max(1, len(start_nodes_name))):
                     path = []
                     current_node_name = start_node_name
+                    
                     for _ in range(walk_steps):
                         edges = await my_cache.get_edges(current_node_name, graph)
 
                         if not edges:
                             break
 
-                        # 根据relation_kw计算每条边的score
+                        for edge in edges:
+                            _, tgt, edge_kw, data = edge
+                            edge_id = (current_node_name, tgt, edge_kw)
+                            if edge_id in visited_edges:
+                                continue
+                            all_edge_pairs.add((relation_kw, edge_kw))
+
+                        if not all_edge_pairs:
+                            break
+
+                        similarities = await my_cache.get_similarities_batch(all_edge_pairs)
+
                         edges_info = []
                         for edge in edges:
                             _, tgt, edge_kw, data = edge
                             edge_id = (current_node_name, tgt, edge_kw)
                             if edge_id in visited_edges:
                                 continue
-                            sim = await my_cache.get_similarity(relation_kw, edge_kw)
+                            
+                            sim = similarities.get((relation_kw, edge_kw), 0.0)
                             w = data.get("weight", 1.0)
                             score = w * sim
                             edges_info.append((current_node_name, tgt, edge_kw, data, score))
@@ -635,26 +660,22 @@ async def my_query(
                         weights = [item[4] for item in edges_info]
                         chosen = random.choices(edges_info, weights=weights, k=1)[0]
                         _, chosen_node_name, chosen_edge_kw, chosen_edge_data, _ = chosen
-
-                        # 将此边标记为已访问，防止下次循环再选中
+                        
                         visited_edges.add((current_node_name, chosen_node_name))
 
                         path.append((current_node_name, chosen_edge_data))
                         current_node_name = chosen_node_name
-
-                        # 重启机制
+                        
                         if random.random() < restart_prob:
                             current_node_name = start_node_name
 
-                        # 更新进度条
                         async with pbar_lock:
                             pbar.update(1)
-                            
+
                     if path:
                         path.append((current_node_name, None))
                         local_paths.append(path)
                         print(path)
-
 
                 return local_paths
 
@@ -679,7 +700,7 @@ async def my_query(
             start_nodes_name=start_nodes_name,
             graph=knowledge_graph_inst,
             relation_kw=relation_kw,
-            walk_steps=50,           # 调整后的步数
+            walk_steps=10,           # 调整后的步数
             restart_prob=0.15,       # 调整后的重启概率
             paths_to_collect=10      # 调整后的路径数
         )
@@ -857,6 +878,7 @@ csv
         return PROMPTS["fail_response"]
 
     # 第6步：调用模型生成最终回答
+    print("Start generating response...")
     sys_prompt_temp = PROMPTS["rag_response"]
     sys_prompt = sys_prompt_temp.format(
         context_data=context, response_type=query_param.response_type
