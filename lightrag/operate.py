@@ -440,6 +440,7 @@ async def extract_entities(
 
     return knowledge_graph_inst
 
+
 embedding_func=EmbeddingFunc(
         embedding_dim=768,
         max_token_size=8192,
@@ -456,9 +457,16 @@ class MY_Cache:
         self.similarity_cache = {}
         self.lock = asyncio.Lock()
         self.batch_size = batch_size
+        self.embedding_access_count = 0
+        self.embedding_hit_count = 0
+        self.edge_access_count = 0
+        self.edge_hit_count = 0
 
     async def get_embeddings(self, keywords: List[str]) -> Dict[str, List[float]]:
         missing = [kw for kw in keywords if kw not in self.embedding_cache]
+        self.embedding_access_count += len(keywords)
+        self.embedding_hit_count += (len(keywords) - len(missing))
+
         if missing:
             for i in range(0, len(missing), self.batch_size):
                 batch = missing[i:i + self.batch_size]
@@ -473,7 +481,6 @@ class MY_Cache:
         Computes similarities for a batch of (relation_kw, edge_kw) pairs.
         Returns a dictionary mapping (relation_kw, edge_kw) to similarity.
         """
-        # Collect unique keywords for embeddings computation
         keywords = set()
         for relation_kw, edge_kw in edge_pairs:
             keywords.add(relation_kw)
@@ -494,16 +501,29 @@ class MY_Cache:
         return similarities
     
     async def get_edges(self, node: str, graph: "BaseGraphStorage") -> List[tuple]:
-        if node not in self.edge_cache:
-            edges = await graph.get_node_edges(node)
-            self.edge_cache[node] = edges
-        return self.edge_cache[node]
+        self.edge_access_count += 1
+        if node in self.edge_cache:
+            self.edge_hit_count += 1
+            return self.edge_cache[node]
+
+        edges = await graph.get_node_edges(node)
+        self.edge_cache[node] = edges
+        return edges
+
+    def embedding_cache_hit_rate(self):
+        if self.embedding_access_count == 0:
+            return 0.0
+        return self.embedding_hit_count / self.embedding_access_count
+
+    def edge_cache_hit_rate(self):
+        if self.edge_access_count == 0:
+            return 0.0
+        return self.edge_hit_count / self.edge_access_count
 
 # 初始化全局缓存
 my_cache = MY_Cache(embedding_func)
 rwr_semaphore = asyncio.Semaphore(10)
-
-
+edges_scores = {}
 
 async def my_query(
     query: str,
@@ -597,8 +617,8 @@ async def my_query(
         start_nodes_name: List[str],
         graph: "BaseGraphStorage",
         relation_kw: str,
-        walk_steps: int = 50,           # 调整后的步数
-        restart_prob: float = 0.15,
+        walk_steps: int = 10,           # 调整后的步数
+        restart_prob: float = 0.05,     # 调整后的重启概率
         paths_to_collect: int = 10      # 调整后的路径数
     ) -> List[List[tuple]]:
         paths = []
@@ -616,8 +636,6 @@ async def my_query(
             async def walk(start_node_name: str) -> List[List[tuple]]:
                 local_paths = []
                 visited_edges = set()
-                
-                # Collect all unique (relation_kw, edge_kw) pairs for batch similarity computation
                 all_edge_pairs = set()
 
                 for _ in range(paths_to_collect // max(1, len(start_nodes_name))):
@@ -631,8 +649,8 @@ async def my_query(
                             break
 
                         for edge in edges:
-                            _, tgt, edge_kw, data = edge
-                            edge_id = (current_node_name, tgt, edge_kw)
+                            _, target_node_name, edge_kw, data = edge
+                            edge_id = (current_node_name, target_node_name, edge_kw)
                             if edge_id in visited_edges:
                                 continue
                             all_edge_pairs.add((relation_kw, edge_kw))
@@ -644,15 +662,16 @@ async def my_query(
 
                         edges_info = []
                         for edge in edges:
-                            _, tgt, edge_kw, data = edge
-                            edge_id = (current_node_name, tgt, edge_kw)
+                            _, target_node_name, edge_kw, data = edge
+                            edge_id = (current_node_name, target_node_name, edge_kw)
                             if edge_id in visited_edges:
                                 continue
                             
                             sim = similarities.get((relation_kw, edge_kw), 0.0)
                             w = data.get("weight", 1.0)
                             score = w * sim
-                            edges_info.append((current_node_name, tgt, edge_kw, data, score))
+                            edges_info.append((current_node_name, target_node_name, edge_kw, data, score))
+                            edges_scores[edge_id] = score
 
                         if not edges_info:
                             break
@@ -672,12 +691,13 @@ async def my_query(
                         async with pbar_lock:
                             pbar.update(1)
 
+                    # 添加路径最后一个节点
                     if path:
                         path.append((current_node_name, None))
                         local_paths.append(path)
                         print(path)
-
-                return local_paths
+                        
+                return local_paths # path for each start node
 
             # 创建所有walk任务
             walk_tasks = [walk(node) for node in start_nodes_name]
@@ -691,7 +711,7 @@ async def my_query(
             for walk_path in walk_results:
                 paths.extend(walk_path)
 
-        return paths
+        return paths  # path for each start node group
 
     all_paths = []
     tasks = []
@@ -700,7 +720,7 @@ async def my_query(
             start_nodes_name=start_nodes_name,
             graph=knowledge_graph_inst,
             relation_kw=relation_kw,
-            walk_steps=10,           # 调整后的步数
+            walk_steps=50,           # 调整后的步数
             restart_prob=0.15,       # 调整后的重启概率
             paths_to_collect=10      # 调整后的路径数
         )
@@ -710,41 +730,15 @@ async def my_query(
     all_paths_results = await asyncio.gather(*tasks)
     for paths in all_paths_results:
         all_paths.extend(paths)
+        
+    print("cached embedding hit rate: ", my_cache.embedding_cache_hit_rate())
+    print("cached edge hit rate: ", my_cache.edge_cache_hit_rate())
 
-    # 第4步：对路径进行评分和筛选
-    def score_path(path: List[Tuple[str, Dict[str, Any]]]) -> float:
-        # path: [(node, edge_info), ...]
-        # 去除最后None的边信息
-        edges_info = [e for (_, e) in path if e is not None]
-        # 评分考虑: sum(edge_weight) + sum(keyword_sim) + sum(node_degrees) - path_length
-        total_edge_weight = 0.0
-        total_kw_match = 0.0
-        node_degree_sum = 0.0
-        for e in edges_info:
-            w = e.get("weight", 1.0)
-            total_edge_weight += w
-            # 简化关键词匹配得分
-            total_kw_match += 1.0 if e["keyword"] in (entity_keywords + relation_keywords) else 0.5
-            # 假设节点度数为1.0，实际应根据节点数据获取
-            node_degree_sum += 1.0
-        path_length = len(path)
-        # 参数设定可调
-        alpha, beta, gamma, delta = 1.0, 1.0, 0.5, 0.5
-        score = alpha * total_edge_weight + beta * total_kw_match + gamma * node_degree_sum - delta * path_length
-        return score
-
-    scored_paths = [(p, score_path(p)) for p in all_paths]
-    scored_paths.sort(key=lambda x: x[1], reverse=True)
-    top_paths = [p for p, s in scored_paths[:query_param.top_k]] if scored_paths else []
-
-    if not top_paths:
-        return PROMPTS["fail_response"]
-
-    # 第5步：从筛选出的路径中提取节点、边以及相应文本构建上下文
+    # 第4步：从筛选出的路径中提取节点、边以及相应文本构建上下文，并进行评分
     # 收集路径中的节点和边
     selected_nodes = set()
     selected_edges = []
-    for path in top_paths:
+    for path in all_paths:
         for i in range(len(path) - 1):
             src_node = path[i][0]
             edge_info = path[i][1]
@@ -759,19 +753,60 @@ async def my_query(
 
     selected_nodes = list(selected_nodes)
 
-    # 获取实体信息
+    # 异步获取节点信息和节点度数
     node_datas = await asyncio.gather(
         *[knowledge_graph_inst.get_node(n) for n in selected_nodes]
     )
     node_degrees = await asyncio.gather(
         *[knowledge_graph_inst.node_degree(n) for n in selected_nodes]
     )
-    node_datas = [
-        {**data, "entity_name": name, "rank": deg} 
-        for name, data, deg in zip(selected_nodes, node_datas, node_degrees) 
+    node_info = {
+        node: {"data": data, "degree": degree}
+        for node, data, degree in zip(selected_nodes, node_datas, node_degrees)
         if data is not None
-    ]
+    }
 
+    # 第5步：评分路径
+    def score_path(path: List[Tuple[str, Dict[str, Any]]]) -> float:
+        edges_info = [e for (_, e) in path if e is not None]
+        total_edge_weight = sum(e.get("weight", 1.0) for e in edges_info)
+        total_kw_match = sum(edges_scores.get((path[i][0], path[i + 1][0], e.get("keyword")), 0.0) for i, e in enumerate(edges_info[:-1]))
+        node_degree_sum = sum(node_info[n]["degree"] for n, _ in path if n in node_info)
+        path_length = len(path)
+        alpha, beta, gamma, delta = 1.0, 1.0, 0.5, 0.5
+        score = alpha * total_edge_weight + beta * total_kw_match + gamma * node_degree_sum - delta * path_length
+        return score
+
+    scored_paths = [(p, score_path(p)) for p in all_paths]
+    scored_paths.sort(key=lambda x: x[1], reverse=True)
+    top_paths = [p for p, s in scored_paths[:query_param.top_k]] if scored_paths else []
+
+    if not top_paths:
+        return PROMPTS["fail_response"]
+
+    selected_nodes = set()
+    selected_edges = []
+    for path in top_paths:
+        for i in range(len(path) - 1):
+            src_node = path[i][0]
+            edge_info = path[i][1]
+            tgt_node = path[i + 1][0]
+            if edge_info is not None:
+                selected_nodes.add(src_node)
+                selected_nodes.add(tgt_node)
+                selected_edges.append((src_node, tgt_node, edge_info))
+        if path:
+            selected_nodes.add(path[-1][0])
+
+    selected_nodes = list(selected_nodes)
+
+    # 使用已经存在的node_data和edge查询信息来构建上下文
+    node_datas = []
+    for n in selected_nodes:
+        info = node_info[n]["data"]
+        deg = node_info[n]["degree"]
+        node_datas.append({**info, "entity_name": n, "rank": deg})
+        
     # 获取文本信息
     # 节点中有source_id，通过text_chunks_db获取文本块
     all_text_ids = set()
