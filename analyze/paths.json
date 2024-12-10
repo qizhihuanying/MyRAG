@@ -1,0 +1,320 @@
+[
+    [
+        {
+            "entity": "\"ARTICLE I\"",
+            "relation_keyword": null
+        }
+    ],
+    [
+        {
+            "entity": "\"ARTICLE I - DEFINITIONS AND USAGE\"",
+            "relation_keyword": null
+        }
+    ],
+    [
+        {
+            "entity": "\"ARTICLE 5 EXCLUSIVITY\"",
+            "relation_keyword": "exclusive rights"
+        },
+        {
+            "entity": "\"LICENSE AGREEMENT\"",
+            "relation_keyword": "collaboration agreements"
+        },
+        {
+            "entity": "\"ARTICLE 6 FINANCIAL TERMS\"",
+            "relation_keyword": "financial obligations"
+        },
+        {
+            "entity": "\"LICENSE AGREEMENT\"",
+            "relation_keyword": "licensing terms"
+        },
+        {
+            "entity": "\"ARTICLE 7 LICENSES; INTELLECTUAL PROPERTY\"",
+            "relation_keyword": "intellectual property"
+        },
+        {
+            "entity": "\"LICENSE AGREEMENT\"",
+            "relation_keyword": "collaboration terms"
+        },
+        {
+            "entity": "\"ARTICLE 3 RESEARCH, DEVELOPMENT, MANUFACTURING AND COMMERCIALIZATION\"",
+            "relation_keyword": "regulatory compliance"
+        },
+        {
+            "entity": "\"LICENSE AGREEMENT\"",
+            "relation_keyword": "collaboration terms"
+        },
+        {
+            "entity": "\"ARTICLE 4 ANTITRUST AND COMPETITION LAW COMPLIANCE\"",
+            "relation_keyword": "legal compliance"
+        },
+        {
+            "entity": "\"LICENSE AGREEMENT\"",
+            "relation_keyword": "commercial strategy"
+        },
+        {
+            "entity": "\"ARTICLE 5 EXCLUSIVITY\"",
+            "relation_keyword": null
+        }
+    ],
+    [
+        {
+            "entity": "\"THE WALL STREET JOURNAL\"",
+            "relation_keyword": "reference point"
+        },
+        {
+            "entity": "\"PRIME RATE\"",
+            "relation_keyword": "economic indicators"
+        },
+        {
+            "entity": "\"FEDERAL RESERVE STATISTICAL RELEASE H.15 (519)\"",
+            "relation_keyword": "financial regulation"
+        },
+        {
+            "entity": "\"PRIME RATE\"",
+            "relation_keyword": "reference rate"
+        },
+        {
+            "entity": "\"BANK OF AMERICA\"",
+            "relation_keyword": "financial agreement"
+        },
+        {
+            "entity": "\"ENTERPRISE\"",
+            "relation_keyword": "account management"
+        },
+        {
+            "entity": "\"BANK OF AMERICA\"",
+            "relation_keyword": "service provision"
+        },
+        {
+            "entity": "\"BOFA SECURITIES INC.\"",
+            "relation_keyword": "ownership"
+        },
+        {
+            "entity": "\"BANK OF AMERICA\"",
+            "relation_keyword": "financial management"
+        },
+        {
+            "entity": "\"LENDERS\"",
+            "relation_keyword": "loan obligations"
+        },
+        {
+            "entity": "\"BORROWER\"",
+            "relation_keyword": null
+        }
+    ],
+    [
+        {
+            "entity": "\"PLEDGE TRIGGER EVENT\"",
+            "relation_keyword": "regulatory criteria"
+        },
+        {
+            "entity": "\"FITCH RATINGS\"",
+            "relation_keyword": "market impact"
+        },
+        {
+            "entity": "\"CREDIT RATING\"",
+            "relation_keyword": "financial assessment"
+        },
+        {
+            "entity": "\"FITCH RATINGS\"",
+            "relation_keyword": "credit assessment"
+        },
+        {
+            "entity": "\"PLEDGE TRIGGER EVENT\"",
+            "relation_keyword": "regulatory criteria"
+        },
+        {
+            "entity": "\"MOODY'S CORPORATION\"",
+            "relation_keyword": "credit assessment"
+        },
+        {
+            "entity": "\"PLEDGE TRIGGER EVENT\"",
+            "relation_keyword": "financial threshold"
+        },
+        {
+            "entity": "\"S&P GLOBAL RATINGS\"",
+            "relation_keyword": "rating agency involvement"
+        },
+        {
+            "entity": "\"PLEDGE TRIGGER EVENT\"",
+            "relation_keyword": null
+        }
+    ],
+    [
+        {
+            "entity": "\"KEY MAN AND DISABILITY INSURANCE\"",
+            "relation_keyword": "business continuity"
+        },
+        {
+            "entity": "\"LANDLORD\"",
+            "relation_keyword": "lease initiation"
+        },
+        {
+            "entity": "\"COMMENCEMENT DATE\"",
+            "relation_keyword": "Contractual Start Date"
+        },
+        {
+            "entity": "\"LANDLORD\"",
+            "relation_keyword": "legal rights"
+        },
+        {
+            "entity": "\"TENANT\"",
+            "relation_keyword": "expansion opportunity"
+        },
+        {
+            "entity": "\"FIRST OFFER SPACE\"",
+            "relation_keyword": "leasing rights"
+        },
+        {
+            "entity": "\"TENANT\"",
+            "relation_keyword": "property occupancy"
+        },
+        {
+            "entity": "\"LEASED PREMISES\"",
+            "relation_keyword": "property conditions"
+        },
+        {
+            "entity": "\"LANDLORD\"",
+            "relation_keyword": "financial security"
+        },
+        {
+            "entity": "\"MORTGAGE\"",
+            "relation_keyword": "financial obligations"
+        },
+        {
+            "entity": "\"LANDLORD\"",
+            "relation_keyword": null
+        }
+    ],
+    [
+        {
+            "entity": "\"JUNO\"",
+            "relation_keyword": "usage rights"
+        },
+        {
+            "entity": "\"EDITAS LICENSED BACKGROUND IP\"",
+            "relation_keyword": "licensing"
+        },
+        {
+            "entity": "\"EDITAS\"",
+            "relation_keyword": "contractual obligations"
+        },
+        {
+            "entity": "\"JUNO\"",
+            "relation_keyword": "intellectual property"
+        },
+        {
+            "entity": "\"EDITAS LICENSED COLLABORATION IP\"",
+            "relation_keyword": "collaboration"
+        },
+        {
+            "entity": "\"JUNO\"",
+            "relation_keyword": "licensing agreement"
+        },
+        {
+            "entity": "\"EDITAS\"",
+            "relation_keyword": "contractual agreement"
+        },
+        {
+            "entity": "\"JUNO\"",
+            "relation_keyword": "collaborative restrictions"
+        },
+        {
+            "entity": "\"EDITAS\"",
+            "relation_keyword": "decision making"
+        },
+        {
+            "entity": "\"ARBITRATOR\"",
+            "relation_keyword": "legal binding"
+        },
+        {
+            "entity": "\"LANDLORD AND TENANT\"",
+            "relation_keyword": null
+        }
+    ],
+    [
+        {
+            "entity": "\"KEY EMPLOYEE\"",
+            "relation_keyword": "employee benefits"
+        },
+        {
+            "entity": "\"COMPANY PLANS\"",
+            "relation_keyword": "regulatory compliance"
+        },
+        {
+            "entity": "\"ERISA AFFILIATE\"",
+            "relation_keyword": "responsibility"
+        },
+        {
+            "entity": "\"BORROWER\"",
+            "relation_keyword": "criteria setting"
+        },
+        {
+            "entity": "\"BANK\"",
+            "relation_keyword": "financial support"
+        },
+        {
+            "entity": "\"BORROWER\"",
+            "relation_keyword": "interest rates"
+        },
+        {
+            "entity": "\"BASE RATE ADVANCES\"",
+            "relation_keyword": "repayment schedule"
+        },
+        {
+            "entity": "\"PAYMENT DATE\"",
+            "relation_keyword": "repayment schedule"
+        },
+        {
+            "entity": "\"LENDERS\"",
+            "relation_keyword": "coordinating role"
+        },
+        {
+            "entity": "\"ADMINISTRATIVE AGENT\"",
+            "relation_keyword": "transaction management"
+        },
+        {
+            "entity": "\"LENDER\"",
+            "relation_keyword": null
+        }
+    ],
+    [
+        {
+            "entity": "\"ARTICLE 3 RESEARCH, DEVELOPMENT, MANUFACTURING AND COMMERCIALIZATION\"",
+            "relation_keyword": "regulatory compliance"
+        },
+        {
+            "entity": "\"LICENSE AGREEMENT\"",
+            "relation_keyword": "financial obligations"
+        },
+        {
+            "entity": "\"ARTICLE 6 FINANCIAL TERMS\"",
+            "relation_keyword": "collaboration agreements"
+        },
+        {
+            "entity": "\"LICENSE AGREEMENT\"",
+            "relation_keyword": "commercial strategy"
+        },
+        {
+            "entity": "\"ARTICLE 5 EXCLUSIVITY\"",
+            "relation_keyword": "exclusive rights"
+        },
+        {
+            "entity": "\"LICENSE AGREEMENT\"",
+            "relation_keyword": "legal compliance"
+        },
+        {
+            "entity": "\"ARTICLE 4 ANTITRUST AND COMPETITION LAW COMPLIANCE\"",
+            "relation_keyword": "collaboration terms"
+        },
+        {
+            "entity": "\"LICENSE AGREEMENT\"",
+            "relation_keyword": "collaboration terms"
+        },
+        {
+            "entity": "\"ARTICLE 3 RESEARCH, DEVELOPMENT, MANUFACTURING AND COMMERCIALIZATION\"",
+            "relation_keyword": null
+        }
+    ]
+]

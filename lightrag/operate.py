@@ -1,6 +1,7 @@
 import asyncio
 import json
 import math
+import os
 import random
 import re
 from typing import Any, Dict, List, Tuple, Union
@@ -454,7 +455,6 @@ class MY_Cache:
         self.embedding_func = embedding_func
         self.embedding_cache = {}
         self.edge_cache = {}
-        self.similarity_cache = {}
         self.lock = asyncio.Lock()
         self.batch_size = batch_size
         self.embedding_access_count = 0
@@ -565,6 +565,8 @@ async def my_query(
 
     if not entity_keywords and not relation_keywords:
         return PROMPTS["fail_response"]
+    print("entity keywords: ", entity_keywords)
+    print("relation keywords: ", relation_keywords)
 
     # 设置总需要的Top K数量
     total_k = 5
@@ -638,70 +640,70 @@ async def my_query(
                 visited_edges = set()
                 all_edge_pairs = set()
 
-                for _ in range(paths_to_collect // max(1, len(start_nodes_name))):
-                    path = []
-                    current_node_name = start_node_name
+                path = []
+                current_node_name = start_node_name
+                
+                for _ in range(walk_steps):
+                    edges = await my_cache.get_edges(current_node_name, graph)
+
+                    if not edges:
+                        break
+
+                    for edge in edges:
+                        _, target_node_name, edge_kw, data = edge
+                        edge_id = (current_node_name, target_node_name, edge_kw)
+                        if edge_id in visited_edges:
+                            continue
+                        all_edge_pairs.add((relation_kw, edge_kw))
+
+                    if not all_edge_pairs:
+                        break
+
+                    similarities = await my_cache.get_similarities_batch(all_edge_pairs)
+
+                    edges_info = []
+                    for edge in edges:
+                        _, target_node_name, edge_kw, data = edge
+                        edge_id = (current_node_name, target_node_name, edge_kw)
+                        if edge_id in visited_edges:
+                            continue
+                        
+                        sim = similarities.get((relation_kw, edge_kw), 0.0)
+                        w = data.get("weight", 1.0)
+                        score = w * sim
+                        edges_info.append((current_node_name, target_node_name, edge_kw, data, score))
+                        edges_scores[edge_id] = score
+
+                    if not edges_info:
+                        break
+
+                    weights = [item[4] for item in edges_info]
+                    chosen = random.choices(edges_info, weights=weights, k=1)[0]
+                    _, chosen_node_name, chosen_edge_kw, chosen_edge_data, _ = chosen
                     
-                    for _ in range(walk_steps):
-                        edges = await my_cache.get_edges(current_node_name, graph)
+                    visited_edges.add((current_node_name, chosen_node_name, chosen_edge_kw))
+                    visited_edges.add((chosen_node_name, current_node_name, chosen_edge_kw))
 
-                        if not edges:
-                            break
+                    path.append((current_node_name, chosen_edge_data))
+                    current_node_name = chosen_node_name
+                    
+                    if random.random() < restart_prob:
+                        current_node_name = start_node_name
 
-                        for edge in edges:
-                            _, target_node_name, edge_kw, data = edge
-                            edge_id = (current_node_name, target_node_name, edge_kw)
-                            if edge_id in visited_edges:
-                                continue
-                            all_edge_pairs.add((relation_kw, edge_kw))
+                    async with pbar_lock:
+                        pbar.update(1)
 
-                        if not all_edge_pairs:
-                            break
-
-                        similarities = await my_cache.get_similarities_batch(all_edge_pairs)
-
-                        edges_info = []
-                        for edge in edges:
-                            _, target_node_name, edge_kw, data = edge
-                            edge_id = (current_node_name, target_node_name, edge_kw)
-                            if edge_id in visited_edges:
-                                continue
-                            
-                            sim = similarities.get((relation_kw, edge_kw), 0.0)
-                            w = data.get("weight", 1.0)
-                            score = w * sim
-                            edges_info.append((current_node_name, target_node_name, edge_kw, data, score))
-                            edges_scores[edge_id] = score
-
-                        if not edges_info:
-                            break
-
-                        weights = [item[4] for item in edges_info]
-                        chosen = random.choices(edges_info, weights=weights, k=1)[0]
-                        _, chosen_node_name, chosen_edge_kw, chosen_edge_data, _ = chosen
-                        
-                        visited_edges.add((current_node_name, chosen_node_name))
-
-                        path.append((current_node_name, chosen_edge_data))
-                        current_node_name = chosen_node_name
-                        
-                        if random.random() < restart_prob:
-                            current_node_name = start_node_name
-
-                        async with pbar_lock:
-                            pbar.update(1)
-
-                    # 添加路径最后一个节点
-                    if path:
-                        path.append((current_node_name, None))
-                        local_paths.append(path)
-                        print(path)
+                # 添加路径最后一个节点
+                path.append((current_node_name, None))
+                local_paths.append(path)
+                # print(path)
                         
                 return local_paths # path for each start node
 
             # 创建所有walk任务
             walk_tasks = [walk(node) for node in start_nodes_name]
             walk_results = await asyncio.gather(*walk_tasks)
+            print("walk results len: ", len(walk_results))
 
             # 关闭进度条
             async with pbar_lock:
@@ -716,20 +718,26 @@ async def my_query(
     all_paths = []
     tasks = []
     for relation_kw, start_nodes_name in relation_initial_nodes_groups:
+        print("len of start nodes name: ", len(start_nodes_name))
         task = perform_weighted_rwr(
             start_nodes_name=start_nodes_name,
             graph=knowledge_graph_inst,
             relation_kw=relation_kw,
-            walk_steps=50,           # 调整后的步数
-            restart_prob=0.15,       # 调整后的重启概率
+            walk_steps=10,           # 调整后的步数
+            restart_prob=0,       # 调整后的重启概率
             paths_to_collect=10      # 调整后的路径数
         )
         tasks.append(task)
+    print("tasks len: ", len(tasks))
 
     # 并行执行所有RWR任务
     all_paths_results = await asyncio.gather(*tasks)
+    print("all paths results len: ", len(all_paths_results[0]))
     for paths in all_paths_results:
         all_paths.extend(paths)
+    
+    os.makedirs("analyze", exist_ok=True)
+    save_paths_to_file(all_paths, 'analyze/paths.json')
         
     print("cached embedding hit rate: ", my_cache.embedding_cache_hit_rate())
     print("cached edge hit rate: ", my_cache.edge_cache_hit_rate())
@@ -777,9 +785,10 @@ async def my_query(
         score = alpha * total_edge_weight + beta * total_kw_match + gamma * node_degree_sum - delta * path_length
         return score
 
+    scored_top_k = 5
     scored_paths = [(p, score_path(p)) for p in all_paths]
     scored_paths.sort(key=lambda x: x[1], reverse=True)
-    top_paths = [p for p, s in scored_paths[:query_param.top_k]] if scored_paths else []
+    top_paths = [p for p, s in scored_paths[:scored_top_k]] if scored_paths else []
 
     if not top_paths:
         return PROMPTS["fail_response"]
@@ -934,6 +943,24 @@ csv
         )
 
     return response
+
+def save_paths_to_file(paths, filename):
+    serializable_paths = []
+    for path in paths:
+        serializable_path = []
+        for node, edge in path:
+            if edge:
+                keyword = edge.get('keyword', '')
+            else:
+                keyword = None
+            serializable_path.append({
+                'entity': node,
+                'relation_keyword': keyword
+            })
+        serializable_paths.append(serializable_path)
+    
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(serializable_paths, f, ensure_ascii=False, indent=4)
 
 async def naive_query(
     query,

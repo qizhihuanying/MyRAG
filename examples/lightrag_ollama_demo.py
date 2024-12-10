@@ -13,7 +13,7 @@ total_start_time = time.time()
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 print(torch.cuda.is_available())
 
-WORKING_DIR = "./results/multi_lightrag/index_results/cs"
+WORKING_DIR = "./results/multi_lightrag/index_results/legal"
 time_records = {}  
 
 logging.basicConfig(
