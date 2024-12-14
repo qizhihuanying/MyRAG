@@ -1,3 +1,4 @@
+import logging
 import os
 import sys
 import re
@@ -7,8 +8,12 @@ from lightrag import LightRAG, QueryParam
 from tqdm import tqdm
 from lightrag.llm import ollama_model_if_cache, ollama_embedding
 from lightrag.utils import EmbeddingFunc
+from lightrag.operate import my_cache
 import numpy as np
 import ollama
+
+httpx_logger = logging.getLogger("httpx")
+httpx_logger.disabled = True
 
 def always_get_an_event_loop() -> asyncio.AbstractEventLoop:
     try:
@@ -84,9 +89,11 @@ def run_queries_and_save_to_json(
 if __name__ == "__main__":
 
     classes = ["agriculture", "cs", "legal", "mix"]
-    models = ["multi_lightrag", "lightrag"]
+    models = ["multi_lightrag"]
 
     for cls in classes:
+        my_cache.reset_cache()
+        print("Cache reset completed.")
         for model in models:
             print(f"Processing class: {cls} with mode: {model}")
 

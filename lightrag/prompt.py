@@ -169,12 +169,15 @@ Add sections and commentary to the response as appropriate for the length and fo
 PROMPTS["keywords_extraction"] = """---Role---
 
 You are a helpful assistant tasked with identifying both entity keywords and relation keywords in the user's query to assist in constructing a knowledge graph.
+The entity keywords are the names of entities mentioned in the query.
+The relation keywords neither describe the relationships between these entities or focus on overarching concepts or themes.
 
 ---Goal---
 
 Given the query, list both entity_keywords and relation_keywords. 
 - **entity_keywords** correspond to the names of entities.
 - **relation_keywords** correspond to the keywords that describe the relationships between entities.
+- Both types of keywords should be at least one word long.
 
 ---Instructions---
 

@@ -1,31 +1,23 @@
 import json
 import os
+from ollama import Client
 import requests
 from transformers import GPT2Tokenizer
 
-# 定义发送请求到智谱API的函数
-def send_request_to_zhipu(model, messages, api_key):
-    headers = {
-        'Content-Type': 'application/json',
-        'Authorization': f'Bearer {api_key}'
-    }
-    data = {
-        'model': model,
-        'messages': messages
-    }
-    response = requests.post('https://open.bigmodel.cn/api/paas/v4/chat/completions', headers=headers, json=data)
-    return response.json()
-
-# 修改ollama_complete_if_cache函数，使其使用智谱API
-def zhipu_complete_if_cache(model="glm-4-long", prompt=None, system_prompt=None, history_messages=[], api_key="", **kwargs) -> str:
+def ollama_complete_if_cache(
+    model="llama3.1:latest", prompt=None, system_prompt=None, history_messages=[], **kwargs
+) -> str:
+    host = kwargs.pop("host", "http://localhost:11434") 
+    ollama_client = Client(host=host)  
+    
     messages = []
     if system_prompt:
         messages.append({"role": "system", "content": system_prompt})
     messages.extend(history_messages)
     messages.append({"role": "user", "content": prompt})
 
-    response = send_request_to_zhipu(model, messages, api_key)
-    return response["choices"][0]["message"]["content"]
+    response = ollama_client.chat(model=model, messages=messages, **kwargs)
+    return response["message"]["content"]
 
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 
@@ -76,7 +68,7 @@ for cls in clses:
         ...
     """
 
-    result = zhipu_complete_if_cache(model="glm-4-flash", prompt=prompt, api_key=api_key)
+    result = ollama_complete_if_cache(prompt=prompt)
     
     os.makedirs("./datasets/questions", exist_ok=True)
 

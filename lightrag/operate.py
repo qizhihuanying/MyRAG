@@ -451,7 +451,7 @@ embedding_func=EmbeddingFunc(
     )
 
 class MY_Cache:
-    def __init__(self, embedding_func, batch_size=128):
+    def __init__(self, embedding_func, batch_size=1024):
         self.embedding_func = embedding_func
         self.embedding_cache = {}
         self.edge_cache = {}
@@ -478,26 +478,38 @@ class MY_Cache:
     
     async def get_similarities_batch(self, edge_pairs: set) -> Dict[tuple, float]:
         """
-        Computes similarities for a batch of (relation_kw, edge_kw) pairs.
+        Computes similarities for a batch of (relation_kw, edge_kw) pairs using vectorized operations.
         Returns a dictionary mapping (relation_kw, edge_kw) to similarity.
         """
-        keywords = set()
-        for relation_kw, edge_kw in edge_pairs:
-            keywords.add(relation_kw)
-            keywords.add(edge_kw)
+        # Extract all unique keywords
+        keywords = {str(kw) for pair in edge_pairs for kw in pair}
         
+        # Get embeddings for all keywords
         embeddings = await self.get_embeddings(list(keywords))
-
+        
+        # Convert embeddings into a matrix
+        keywords_list = list(keywords)
+        embedding_matrix = np.array([embeddings[kw] for kw in keywords_list])
+        
+        # Normalize the embeddings to unit vectors
+        norms = np.linalg.norm(embedding_matrix, axis=1, keepdims=True)
+        norms[norms == 0] = 1  # To avoid division by zero
+        normalized_embeddings = embedding_matrix / norms
+        
+        # Create a map from keyword to its index in the matrix
+        keyword_to_index = {kw: i for i, kw in enumerate(keywords_list)}
+        
+        # Compute all similarities at once using matrix multiplication
+        similarity_matrix = np.dot(normalized_embeddings, normalized_embeddings.T)
+        
+        # Extract the similarities for the requested pairs
         similarities = {}
         for relation_kw, edge_kw in edge_pairs:
-            v1 = np.array(embeddings[relation_kw])
-            v2 = np.array(embeddings[edge_kw])
-            if np.linalg.norm(v1) == 0 or np.linalg.norm(v2) == 0:
-                similarities[(relation_kw, edge_kw)] = 0.0
-            else:
-                sim = np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
-                similarities[(relation_kw, edge_kw)] = sim
-        
+            idx1 = keyword_to_index[str(relation_kw)]
+            idx2 = keyword_to_index[str(edge_kw)]
+            similarity = similarity_matrix[idx1, idx2]
+            similarities[(relation_kw, edge_kw)] = similarity
+
         return similarities
     
     async def get_edges(self, node: str, graph: "BaseGraphStorage") -> List[tuple]:
@@ -519,10 +531,19 @@ class MY_Cache:
         if self.edge_access_count == 0:
             return 0.0
         return self.edge_hit_count / self.edge_access_count
+    
+    def reset_cache(self):
+        """Reset both embedding and edge caches."""
+        self.embedding_cache.clear()
+        self.edge_cache.clear()
+        self.embedding_access_count = 0
+        self.embedding_hit_count = 0
+        self.edge_access_count = 0
+        self.edge_hit_count = 0
 
 # 初始化全局缓存
 my_cache = MY_Cache(embedding_func)
-rwr_semaphore = asyncio.Semaphore(10)
+rwr_semaphore = asyncio.Semaphore(1000)
 edges_scores = {}
 
 async def my_query(
@@ -536,6 +557,9 @@ async def my_query(
 ) -> str:
     use_model_func = global_config["llm_model_func"]
 
+
+    print("Question: ", query)
+    
     # 第1步：关键词提取
     kw_prompt_temp = PROMPTS["keywords_extraction"]
     kw_prompt = kw_prompt_temp.format(query=query)
@@ -569,25 +593,19 @@ async def my_query(
     print("relation keywords: ", relation_keywords)
 
     # 设置总需要的Top K数量
-    total_k = 5
-    num_entities = len(entity_keywords)
-    num_relations = len(relation_keywords)
-
-    # 计算每个entity和relation的Top K
-    entity_k = total_k // num_entities if num_entities > 0 else total_k
-    relation_k = total_k // num_relations if num_relations > 0 else total_k
+    top_k = 60
 
     # 第2步：利用关键词从entities_vdb和relationships_vdb中检索初始实体和关系集合
     # 2.1 对每个entity_keyword单独查询
     entity_tasks = [
-        entities_vdb.query(kw, top_k=entity_k) for kw in entity_keywords
+        entities_vdb.query(kw, top_k=top_k) for kw in entity_keywords
     ]
     entity_results_list = await asyncio.gather(*entity_tasks)
     entity_results = [item for sublist in entity_results_list for item in sublist]
 
     # 2.2 对每个relation_keyword单独查询
     relation_tasks = [
-        relationships_vdb.query(kw, top_k=relation_k) for kw in relation_keywords
+        relationships_vdb.query(kw, top_k=top_k ) for kw in relation_keywords
     ]
     relation_results_list = await asyncio.gather(*relation_tasks)
 
@@ -643,7 +661,7 @@ async def my_query(
                 path = []
                 current_node_name = start_node_name
                 
-                for _ in range(walk_steps):
+                for step in range(walk_steps):
                     edges = await my_cache.get_edges(current_node_name, graph)
 
                     if not edges:
@@ -671,8 +689,12 @@ async def my_query(
                         sim = similarities.get((relation_kw, edge_kw), 0.0)
                         w = data.get("weight", 1.0)
                         score = w * sim
-                        edges_info.append((current_node_name, target_node_name, edge_kw, data, score))
-                        edges_scores[edge_id] = score
+                        if score > 0:
+                            edges_info.append((current_node_name, target_node_name, edge_kw, data, score))
+                            edges_scores[edge_id] = score
+                        else:
+                            print("score is 0: ", edge_id)
+                            print(f"Warning: weights sum to zero for node {current_node_name}. Choosing randomly or terminating walk.")
 
                     if not edges_info:
                         break
@@ -723,8 +745,8 @@ async def my_query(
             start_nodes_name=start_nodes_name,
             graph=knowledge_graph_inst,
             relation_kw=relation_kw,
-            walk_steps=10,           # 调整后的步数
-            restart_prob=0,       # 调整后的重启概率
+            walk_steps=50,           # 调整后的步数
+            restart_prob=0.15,       # 调整后的重启概率
             paths_to_collect=10      # 调整后的路径数
         )
         tasks.append(task)
@@ -781,11 +803,11 @@ async def my_query(
         total_kw_match = sum(edges_scores.get((path[i][0], path[i + 1][0], e.get("keyword")), 0.0) for i, e in enumerate(edges_info[:-1]))
         node_degree_sum = sum(node_info[n]["degree"] for n, _ in path if n in node_info)
         path_length = len(path)
-        alpha, beta, gamma, delta = 1.0, 1.0, 0.5, 0.5
-        score = alpha * total_edge_weight + beta * total_kw_match + gamma * node_degree_sum - delta * path_length
+        alpha, beta, gamma, delta = 1.0, 2.0, 1.0, 0.5
+        score = alpha * total_edge_weight + beta * total_kw_match + gamma * node_degree_sum + delta * path_length
         return score
 
-    scored_top_k = 5
+    scored_top_k = 1000
     scored_paths = [(p, score_path(p)) for p in all_paths]
     scored_paths.sort(key=lambda x: x[1], reverse=True)
     top_paths = [p for p, s in scored_paths[:scored_top_k]] if scored_paths else []
@@ -941,7 +963,7 @@ csv
             .replace("</system>", "")
             .strip()
         )
-
+    print("Done.")
     return response
 
 def save_paths_to_file(paths, filename):

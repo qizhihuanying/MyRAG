@@ -13,7 +13,7 @@ total_start_time = time.time()
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 print(torch.cuda.is_available())
 
-WORKING_DIR = "./results/multi_lightrag/index_results/legal"
+WORKING_DIR = "./results/multi_lightrag/index_results/mix"
 time_records = {}  
 
 logging.basicConfig(
@@ -75,14 +75,7 @@ def save_search_results(query, mode, filename):
 
 model_name = rag.llm_model_name.replace(":", "_")
 
-# save_search_results("What are the top themes in this article?", "naive", f"outputs/{model_name}_naive_results.md")
-
-save_search_results("What are the top themes in this article?", "local", f"outputs/{model_name}_local_results.md")
-
-# save_search_results("What are the top themes in this article?", "global", f"outputs/{model_name}_global_results.md")
-
-# save_search_results("What are the top themes in this article?", "hybrid", f"outputs/{model_name}_hybrid_results.md")
-
+save_search_results("How can the model ensure diversity in recommendations to cover various aspects of the curriculum?", "my", f"outputs/{model_name}_local_results.md")
 
 total_end_time = time.time()
 time_records['Total time'] = total_end_time - total_start_time
