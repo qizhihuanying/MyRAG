@@ -1,5 +1,7 @@
 import json
+import matplotlib as mpl
 import matplotlib.pyplot as plt
+mpl.rcParams['text.usetex'] = False
 
 def save_paths_to_file(paths, filename):
     """

@@ -1,4 +1,5 @@
 import asyncio
+import datetime
 import json
 import math
 import os
@@ -546,6 +547,68 @@ my_cache = MY_Cache(embedding_func)
 rwr_semaphore = asyncio.Semaphore(1000)
 edges_scores = {}
 
+async def precompute_embeddings_and_similarities(
+    relation_initial_nodes_groups: List[Tuple[str, List[str]]],
+    knowledge_graph_inst: "BaseGraphStorage",
+    my_cache: MY_Cache,
+) -> Dict[Tuple[str, str], float]:
+    # 1. 收集所有 relation_kw 和 所有潜在的 edge_kw
+    all_relation_kws = set()
+    all_edge_kws = set()
+
+    # 并行获取所有节点的边
+    fetch_tasks = []
+    for relation_kw, start_nodes in relation_initial_nodes_groups:
+        all_relation_kws.add(str(relation_kw))
+        for node in start_nodes:
+            fetch_tasks.append(knowledge_graph_inst.get_node_edges(node))
+    
+    all_edges = await asyncio.gather(*fetch_tasks)
+    
+    # 提取 edge_kw
+    for edges in all_edges:
+        for edge in edges:
+            _, _, edge_kw, _ = edge
+            all_edge_kws.add(str(edge_kw))
+
+    # 2. 获取所有 needed keywords 的 embedding
+    all_need_kws = list(all_relation_kws.union(all_edge_kws))
+    batch_size = 4096  # 根据实际情况调整
+    all_embeddings = {}
+    
+    for i in tqdm(range(0, len(all_need_kws), batch_size), desc="Precomputing embeddings"):
+        batch = all_need_kws[i:i + batch_size]
+        batch_embeddings = await my_cache.get_embeddings(batch)
+        all_embeddings.update(batch_embeddings)
+    
+    relation_embeddings = {r_kw: all_embeddings[r_kw] for r_kw in all_relation_kws}
+    edge_embeddings = {e_kw: all_embeddings[e_kw] for e_kw in all_edge_kws}
+
+    # 3. 一次性计算 (relation_kw, edge_kw) 的相似度
+    r_kws_list = list(relation_embeddings.keys())
+    e_kws_list = list(edge_embeddings.keys())
+    r_emb_matrix = np.array([relation_embeddings[r] for r in r_kws_list])
+    e_emb_matrix = np.array([edge_embeddings[e] for e in e_kws_list])
+
+    # 归一化
+    r_norms = np.linalg.norm(r_emb_matrix, axis=1, keepdims=True)
+    r_norms[r_norms == 0] = 1
+    r_emb_matrix_norm = r_emb_matrix / r_norms
+
+    e_norms = np.linalg.norm(e_emb_matrix, axis=1, keepdims=True)
+    e_norms[e_norms == 0] = 1
+    e_emb_matrix_norm = e_emb_matrix / e_norms
+
+    # 矩阵相似度计算
+    similarity_matrix = np.dot(r_emb_matrix_norm, e_emb_matrix_norm.T)
+
+    similarity_dict = {}
+    for i, r_kw in enumerate(r_kws_list):
+        for j, e_kw in enumerate(e_kws_list):
+            similarity_dict[(r_kw, e_kw)] = float(similarity_matrix[i, j])
+
+    return similarity_dict
+
 async def my_query(
     query: str,
     knowledge_graph_inst: "BaseGraphStorage",
@@ -556,7 +619,6 @@ async def my_query(
     global_config: dict
 ) -> str:
     use_model_func = global_config["llm_model_func"]
-
 
     print("Question: ", query)
     
@@ -592,172 +654,173 @@ async def my_query(
     print("entity keywords: ", entity_keywords)
     print("relation keywords: ", relation_keywords)
 
-    # 设置总需要的Top K数量
     top_k = 60
 
-    # 第2步：利用关键词从entities_vdb和relationships_vdb中检索初始实体和关系集合
-    # 2.1 对每个entity_keyword单独查询
-    entity_tasks = [
-        entities_vdb.query(kw, top_k=top_k) for kw in entity_keywords
-    ]
+    # 第2步：利用关键词检索初始实体和关系集合
+    # 查询实体
+    entity_tasks = [entities_vdb.query(kw, top_k=top_k) for kw in entity_keywords]
     entity_results_list = await asyncio.gather(*entity_tasks)
     entity_results = [item for sublist in entity_results_list for item in sublist]
 
-    # 2.2 对每个relation_keyword单独查询
-    relation_tasks = [
-        relationships_vdb.query(kw, top_k=top_k ) for kw in relation_keywords
-    ]
+    # 查询关系
+    relation_tasks = [relationships_vdb.query(kw, top_k=top_k) for kw in relation_keywords]
     relation_results_list = await asyncio.gather(*relation_tasks)
 
-    # 2.3 聚集实体
+    # 构建初始节点集合
     initial_nodes = set()
     for r in entity_results:
         initial_nodes.add(r["entity_name"])
 
-    # 2.4 处理每个relation_keyword的关系
-    relation_initial_nodes_groups = []  # 每个group对应一个relation_keyword
+    # 处理每个relation_keyword的关系
+    relation_initial_nodes_groups = []
     for idx, relation_results in enumerate(relation_results_list):
         current_relation_kw = relation_keywords[idx]
-        # 提取relations
-        current_relations = [ (r["src_id"], r["tgt_id"], r["keyword"]) for r in relation_results ]
+        current_relations = [(r["src_id"], r["tgt_id"], r["keyword"]) for r in relation_results]
         initial_edges = current_relations
 
-        # 将关系对应的节点加入初始节点集合
-        current_initial_nodes = set(initial_nodes)  
+        current_initial_nodes = set(initial_nodes)
         for (s, _, _) in initial_edges:
             current_initial_nodes.add(s)
 
-        relation_initial_nodes_groups.append( (current_relation_kw, list(current_initial_nodes)) )
-      
-    # 定义一个异步锁用于同步进度条更新
-    pbar_lock = asyncio.Lock()
+        relation_initial_nodes_groups.append((current_relation_kw, list(current_initial_nodes)))
 
-    # 第3步：基于多重图的加权随机游走（Weighted RWR） - 对每个relation_keyword单独执行
+    similarity_cache = await precompute_embeddings_and_similarities(
+        relation_initial_nodes_groups,
+        knowledge_graph_inst,
+        my_cache
+    )
+    print("Similarity cache size: ", len(similarity_cache))
+
     async def perform_weighted_rwr(
         start_nodes_name: List[str],
         graph: "BaseGraphStorage",
         relation_kw: str,
-        walk_steps: int = 10,           # 调整后的步数
-        restart_prob: float = 0.05,     # 调整后的重启概率
-        paths_to_collect: int = 10      # 调整后的路径数
+        walk_steps: int = 10,
+        restart_prob: float = 0.05,
+        initial_patience_entity: float = 1.0,
+        initial_patience_edge: float = 2.0,
+        patience_threshold: float = 0.05,
+        top_k_edges: int = 3
     ) -> List[List[tuple]]:
         paths = []
-        total_paths = len(start_nodes_name) * (paths_to_collect // max(1, len(start_nodes_name)))
-        paths_per_node = paths_to_collect // max(1, len(start_nodes_name))
-        total_steps = paths_per_node * walk_steps * len(start_nodes_name)
-        print("initiate with total nodes: ", len(start_nodes_name))
-        print("nodes name: ", start_nodes_name)
+        group_visited_nodes = set()
 
         async with rwr_semaphore:
-            # 初始化进度条
-            async with pbar_lock:
-                pbar = tqdm(total=total_steps, desc="Performing Weighted RWR (steps)", mininterval=1.0)
-
             async def walk(start_node_name: str) -> List[List[tuple]]:
-                local_paths = []
-                visited_edges = set()
-                all_edge_pairs = set()
+                if start_node_name in initial_nodes:
+                    current_patience = initial_patience_entity
+                else:
+                    current_patience = initial_patience_edge
 
+                local_paths = []
                 path = []
                 current_node_name = start_node_name
-                
-                for step in range(walk_steps):
-                    edges = await my_cache.get_edges(current_node_name, graph)
 
+                if start_node_name in group_visited_nodes:
+                    return local_paths
+                group_visited_nodes.add(start_node_name)
+
+                node_patience = current_patience
+
+                for _ in range(walk_steps):
+                    if node_patience < patience_threshold:
+                        break
+
+                    edges = await my_cache.get_edges(current_node_name, graph)
                     if not edges:
                         break
 
+                    neighbor_edges_map = {}
+                    visited_edges = set()
+
                     for edge in edges:
                         _, target_node_name, edge_kw, data = edge
                         edge_id = (current_node_name, target_node_name, edge_kw)
-                        if edge_id in visited_edges:
-                            continue
-                        all_edge_pairs.add((relation_kw, edge_kw))
+                        if edge_id not in visited_edges:
+                            if target_node_name not in neighbor_edges_map:
+                                neighbor_edges_map[target_node_name] = []
+                            neighbor_edges_map[target_node_name].append(
+                                (current_node_name, target_node_name, edge_kw, data)
+                            )
+                            visited_edges.add(edge_id)
+                            visited_edges.add((target_node_name, current_node_name, edge_kw))
 
-                    if not all_edge_pairs:
+                    if not neighbor_edges_map:
                         break
 
-                    similarities = await my_cache.get_similarities_batch(all_edge_pairs)
+                    neighbor_score_list = []
+                    for nb_node, nb_edges in neighbor_edges_map.items():
+                        sim_list = []
+                        for e in nb_edges:
+                            _, tgt_n, e_kw, d = e
+                            sim = similarity_cache.get((relation_kw, e_kw), 0.0)
+                            sim_list.append((sim, e))
 
-                    edges_info = []
-                    for edge in edges:
-                        _, target_node_name, edge_kw, data = edge
-                        edge_id = (current_node_name, target_node_name, edge_kw)
-                        if edge_id in visited_edges:
+                        if not sim_list:
                             continue
-                        
-                        sim = similarities.get((relation_kw, edge_kw), 0.0)
-                        w = data.get("weight", 1.0)
-                        score = w * sim
-                        if score > 0:
-                            edges_info.append((current_node_name, target_node_name, edge_kw, data, score))
-                            edges_scores[edge_id] = score
-                        else:
-                            print("score is 0: ", edge_id)
-                            print(f"Warning: weights sum to zero for node {current_node_name}. Choosing randomly or terminating walk.")
 
-                    if not edges_info:
+                        sim_list.sort(key=lambda x: x[0], reverse=True)
+                        top_sim_list = sim_list[:top_k_edges]
+                        sim_values = [x[0] for x in top_sim_list]
+                        sim_avg = sum(sim_values) / len(sim_values)
+
+                        best_edge_for_nb = top_sim_list[0][1]
+                        neighbor_score_list.append((sim_avg, nb_node, best_edge_for_nb))
+
+                    if not neighbor_score_list:
                         break
 
-                    weights = [item[4] for item in edges_info]
-                    chosen = random.choices(edges_info, weights=weights, k=1)[0]
-                    _, chosen_node_name, chosen_edge_kw, chosen_edge_data, _ = chosen
+                    neighbor_score_list.sort(key=lambda x: x[0], reverse=True)
+                    best_sim_avg, chosen_node_name, chosen_edge = neighbor_score_list[0]
+                    chosen_current_node, chosen_target_node, chosen_edge_kw, chosen_edge_data = chosen_edge
                     
-                    visited_edges.add((current_node_name, chosen_node_name, chosen_edge_kw))
-                    visited_edges.add((chosen_node_name, current_node_name, chosen_edge_kw))
-
+                    if chosen_target_node in group_visited_nodes:
+                        break
                     path.append((current_node_name, chosen_edge_data))
-                    current_node_name = chosen_node_name
-                    
+                    group_visited_nodes.add(chosen_target_node)
+                    current_node_name = chosen_target_node
+                    node_patience = (node_patience * best_sim_avg) ** 0.1
+
                     if random.random() < restart_prob:
                         current_node_name = start_node_name
 
-                    async with pbar_lock:
-                        pbar.update(1)
-
-                # 添加路径最后一个节点
                 path.append((current_node_name, None))
                 local_paths.append(path)
-                # print(path)
-                        
-                return local_paths # path for each start node
+                return local_paths
 
-            # 创建所有walk任务
             walk_tasks = [walk(node) for node in start_nodes_name]
             walk_results = await asyncio.gather(*walk_tasks)
-            print("walk results len: ", len(walk_results))
 
-            # 关闭进度条
-            async with pbar_lock:
-                pbar.close()
+            for wr in walk_results:
+                paths.extend(wr)
 
-            # 收集所有路径
-            for walk_path in walk_results:
-                paths.extend(walk_path)
-
-        return paths  # path for each start node group
+        return paths
 
     all_paths = []
     tasks = []
+    # caculate rwr time
+    start_time = datetime.datetime.now()
     for relation_kw, start_nodes_name in relation_initial_nodes_groups:
-        print("len of start nodes name: ", len(start_nodes_name))
         task = perform_weighted_rwr(
             start_nodes_name=start_nodes_name,
             graph=knowledge_graph_inst,
             relation_kw=relation_kw,
-            walk_steps=50,           # 调整后的步数
-            restart_prob=0.15,       # 调整后的重启概率
-            paths_to_collect=10      # 调整后的路径数
+            walk_steps=50,
+            restart_prob=0.1,
+            initial_patience_entity=1.0,
+            initial_patience_edge=2.0,
+            patience_threshold=0,
+            top_k_edges=3
         )
         tasks.append(task)
-    print("tasks len: ", len(tasks))
 
-    # 并行执行所有RWR任务
     all_paths_results = await asyncio.gather(*tasks)
-    print("all paths results len: ", len(all_paths_results[0]))
     for paths in all_paths_results:
         all_paths.extend(paths)
     
+    end_time = datetime.datetime.now()
+    print("RWR time: ", end_time - start_time)
+
     os.makedirs("analyze", exist_ok=True)
     save_paths_to_file(all_paths, 'analyze/paths.json')
         
