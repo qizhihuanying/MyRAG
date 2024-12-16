@@ -256,6 +256,9 @@ class NetworkXStorage(BaseGraphStorage):
     async def get_edge(self, source_node_id: str, target_node_id: str, keyword: str) -> Union[dict, None]:
         edge_data = self._graph.get_edge_data(source_node_id, target_node_id, key=keyword)
         return edge_data
+    
+    async def get_all_edges(self) -> list[tuple[str, str, str, dict]]:
+        return [(u, v, k, d) for u, v, k, d in self._graph.edges(data=True, keys=True)]
 
     async def get_node_edges(self, source_node_id: str):
         if self._graph.has_node(source_node_id):

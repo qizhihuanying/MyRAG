@@ -6,6 +6,7 @@ import aioboto3
 import aiohttp
 import numpy as np
 import ollama
+import asyncio
 
 from openai import (
     AsyncOpenAI,

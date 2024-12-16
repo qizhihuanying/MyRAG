@@ -318,6 +318,7 @@ class LightRAG:
                 self.text_chunks,
                 param,
                 asdict(self),
+                self.working_dir
             )
         await self._query_done()
         return response
