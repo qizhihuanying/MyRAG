@@ -1,42 +1,28 @@
-import os
-from lightrag import LightRAG, QueryParam
-from lightrag.llm import gpt_4o_mini_complete
-#########
-# Uncomment the below two lines if running in a jupyter notebook to handle the async nature of rag.insert()
-# import nest_asyncio
-# nest_asyncio.apply()
-#########
+import torch
+import asyncio
+from lightrag.llm import ollama_embedding
+from lightrag.utils import EmbeddingFunc
 
-WORKING_DIR = "./dickens"
+# 将EmbeddingFunc定义为异步
+async def async_embedding_func(texts):
+    return await ollama_embedding(
+        texts, embed_model="nomic-embed-text", host="http://localhost:11434"
+    )
 
-if not os.path.exists(WORKING_DIR):
-    os.mkdir(WORKING_DIR)
+kw_1 = "ensure"
+kw_2 = "INVITROGEN SAN RAFFAELE SCIENTIFIC INSTITUTE collaboration"
 
-rag = LightRAG(
-    working_dir=WORKING_DIR,
-    llm_model_func=gpt_4o_mini_complete,  # Use gpt_4o_mini_complete LLM model
-    # llm_model_func=gpt_4o_complete  # Optionally, use a stronger model
-)
+# 定义一个异步函数来计算余弦相似度
+async def compute_similarity():
+    embedding_1 = (await async_embedding_func([kw_1]))[0]
+    embedding_2 = (await async_embedding_func([kw_2]))[0]
 
-with open("./dickens/book.txt", "r", encoding="utf-8") as f:
-    rag.insert(f.read())
+    # 计算两个关键词的余弦相似度,不用torch
+    similarity = sum(a * b for a, b in zip(embedding_1, embedding_2)) / (
+        (sum(a ** 2 for a in embedding_1) ** 0.5) * (sum(a ** 2 for a in embedding_2) ** 0.5)
+    )
+    print(f"Similarity between '{kw_1}' and '{kw_2}': {similarity}")
+    
 
-# Perform naive search
-print(
-    rag.query("What are the top themes in this story?", param=QueryParam(mode="naive"))
-)
-
-# Perform local search
-print(
-    rag.query("What are the top themes in this story?", param=QueryParam(mode="local"))
-)
-
-# Perform global search
-print(
-    rag.query("What are the top themes in this story?", param=QueryParam(mode="global"))
-)
-
-# Perform hybrid search
-print(
-    rag.query("What are the top themes in this story?", param=QueryParam(mode="hybrid"))
-)
+# 运行异步函数
+asyncio.run(compute_similarity())

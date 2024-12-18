@@ -4,6 +4,7 @@ import math
 import os
 import random
 import re
+import sys
 from typing import Any, Dict, List, Tuple, Union
 from collections import Counter, defaultdict
 import warnings
@@ -545,113 +546,6 @@ my_cache = MY_Cache(embedding_func)
 rwr_semaphore = asyncio.Semaphore(1000)
 edges_scores = {}
 
-async def precompute_embeddings_and_similarities(
-    relation_initial_nodes_groups: List[Tuple[str, List[str]]],
-    knowledge_graph_inst: "BaseGraphStorage",
-    my_cache: MY_Cache,
-    working_dir: str = "./temp"
-) -> Dict[Tuple[str, str], float]:
-    
-    # 确保工作目录存在
-    os.makedirs(working_dir, exist_ok=True)
-    edge_embeddings_file = os.path.join(working_dir, "edge_embeddings.npz")
-    
-    # 1. 收集所有 relation_kw
-    all_relation_kws = set(r_kw for r_kw, _ in relation_initial_nodes_groups)
-    
-    # 2. 从图中获取所有边以提取 edge_kw
-    all_graph_edges = await knowledge_graph_inst.get_all_edges()
-    all_edge_kws = set(edge[2] for edge in all_graph_edges)
-
-    # 3. 加载已有的 edge embeddings
-    loaded_edge_kws = []
-    loaded_e_emb_matrix_norm = None
-    if os.path.exists(edge_embeddings_file):
-        try:
-            data = np.load(edge_embeddings_file, allow_pickle=True)
-            loaded_edge_kws = data["edge_kw_list"].tolist()
-            loaded_e_emb_matrix_norm = data["edge_embeddings"]
-            print(f"已加载 {len(loaded_edge_kws)} 条边的嵌入。")
-        except Exception as e:
-            print(f"加载边嵌入文件失败: {e}")
-            loaded_edge_kws = []
-            loaded_e_emb_matrix_norm = None
-
-    # 4. 查找需要新计算的 edge_kw
-    new_edge_kws = list(all_edge_kws - set(loaded_edge_kws))
-    print(f"需要新计算的边关键词数量: {len(new_edge_kws)}")
-
-    # 5. 计算新 edge_kw 的 embeddings 并归一化
-    if new_edge_kws:
-        # 获取新的边关键词嵌入
-        new_edge_embeddings = await my_cache.get_embeddings([str(e_kw) for e_kw in new_edge_kws])
-        new_e_emb_matrix = np.array([new_edge_embeddings[str(e_kw)] for e_kw in new_edge_kws])
-
-        # 归一化
-        new_e_norms = np.linalg.norm(new_e_emb_matrix, axis=1, keepdims=True)
-        new_e_norms[new_e_norms == 0] = 1
-        new_e_emb_matrix_norm = new_e_emb_matrix / new_e_norms
-
-        # 合并已有的和新的
-        if loaded_edge_kws and loaded_e_emb_matrix_norm is not None:
-            final_edge_kws = loaded_edge_kws + new_edge_kws
-            final_e_emb_matrix_norm = np.concatenate([loaded_e_emb_matrix_norm, new_e_emb_matrix_norm], axis=0)
-        else:
-            final_edge_kws = new_edge_kws
-            final_e_emb_matrix_norm = new_e_emb_matrix_norm
-
-        # 保存更新后的 edge embeddings
-        try:
-            np.savez(edge_embeddings_file, 
-                     edge_kw_list=np.array(final_edge_kws, dtype=object),
-                     edge_embeddings=final_e_emb_matrix_norm)
-            print(f"已保存 {len(new_edge_kws)} 条新边的嵌入，总边数量: {len(final_edge_kws)}")
-        except Exception as e:
-            print(f"保存边嵌入文件失败: {e}")
-    else:
-        if loaded_edge_kws:
-            final_edge_kws = loaded_edge_kws
-            final_e_emb_matrix_norm = loaded_e_emb_matrix_norm
-        else:
-            final_edge_kws = []
-            final_e_emb_matrix_norm = np.array([])
-
-    # 6. 获取query中提取的relation_keyword的嵌入
-    all_need_kws = list(all_relation_kws)
-    all_need_kws = [str(kw) for kw in all_need_kws]
-    batch_size = my_cache.batch_size
-    relation_embeddings = {}
-
-    for i in tqdm(range(0, len(all_need_kws), batch_size), desc="预计算关系关键词嵌入"):
-        batch = all_need_kws[i:i + batch_size]
-        batch_embeddings = await my_cache.get_embeddings(batch)
-        relation_embeddings.update(batch_embeddings)
-
-    # 7. 处理relation_keyword的嵌入并归一化
-    r_kws_list = list(relation_embeddings.keys())
-    r_emb_matrix = np.array([relation_embeddings[r] for r in r_kws_list])
-    r_norms = np.linalg.norm(r_emb_matrix, axis=1, keepdims=True)
-    r_norms[r_norms == 0] = 1
-    r_emb_matrix_norm = r_emb_matrix / r_norms
-
-    # 8. 计算相似度矩阵
-    if final_e_emb_matrix_norm.size == 0:
-        print("没有边关键词的嵌入可用于计算相似度。")
-        return {}
-    
-    similarity_matrix = np.dot(r_emb_matrix_norm, final_e_emb_matrix_norm.T)
-
-    # 9. 构建相似度字典
-    similarity_dict = {}
-    for i, r_kw in enumerate(r_kws_list):
-        for j, e_kw in enumerate(final_edge_kws):
-            similarity_dict[(r_kw, e_kw)] = float(similarity_matrix[i, j])
-
-    print(f"已计算 {len(similarity_dict)} 对关键词的相似度。")
-    return similarity_dict
-
-
-
 async def my_query(
     query: str,
     knowledge_graph_inst: "BaseGraphStorage",
@@ -709,12 +603,27 @@ async def my_query(
     ]
     entity_results_list = await asyncio.gather(*entity_tasks)
     entity_results = [item for sublist in entity_results_list for item in sublist]
+    
 
     # 2.2 对每个relation_keyword单独查询
     relation_tasks = [
-        relationships_vdb.query(kw, top_k=top_k ) for kw in relation_keywords
+        relationships_vdb.query(kw, top_k=top_k) for kw in relation_keywords
     ]
     relation_results_list = await asyncio.gather(*relation_tasks)
+    
+    # 提取所有的相似度
+    # all_relation_results_list的格式为：[[{'__id__': 'rel-6023740c804cdc78fe0272de02a089df', 'src_id': '"SPANISH GRANDEE (BAGOS DE FEREDIA)"', 'tgt_id': '"SUB-PREFECT"', 'keyword': 'oversight', '__metrics__': 0.5772405300680905, 'id': 'rel-6023740c804cdc78fe0272de02a089df', 'distance': 0.5772405300680905}, ...], ...]
+    # 需要的是一个字典，key是(relation_keyword, edge_keyword)，value是相似度，其中相似度是从__metrics__中提取的
+    all_relation_tasks = [
+        relationships_vdb.query(kw, top_k=sys.maxsize) for kw in relation_keywords
+    ]
+    all_relation_results_list = await asyncio.gather(*all_relation_tasks)
+    
+    all_similarities = {}
+    for idx, relation_results in enumerate(all_relation_results_list):
+        relation_kw = relation_keywords[idx]
+        for r in relation_results:
+            all_similarities[(relation_kw, r["keyword"])] = r["__metrics__"]
 
     # 2.3 聚集实体
     initial_nodes = set()
@@ -738,20 +647,13 @@ async def my_query(
       
     # 定义一个异步锁用于同步进度条更新
     pbar_lock = asyncio.Lock()
-    
-    similarity_cache = await precompute_embeddings_and_similarities(
-        relation_initial_nodes_groups,
-        knowledge_graph_inst,
-        my_cache,
-        working_dir=working_dir
-    )
 
     # 第3步：基于多重图的加权随机游走（Weighted RWR） - 对每个relation_keyword单独执行
     async def perform_weighted_rwr(
         start_nodes_name: List[str],
         graph: "BaseGraphStorage",
         relation_kw: str,
-        walk_steps: int = 10,
+        walk_steps: int = 50,
         restart_prob: float = 0.05,
         paths_to_collect: int = 10
     ) -> List[List[tuple]]:
@@ -783,17 +685,21 @@ async def my_query(
                     all_edge_pairs = set()
                     for edge in edges:
                         _, target_node_name, edge_kw, _ = edge
+                        if not isinstance(edge_kw, str):
+                            edge_kw = str(edge_kw)
                         edge_id = (relation_kw, edge_kw)
                         all_edge_pairs.add(edge_id)
 
                     if not all_edge_pairs:
                         break
 
-                    similarities = {pair: similarity_cache.get(pair, 0.0) for pair in all_edge_pairs}
+                    similarities = {pair: all_similarities.get(pair, 0.0) for pair in all_edge_pairs}
                     
                     edges_info = []
                     for edge in edges:
                         _, target_node_name, edge_kw, data = edge
+                        if not isinstance(edge_kw, str):
+                            edge_kw = str(edge_kw)
                         edge_id = (relation_kw, edge_kw)
                         
                         if (current_node_name, target_node_name, edge_kw) in visited_edges:
@@ -807,8 +713,7 @@ async def my_query(
                             edges_info.append((current_node_name, target_node_name, edge_kw, data, sim, score))
                             edges_scores[(current_node_name, target_node_name, edge_kw)] = score
                         else:
-                            # print("similarity is 0: ", edge_id)
-                            pass
+                            print("Warning: similarity is 0: ", edge_id)
 
                     if not edges_info:
                         break
@@ -857,7 +762,7 @@ async def my_query(
             start_nodes_name=start_nodes_name,
             graph=knowledge_graph_inst,
             relation_kw=relation_kw,
-            walk_steps=500,           # 调整后的步数
+            walk_steps=1000,           # 调整后的步数
             restart_prob=0.15,       # 调整后的重启概率
             paths_to_collect=10      # 调整后的路径数
         )
