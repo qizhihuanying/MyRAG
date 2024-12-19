@@ -158,16 +158,6 @@ async def _handle_single_relationship_extraction(
             edges_data.append(edge_data)
 
     return edges_data if edges_data else None
-    
-    # return dict(
-    #     src_id=source,
-    #     tgt_id=target,
-    #     weight=weight,
-    #     description=edge_description,
-    #     keywords=edge_keywords,
-    #     source_id=edge_source_id,
-    # )
-
 
 async def _merge_nodes_then_upsert(
     entity_name: str,
@@ -178,6 +168,8 @@ async def _merge_nodes_then_upsert(
     already_entitiy_types = []
     already_source_ids = []
     already_description = []
+    
+    entity_name = clean_str(entity_name)
 
     already_node = await knowledge_graph_inst.get_node(entity_name)
     if already_node is not None:
@@ -197,6 +189,10 @@ async def _merge_nodes_then_upsert(
     description = GRAPH_FIELD_SEP.join(
         sorted(set([dp["description"] for dp in nodes_data] + already_description))
     )
+    # 定义history属性存储所有description的拼接
+    history = GRAPH_FIELD_SEP.join(
+        set([dp["description"] for dp in nodes_data] + already_description)
+    )
     source_id = GRAPH_FIELD_SEP.join(
         set([dp["source_id"] for dp in nodes_data] + already_source_ids)
     )
@@ -206,11 +202,17 @@ async def _merge_nodes_then_upsert(
     node_data = dict(
         entity_type=entity_type,
         description=description,
+        history=history,
         source_id=source_id,
     )
     await knowledge_graph_inst.upsert_node(
         entity_name,
-        node_data=node_data,
+        node_data=dict(
+        entity_type=entity_type,
+        description=description,
+        history=history,
+        source_id=source_id,
+        ),
     )
     node_data["entity_name"] = entity_name
     return node_data
@@ -228,6 +230,10 @@ async def _merge_edges_then_upsert(
     already_source_ids = []
     already_description = []
     # already_keywords = []
+    
+    src_id = clean_str(src_id)
+    tgt_id = clean_str(tgt_id)
+    keyword = clean_str(keyword)
 
     if await knowledge_graph_inst.has_edge(src_id, tgt_id, keyword):
         already_edge = await knowledge_graph_inst.get_edge(src_id, tgt_id, keyword)
@@ -244,9 +250,10 @@ async def _merge_edges_then_upsert(
     description = GRAPH_FIELD_SEP.join(
         sorted(set([dp["description"] for dp in edges_data] + already_description))
     )
-    # keywords = GRAPH_FIELD_SEP.join(
-    #     sorted(set([dp["keywords"] for dp in edges_data] + already_keywords))
-    # )
+    # 定义history属性存储所有description的拼接
+    history = GRAPH_FIELD_SEP.join(
+        set([dp["description"] for dp in edges_data] + already_description)
+    )
     source_id = GRAPH_FIELD_SEP.join(
         set([dp["source_id"] for dp in edges_data] + already_source_ids)
     )
@@ -268,18 +275,20 @@ async def _merge_edges_then_upsert(
         tgt_id,
         keyword,
         edge_data=dict(
+            keyword=keyword,
             weight=weight,
             description=description,
-            keyword=keyword,
+            history=history,
             source_id=source_id,
         ),
     )
 
     edge_data = dict(
+        keyword=keyword,
         src_id=src_id,
         tgt_id=tgt_id,
         description=description,
-        keyword=keyword,
+        history=history,
     )
 
     return edge_data
@@ -405,7 +414,58 @@ async def extract_entities(
             _merge_edges_then_upsert(k[0], k[1], k[2], v, knowledge_graph_inst, global_config)
             for k, v in maybe_edges.items()
         ]
-    )
+    ) 
+    # 1. 在图构建完成后，遍历该多重图的所有节点，首先将每个节点的history用大模型做一次summary，然后将summary的结果作为节点的description，对边也做同样的处理 
+    # 2. 在上面遍历的同时，每个节点构建指向自己的一条边, keyword为自己的entity_name，weight为节点的度数，description为节点的description 
+    for node_data in all_entities_data:
+        entity_name = node_data["entity_name"]
+        history = node_data["history"]
+        all_description = await _handle_entity_relation_summary(
+            entity_name, history, global_config
+        )
+        await knowledge_graph_inst.upsert_node(
+            entity_name,
+            node_data=dict(
+            entity_type=node_data["entity_type"],
+            description=all_description,
+            history=node_data["history"],
+            source_id=node_data["source_id"],
+            ),
+        )
+        await knowledge_graph_inst.upsert_edge(
+            entity_name,
+            entity_name,
+            entity_name,
+            edge_data=dict(
+                keyword=entity_name,
+                weight=len(await knowledge_graph_inst.get_node_edges(entity_name)),
+                description=all_description,
+                history=node_data["history"],
+                source_id=node_data["source_id"],
+            ),
+        )
+    for edge_data in all_relationships_data:
+        src_id = edge_data["src_id"]
+        tgt_id = edge_data["tgt_id"]
+        keyword = edge_data["keyword"]
+        history = edge_data["history"]
+        all_description = await _handle_entity_relation_summary(
+            (src_id, tgt_id, keyword), history, global_config
+        )
+        await knowledge_graph_inst.upsert_edge(
+            src_id,
+            tgt_id,
+            keyword,
+            edge_data=dict(
+                keyword=keyword,
+                weight=edge_data["weight"],
+                description=all_description,
+                history=history,
+                source_id=edge_data["source_id"],
+            ),
+        )
+    
+    # 整个图构建完成以后，将所有的实体和关系数据存储到向量数据库中
     if not len(all_entities_data):
         logger.warning("Didn't extract any entities, maybe your LLM is not working")
         return None
@@ -418,8 +478,8 @@ async def extract_entities(
     if entity_vdb is not None:
         data_for_vdb = {
             compute_mdhash_id(dp["entity_name"], prefix="ent-"): {
-                "content": dp["entity_name"] + dp["description"],
                 "entity_name": dp["entity_name"],
+                "content": f"The entity '{dp['entity_name']}' is described as: {dp['description']}.",
             }
             for dp in all_entities_data
         }
@@ -431,10 +491,7 @@ async def extract_entities(
                 "src_id": dp["src_id"],
                 "tgt_id": dp["tgt_id"],
                 "keyword": dp["keyword"],
-                "content": dp["keyword"]
-                + dp["src_id"]
-                + dp["tgt_id"]
-                + dp["description"],
+                "content": f"The relationship '{dp['keyword']}' connects source ID '{dp['src_id']}' with target ID '{dp['tgt_id']}', and is described as: {dp['description']}.",
             }
             for dp in all_relationships_data
         }
@@ -554,14 +611,13 @@ async def my_query(
     text_chunks_db: "BaseKVStorage[TextChunkSchema]",
     query_param: "QueryParam",
     global_config: dict,
-    working_dir: str="./temp"
+    working_dir: str = "./temp"
 ) -> str:
     use_model_func = global_config["llm_model_func"]
 
-
     print("Question: ", query)
     
-    # 第1步：关键词提取
+    # 第1步：详细信息提取
     kw_prompt_temp = PROMPTS["keywords_extraction"]
     kw_prompt = kw_prompt_temp.format(query=query)
     result = await use_model_func(kw_prompt)
@@ -569,8 +625,8 @@ async def my_query(
 
     try:
         keywords_data = json.loads(json_text)
-        entity_keywords = keywords_data.get("entity_keywords", [])
-        relation_keywords = keywords_data.get("relation_keywords", [])
+        entity_info = keywords_data.get("entity_info", [])
+        relation_info = keywords_data.get("relation_info", [])
     except json.JSONDecodeError:
         # 尝试另一种解析
         try:
@@ -582,60 +638,56 @@ async def my_query(
             )
             result = "{" + result.split("{")[1].split("}")[0] + "}"
             keywords_data = json.loads(result)
-            entity_keywords = keywords_data.get("entity_keywords", [])
-            relation_keywords = keywords_data.get("relation_keywords", [])
+            entity_info = keywords_data.get("entity_info", [])
+            relation_info = keywords_data.get("relation_info", [])
         except json.JSONDecodeError as e:
-            print(f"JSON parsing error: {e}")
+            print(f"JSON解析错误: {e}")
             return PROMPTS["fail_response"]
 
-    if not entity_keywords and not relation_keywords:
+    if not entity_info and not relation_info:
         return PROMPTS["fail_response"]
-    print("entity keywords: ", entity_keywords)
-    print("relation keywords: ", relation_keywords)
+    print("Entity Info: ", entity_info)
+    print("Relation Info: ", relation_info)
 
     # 设置总需要的Top K数量
     top_k = 60
 
-    # 第2步：利用关键词从entities_vdb和relationships_vdb中检索初始实体和关系集合
-    # 2.1 对每个entity_keyword单独查询
+    # 第2步：构建内容并查询向量数据库
+    # 2.1 对每个entity_info构建content并查询entities_vdb
+    entity_content_list = [
+        f"The entity '{entity['entity_name']}' is described as: {entity['description']}."
+        for entity in entity_info
+    ]
     entity_tasks = [
-        entities_vdb.query(kw, top_k=top_k) for kw in entity_keywords
+        entities_vdb.query(content, top_k=top_k) for content in entity_content_list
     ]
     entity_results_list = await asyncio.gather(*entity_tasks)
     entity_results = [item for sublist in entity_results_list for item in sublist]
-    
 
-    # 2.2 对每个relation_keyword单独查询
+    # 2.2 对每个relation_info构建content并查询relationships_vdb
+    relation_content_list = [
+        f"The relationship '{relation['keyword']}' connects source ID '{relation['src_id']}' with target ID '{relation['tgt_id']}', and is described as: {relation['description']}."
+        for relation in relation_info
+    ]
     relation_tasks = [
-        relationships_vdb.query(kw, top_k=top_k) for kw in relation_keywords
+        relationships_vdb.query(content, top_k=top_k) for content in relation_content_list
     ]
     relation_results_list = await asyncio.gather(*relation_tasks)
-    
-    # 提取所有的相似度
-    # all_relation_results_list的格式为：[[{'__id__': 'rel-6023740c804cdc78fe0272de02a089df', 'src_id': '"SPANISH GRANDEE (BAGOS DE FEREDIA)"', 'tgt_id': '"SUB-PREFECT"', 'keyword': 'oversight', '__metrics__': 0.5772405300680905, 'id': 'rel-6023740c804cdc78fe0272de02a089df', 'distance': 0.5772405300680905}, ...], ...]
-    # 需要的是一个字典，key是(relation_keyword, edge_keyword)，value是相似度，其中相似度是从__metrics__中提取的
-    all_relation_tasks = [
-        relationships_vdb.query(kw, top_k=sys.maxsize) for kw in relation_keywords
-    ]
-    all_relation_results_list = await asyncio.gather(*all_relation_tasks)
-    
-    all_similarities = {}
-    for idx, relation_results in enumerate(all_relation_results_list):
-        relation_kw = relation_keywords[idx]
-        for r in relation_results:
-            all_similarities[(relation_kw, r["keyword"])] = r["__metrics__"]
 
     # 2.3 聚集实体
     initial_nodes = set()
     for r in entity_results:
         initial_nodes.add(r["entity_name"])
 
-    # 2.4 处理每个relation_keyword的关系
-    relation_initial_nodes_groups = []  # 每个group对应一个relation_keyword
+    # 2.4 处理每个relation_info的关系
+    relation_initial_nodes_groups = []  # 每个group对应一个relation_info
     for idx, relation_results in enumerate(relation_results_list):
-        current_relation_kw = relation_keywords[idx]
+        current_relation_info = relation_info[idx]
+        current_relation_info = f"The relationship '{current_relation_info['keyword']}' connects source ID '{current_relation_info['src_id']}' with target ID '{current_relation_info['tgt_id']}', and is described as: {current_relation_info['description']}."
         # 提取relations
-        current_relations = [ (r["src_id"], r["tgt_id"], r["keyword"]) for r in relation_results ]
+        current_relations = [
+            (r["src_id"], r["tgt_id"], r["keyword"]) for r in relation_results
+        ]
         initial_edges = current_relations
 
         # 将关系对应的节点加入初始节点集合
@@ -643,7 +695,19 @@ async def my_query(
         for (s, _, _) in initial_edges:
             current_initial_nodes.add(s)
 
-        relation_initial_nodes_groups.append( (current_relation_kw, list(current_initial_nodes)) )
+        relation_initial_nodes_groups.append((current_relation_info, list(current_initial_nodes)))
+
+    # 提取所有的相似度
+    all_relation_tasks = [
+        relationships_vdb.query(content, top_k=sys.maxsize) for content in relation_content_list
+    ]
+    all_relation_results_list = await asyncio.gather(*all_relation_tasks)
+    all_similarities = {}
+    for idx, relation_results in enumerate(all_relation_results_list):
+        relation_content = relation_content_list[idx]
+        for r in relation_results:
+            content_key = r["content"]  
+            all_similarities[(relation_content, content_key)] = r["__metrics__"]
       
     # 定义一个异步锁用于同步进度条更新
     pbar_lock = asyncio.Lock()

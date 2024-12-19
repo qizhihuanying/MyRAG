@@ -1,0 +1,496 @@
+{
+  "nodes": [
+    {
+      "id": "PROJECT GUTENBERG",
+      "entity_type": "ORGANIZATION",
+      "description": "\"A digital library platform for eBooks, focusing on freely available books.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "CHARLES DICKENS",
+      "entity_type": "PERSON",
+      "description": "\"Author of the book 'A Christmas Carol', known for his literary contributions to literature and social criticism.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "ARTHUR RACKHAM",
+      "entity_type": "PERSON",
+      "description": "\"Illustrator who provided illustrations for the book 'A Christmas Carol'.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "PHILADELPHIA AND NEW YORK: J. B. LIPPINCOTT COMPANY",
+      "entity_type": "GEO",
+      "description": "\"Publisher of the first publication of 'A Christmas Carol', 1915, based in Philadelphia and New York.\"<SEP>\"Publisher of the first publication of 'A Christmas Carol', 1915.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "SUZANNE SHELL",
+      "entity_type": "PERSON",
+      "description": "\"Proofreader who produced an ebook version from public domain materials.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "JANET BLENKINSHIP",
+      "entity_type": "PERSON",
+      "description": "\"Another proofreader who contributed to the online distribution of 'A Christmas Carol'.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "THE ONLINE DISTRIBUTED PROOFREADING TEAM AT HTTP://WWW.PGDP.NET",
+      "entity_type": "ORGANIZATION",
+      "description": "\"Organization that created digital copies and provided them online, including 'A Christmas Carol'.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "BOB CRATCHIT",
+      "entity_type": "PERSON",
+      "description": "\"Bob Cratchit is part of the family unit and participates in sliding down Cornhill as a celebration of Christmas Eve.\"<SEP>\"Character in the story of A Christmas Carol, a clerk working for Ebenezer Scrooge.\"",
+      "source_id": "chunk-0a13868f4a9548d6b13807c777dbdfc6<SEP>chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "PETER CRATCHIT",
+      "entity_type": "PERSON",
+      "description": "\"Son of Bob Cratchit, character from 'A Christmas Carol'.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "TIM CRATCHIT",
+      "entity_type": "PERSON",
+      "description": "\"Cripple and youngest son of Bob Cratchit in A Christmas Carol.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "MR. FEZZIWIG",
+      "entity_type": "PERSON",
+      "description": "\"Kind-hearted old merchant, friend to the characters in 'A Christmas Carol'.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "FRED",
+      "entity_type": "PERSON",
+      "description": "\"Scrooge's nephew, mentioned in the list of characters but unnamed in the text provided.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "GHOST OF CHRISTMAS PAST",
+      "entity_type": "CONCEPT",
+      "description": "\"Ghost that shows things from Bob Cratchit and Ebenezer Scrooge's past.\"<SEP>\"The ghost that shows things from Bob Cratchit and Ebenezer Scrooge's past.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "GHOST OF CHRISTMAS PRESENT",
+      "entity_type": "CONCEPT",
+      "description": "\"Ghost that shows what is happening in the present time, including the holiday preparations.\"<SEP>\"The ghost that shows what is happening in the present time, including the holiday preparations.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "GHOST OF CHRISTMAS YET TO COME",
+      "entity_type": "CONCEPT",
+      "description": "\"Ghost that shows future events or predictions for Scrooge and Bob Cratchit.\"<SEP>\"The ghost that shows future events or predictions for Scrooge and Bob Cratchit.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "JACOB MARLEY",
+      "entity_type": "CONCEPT",
+      "description": "\"Former business partner of Ebenezer Scrooge, appearing as a spectre in the story.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "JOE",
+      "entity_type": "PERSON",
+      "description": "\"Marine-store dealer and receiver of stolen goods, mentioned in the character list.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "EBENEZER SCROOGE",
+      "entity_type": "PERSON",
+      "description": "\"The central character of 'A Christmas Carol', a grasping old man who is visited by three ghosts.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "MR. TOPPER",
+      "entity_type": "PERSON",
+      "description": "\"Bachelors, not explicitly described in the text provided but named as a part of the character list.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "DICK WILKINS",
+      "entity_type": "PERSON",
+      "description": "\"Apprentice of Scrooge, mentioned in the character list.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "BELLE",
+      "entity_type": "PERSON",
+      "description": "\"Old sweetheart of Ebenezer Scrooge's, not described explicitly but named as part of the character list.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "CAROLINE",
+      "entity_type": "PERSON",
+      "description": "\"Wife of one of Ebenezer Scrooge's debtors.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "MRS. CRATCHIT",
+      "entity_type": "PERSON",
+      "description": "\"The wife of Bob Cratchit, mentioned in the character list.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "BELINDA AND MARTHA CRATCHIT",
+      "entity_type": "PERSON",
+      "description": "\"Daughters of Bob Cratchit, named in the character list.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "MRS. DILBER",
+      "entity_type": "PERSON",
+      "description": "\"Laundress who lives at Mrs. Dilber's laundres.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "FAN",
+      "entity_type": "PERSON",
+      "description": "\"Sister of Ebenezer Scrooge not explicitly described but named in the character list.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "MRS. FEZZIWIG",
+      "entity_type": "PERSON",
+      "description": "\"The wife of Mr. Fezziwig, who appears as a part of the character list.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "FIRST PUBLICATION OF A CHRISTMAS CAROL",
+      "entity_type": "EVENT",
+      "description": "\"The initial publication of the book 'A Christmas Carol' in 1915 by J. B. Lippincott Company, Philadelphia and New York.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "CORNHILL",
+      "entity_type": "LOCATION",
+      "description": "\"Cornhill represents the location where Bob Cratchit slides down twenty times, celebrating Christmas Eve.\"<SEP>\"Place where Bob Cratchit went down a slide on Christmas Eve.\"",
+      "source_id": "chunk-0a13868f4a9548d6b13807c777dbdfc6<SEP>chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "MRS. DILBER'S LAUNDRES",
+      "entity_type": "LOCATION",
+      "description": "\"Laundry establishment run by Mrs. Dilber.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "MARLEY",
+      "entity_type": "PERSON",
+      "description": "\"Marley is mentioned as being dead for seven years and served as Mr. Scrooge's partner in his business before he died.\"<SEP>\"Marley is mentioned as having been dead for seven years and previously a partner in Scrooge's business before his death.\"<SEP>\"Marley was a deceased partner of Scrooge, symbolizing the end of a business partnership.\"",
+      "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89<SEP>chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    },
+    {
+      "id": "SCROOGE",
+      "entity_type": "PERSON",
+      "description": "\"Scrooge is a character who shows animosity towards Christmas celebrations.\"<SEP>\"Scrooge is a character who values work and money, showing a disdain for the holiday spirit.\"<SEP>\"Scrooge is portrayed as someone who values work over the Christmas spirit and resents others for their festive demeanor.\"<SEP>\"Scrooge is the main character, portrayed as an unfeeling, miserly, and unsympathetic individual who cares little for others' feelings or needs.\"<SEP>\"Scrooge is the sole executor and administrator of his deceased partner Marley's affairs.\"",
+      "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89<SEP>chunk-74e2466de2f67fd710ef2f20c0a8d9e0<SEP>chunk-5dac41b3f9eeaf794f0147400b1718cd<SEP>chunk-0a13868f4a9548d6b13807c777dbdfc6"
+    },
+    {
+      "id": "DOOR-NAIL",
+      "entity_type": "GEO",
+      "description": "\"The mention of a door-nail serves as an analogy to describe the solidity and permanence of Scrooge's own legacy.\"",
+      "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+    },
+    {
+      "id": "MARLEY'S FUNERAL",
+      "entity_type": "EVENT",
+      "description": "\"The funeral of Marley serves as the pivotal moment that brings Scrooge to a realization about his own mortality.\"",
+      "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+    },
+    {
+      "id": "SCROOGE AND MARLEY",
+      "entity_type": "ORGANIZATION",
+      "description": "\"Scrooge and Marley refers to the firm that existed due to the partnership between Scrooge and his deceased partner Marley.\"<SEP>\"Scrooge and Marley was a business partnership that existed due to the legacy of both partners.\"",
+      "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+    },
+    {
+      "id": "ST. PAUL'S CHURCHYARD",
+      "entity_type": "LOCATION",
+      "description": "\"The setting for a hypothetical incident involving an old man walking in the wind at night after dark, symbolizing Scrooge's existential crisis.\"",
+      "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+    },
+    {
+      "id": "HAMLET'S FATHER",
+      "entity_type": "EVENT",
+      "description": "\"The mention of Hamlet's father is part of a hypothetical scenario in which Marley serves as a cautionary figure for Scrooge.\"",
+      "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+    },
+    {
+      "id": "MARLEY'S DEATH",
+      "entity_type": "EVENT",
+      "description": "\"Marley's death serves as a turning point in Scrooge's life, leading him to reflect on his own mortality and actions.\"",
+      "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+    },
+    {
+      "id": "OLD SINNER",
+      "entity_type": "PERSON",
+      "description": "\"The old sinner is a character described as covetous and hard-bitten.\"",
+      "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0"
+    },
+    {
+      "id": "CHRISTMAS EVE",
+      "entity_type": "EVENT",
+      "description": "\"Christmas Eve is described as cold and foggy weather with poor visibility and limited daylight hours.\"<SEP>\"Christmas Eve is the event celebrated by participants like Bob Cratchit who enjoy sliding down Cornhill as a festive activity.\"<SEP>\"Christmas Eve is the setting of a story that takes place in the middle of winter, with foggy and cold weather.\"",
+      "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0<SEP>chunk-0a13868f4a9548d6b13807c777dbdfc6"
+    },
+    {
+      "id": "COUNTING-HOUSE",
+      "entity_type": "ORGANIZATION",
+      "description": "\"The counting-house is Scrooge's workplace where he spends his time alone and focused on financial matters.\"<SEP>\"The counting-house is Scrooge's workplace where he spends his time alone, focused on financial matters.\"",
+      "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0"
+    },
+    {
+      "id": "NEPHEW",
+      "entity_type": "PERSON",
+      "description": "\"Nephew is a character who tries to engage with his uncle on Christmas, despite the uncle's traditional views.\"<SEP>\"The nephew of Scrooge represents a warm and joyful character who contrasts with the cold Scrooge.\"<SEP>\"The nephew of Scrooge represents the contrast to Scrooge, showing warmth and joy at Christmas time.\"<SEP>\"The nephew seeks to engage with his uncle, Scrooge, on Christmas traditions and practices.\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd<SEP>chunk-74e2466de2f67fd710ef2f20c0a8d9e0"
+    },
+    {
+      "id": "MERRY CHRISTMAS",
+      "entity_type": "EVENT",
+      "description": "\"A festive event with positive intentions but also potential social implications.\"<SEP>\"Christmas is a festive event that evokes mixed feelings; it can be seen as an occasion to pay bills, find oneself older or richer, and balance one's books.\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    },
+    {
+      "id": "UNCLE",
+      "entity_type": "PERSON",
+      "description": "\"Scrooge's uncle is a character who tries to maintain traditional Christmas values while respecting Scrooge's financial decisions.\"<SEP>\"Uncle is Scrooge's relative who wishes to maintain Christmas traditions but also respects Scrooge's financial decisions.\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    },
+    {
+      "id": "THE CLERK",
+      "entity_type": "ROLE",
+      "description": "\"A clerk in the tank, seen as someone not actively participating in the festive spirit.\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    },
+    {
+      "id": "CHRISTMAS-TIME",
+      "entity_type": "EVENT",
+      "description": "\"Christmas-time is described as a time when people are generous and open-minded towards others.\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    },
+    {
+      "id": "PARLIAMENT",
+      "entity_type": "ORGANIZATION",
+      "description": "\"Reference to Parliament as a possible place for political engagement, but not directly linked to Scrooge's nephew's actions.\"<SEP>\"Reference to Parliament as an institution, not directly connected with the nephew's actions on Christmas.\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    },
+    {
+      "id": "LUNATIC",
+      "entity_type": "GEO",
+      "description": "\"Portrayed as a character who, despite having two kindred spirits enter their office, still holds negative views towards others with different beliefs about Christmas.\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    },
+    {
+      "id": "THE CLERK IN THE TANK",
+      "entity_type": "ROLE",
+      "description": "\"A clerk who, despite being seen as someone not actively participating in the festive spirit, involuntarily applauds during Scrooge's interactions with the nephew on Christmas.\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    },
+    {
+      "id": "MR. SCROOGE",
+      "entity_type": "PERSON",
+      "description": "\"Mr. Scrooge is a character with miserly traits, characterized by his refusal to provide help to others during Christmas.\"",
+      "source_id": "chunk-90d5764e301321c087f5a8f78b73a145"
+    },
+    {
+      "id": "THE GENTLEMAN",
+      "entity_type": "PERSON",
+      "description": "\"The gentleman offers assistance and support for the poor during the festive season.\"",
+      "source_id": "chunk-90d5764e301321c087f5a8f78b73a145"
+    },
+    {
+      "id": "LIBERALITY",
+      "entity_type": "CONCEPT",
+      "description": "\"Liberality is a word that Mr. Scrooge frowns upon, indicating he disapproves of it or views it negatively.\"",
+      "source_id": "chunk-90d5764e301321c087f5a8f78b73a145"
+    },
+    {
+      "id": "THE POOR",
+      "entity_type": "GEO",
+      "description": "\"The Poor refers to destitute people who suffer during the Christmas season and require help from Scrooge and others.\"",
+      "source_id": "chunk-90d5764e301321c087f5a8f78b73a145"
+    },
+    {
+      "id": "PRISONS",
+      "entity_type": "GEO",
+      "description": "\"Prisons are mentioned as places where 'many thousands' suffer, suggesting they are inadequate for housing those in need.\"",
+      "source_id": "chunk-90d5764e301321c087f5a8f78b73a145"
+    },
+    {
+      "id": "UNION WORKHOUSES",
+      "entity_type": "GEO",
+      "description": "\"The Union Workhouses are a place where people can find comfort and sustenance during the time of scarcity and difficulty.\"",
+      "source_id": "chunk-90d5764e301321c087f5a8f78b73a145"
+    },
+    {
+      "id": "GOD",
+      "entity_type": "CONCEPT",
+      "description": "\"God represents divine blessing and good wishes for all people, symbolizing kindness.\"",
+      "source_id": "chunk-0a13868f4a9548d6b13807c777dbdfc6"
+    },
+    {
+      "id": "SCROOGE'S OFFICE",
+      "entity_type": "ORGANIZATION",
+      "description": "\"Scrooge's Office refers to the workplace where Scrooge and his clerk work, symbolizing a place of dreary existence due to Scrooge’s miserly nature.\"",
+      "source_id": "chunk-0a13868f4a9548d6b13807c777dbdfc6"
+    },
+    {
+      "id": "BOB CRATCHIT AND EBENEZER SCROOGE'S PAST",
+      "entity_type": "UNKNOWN",
+      "description": "\"The ghost shows things from Bob Cratchit and Ebenezer Scrooge's past.\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "id": "NEPEW",
+      "entity_type": "UNKNOWN",
+      "description": "\"The uncle attempts to engage with his nephew about Christmas traditions, but the nephew has a different perspective on how they should be observed.\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    }
+  ],
+  "edges": [
+    {
+      "source": "PROJECT GUTENBERG",
+      "target": "FIRST PUBLICATION OF A CHRISTMAS CAROL",
+      "weight": 14.0,
+      "description": "\"The ebook version of 'A Christmas Carol' was produced from the original public domain materials.\"",
+      "keywords": "\"ebook production, publishing\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "source": "GHOST OF CHRISTMAS PAST",
+      "target": "BOB CRATCHIT AND EBENEZER SCROOGE'S PAST",
+      "weight": 9.0,
+      "description": "\"The ghost shows things from Bob Cratchit and Ebenezer Scrooge's past.\"",
+      "keywords": "\"past insights, spectral guide\"",
+      "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+    },
+    {
+      "source": "MARLEY",
+      "target": "SCROOGE",
+      "weight": 2.0,
+      "description": "\"Marley serves as a cautionary figure to Scrooge, embodying the consequences of not taking life seriously.\"",
+      "keywords": "marital relationship, ominous warning",
+      "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+    },
+    {
+      "source": "MARLEY",
+      "target": "DOOR-NAIL",
+      "weight": 2.0,
+      "description": "\"The metaphorical use of 'door-nail' emphasizes the permanent nature of Marley's death and Scrooge's status as a firm owner.\"",
+      "keywords": "metaphorical relationship, lasting influence",
+      "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+    },
+    {
+      "source": "MARLEY",
+      "target": "HAMLET'S FATHER",
+      "weight": 2.0,
+      "description": "\"Marley acts as an analog to Hamlet's father, warning Scrooge about the potential consequences of his own actions.\"",
+      "keywords": "marriage relationship",
+      "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+    },
+    {
+      "source": "MARLEY",
+      "target": "MERRY CHRISTMAS",
+      "weight": 5.0,
+      "description": "\"While Marley is dead, he represents the traditional values of Scrooge's business and partnership.\"",
+      "keywords": "\"past influence, tradition\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    },
+    {
+      "source": "MARLEY",
+      "target": "CHRISTMAS-TIME",
+      "weight": 5.0,
+      "description": "\"While Marley is dead he represents the traditional values of Scrooge’s business and partnership with him.\"",
+      "keywords": "\"past influence, tradition\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    },
+    {
+      "source": "SCROOGE",
+      "target": "NEPHEW",
+      "weight": 10.0,
+      "description": "\"Scrooge receives his nephew's greeting during Christmas Eve, showing the stark contrast between their attitudes towards Christmas.\"",
+      "keywords": "\"disagreement, familial relationship\"",
+      "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0"
+    },
+    {
+      "source": "SCROOGE",
+      "target": "MERRY CHRISTMAS",
+      "weight": 8.0,
+      "description": "\"Scrooge resents the festive spirit and values work over celebration.\"",
+      "keywords": "\"fear of change, personal preference\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    },
+    {
+      "source": "SCROOGE",
+      "target": "CHRISTMAS EVE",
+      "weight": 10.0,
+      "description": "\"Scrooge refuses time off for Christmas Eve celebrations, reflecting his cold attitude towards festive occasions.\"",
+      "keywords": "\"resistance to holiday spirit, indifference\"",
+      "source_id": "chunk-0a13868f4a9548d6b13807c777dbdfc6"
+    },
+    {
+      "source": "OLD SINNER",
+      "target": "COUNTING-HOUSE",
+      "weight": 12.0,
+      "description": "\"The old sinner works in a counting-house, indicating his profession but also highlighting his solitary existence.\"<SEP>\"The old sinner works in the counting-house, indicating his professional setting but also highlighting his solitary existence.\"",
+      "keywords": "\"professional setting, solitary lifestyle\"",
+      "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0"
+    },
+    {
+      "source": "CHRISTMAS EVE",
+      "target": "COUNTING-HOUSE",
+      "weight": 8.0,
+      "description": "\"The old sinner is unable to enjoy the holiday spirit due to being in a professional setting and lack of warmth at home.\"<SEP>\"The old sinner is unable to enjoy the holiday spirit due to his professional environment and lack of warmth at home.\"",
+      "keywords": "\"professional setting, isolation\"",
+      "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0"
+    },
+    {
+      "source": "NEPHEW",
+      "target": "CHRISTMAS-TIME",
+      "weight": 6.0,
+      "description": "\"The nephew seeks to engage with his uncle Scrooge on Christmas traditions, showing a desire for understanding and connection.\"",
+      "keywords": "\"family engagement\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    },
+    {
+      "source": "MERRY CHRISTMAS",
+      "target": "UNCLE",
+      "weight": 7.0,
+      "description": "\"The uncle tries to maintain traditional Christmas values while respecting Scrooge's financial decisions.\"",
+      "keywords": "\"respect, tradition maintenance\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    },
+    {
+      "source": "UNCLE",
+      "target": "NEPEW",
+      "weight": 6.0,
+      "description": "\"The uncle attempts to engage with his nephew about Christmas traditions, but the nephew has a different perspective on how they should be observed.\"",
+      "keywords": "\"family conflict, differing views\"",
+      "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+    },
+    {
+      "source": "MR. SCROOGE",
+      "target": "PRISONS",
+      "weight": 15.0,
+      "description": "\"Mr. Scrooge asks about prisons, showing his lack of concern for their inhabitants who suffer in times of need.\"",
+      "keywords": "\"lack of compassion, questioning existence\"",
+      "source_id": "chunk-90d5764e301321c087f5a8f78b73a145"
+    },
+    {
+      "source": "MR. SCROOGE",
+      "target": "THE POOR",
+      "weight": 12.0,
+      "description": "\"Mr. Scrooge does not provide help to the poor, highlighting his miserly nature.\"",
+      "keywords": "\"helplessness, social inequality\"",
+      "source_id": "chunk-90d5764e301321c087f5a8f78b73a145"
+    }
+  ]
+}

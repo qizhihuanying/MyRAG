@@ -1,0 +1,110 @@
+2024-11-18 10:11:35,537 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-11-18 10:11:35,538 - lightrag - INFO - Load KV llm_response_cache with 0 data
+2024-11-18 10:11:35,538 - lightrag - INFO - Load KV full_docs with 0 data
+2024-11-18 10:11:35,539 - lightrag - INFO - Load KV text_chunks with 0 data
+2024-11-18 10:11:35,541 - lightrag - INFO - [New Docs] inserting 1 docs
+2024-11-18 10:11:35,794 - lightrag - INFO - [New Chunks] inserting 6 chunks
+2024-11-18 10:11:35,794 - lightrag - INFO - Inserting 6 vectors to chunks
+2024-11-18 10:11:36,188 - lightrag - INFO - [Entity Extraction]...
+2024-11-18 10:15:57,967 - lightrag - INFO - Inserting 57 vectors to entities
+2024-11-18 10:15:59,058 - lightrag - INFO - Inserting 17 vectors to relationships
+2024-11-18 10:15:59,452 - lightrag - INFO - Writing graph with 59 nodes, 17 edges
+2024-11-18 10:15:59,631 - lightrag - INFO - Truncate 6 to 3 chunks
+2024-11-18 10:16:10,159 - lightrag - INFO - Local query uses 57 entites, 17 relations, 3 text units
+2024-11-18 10:16:29,288 - lightrag - INFO - Global query uses 19 entites, 17 relations, 3 text units
+2024-11-18 10:16:43,553 - lightrag - INFO - Local query uses 57 entites, 17 relations, 3 text units
+2024-11-18 10:16:43,720 - lightrag - INFO - Global query uses 19 entites, 17 relations, 3 text units
+2024-11-18 10:17:59,364 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-11-18 10:17:59,366 - lightrag - INFO - Load KV llm_response_cache with 17 data
+2024-11-18 10:17:59,367 - lightrag - INFO - Load KV full_docs with 1 data
+2024-11-18 10:17:59,368 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-11-18 10:17:59,373 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges
+2024-11-18 10:17:59,378 - lightrag - WARNING - All docs are already in the storage
+2024-11-18 10:17:59,399 - lightrag - INFO - Writing graph with 59 nodes, 17 edges
+2024-11-18 10:18:00,574 - lightrag - INFO - Truncate 6 to 3 chunks
+2024-11-18 10:18:01,038 - lightrag - INFO - Local query uses 57 entites, 17 relations, 3 text units
+2024-11-18 10:18:15,541 - lightrag - INFO - Global query uses 19 entites, 17 relations, 3 text units
+2024-11-18 10:18:28,608 - lightrag - INFO - Local query uses 57 entites, 17 relations, 3 text units
+2024-11-18 10:18:28,766 - lightrag - INFO - Global query uses 19 entites, 17 relations, 3 text units
+2024-11-18 10:20:11,694 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-11-18 10:20:11,696 - lightrag - INFO - Load KV llm_response_cache with 20 data
+2024-11-18 10:20:11,697 - lightrag - INFO - Load KV full_docs with 1 data
+2024-11-18 10:20:11,698 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-11-18 10:20:11,703 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges
+2024-11-18 10:20:11,709 - lightrag - WARNING - All docs are already in the storage
+2024-11-18 10:20:11,732 - lightrag - INFO - Writing graph with 59 nodes, 17 edges
+2024-11-18 10:20:12,899 - lightrag - INFO - Truncate 6 to 3 chunks
+2024-11-18 10:20:13,335 - lightrag - INFO - Local query uses 57 entites, 17 relations, 3 text units
+2024-11-18 10:21:35,208 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-11-18 10:22:57,538 - lightrag - INFO - Load KV llm_response_cache with 20 data
+2024-11-18 10:23:14,539 - lightrag - INFO - Load KV full_docs with 1 data
+2024-11-18 10:23:16,508 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-11-18 10:23:19,467 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges
+2024-11-18 10:26:18,559 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-11-18 10:26:18,561 - lightrag - INFO - Load KV llm_response_cache with 20 data
+2024-11-18 10:26:18,562 - lightrag - INFO - Load KV full_docs with 1 data
+2024-11-18 10:26:18,563 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-11-18 10:26:18,568 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges
+2024-11-18 10:28:40,023 - lightrag - WARNING - All docs are already in the storage
+2024-11-18 10:28:40,045 - lightrag - INFO - Writing graph with 59 nodes, 17 edges
+2024-11-18 10:28:42,552 - lightrag - INFO - Truncate 6 to 3 chunks
+2024-11-18 10:28:51,560 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-11-18 10:28:51,563 - lightrag - INFO - Load KV llm_response_cache with 20 data
+2024-11-18 10:28:51,563 - lightrag - INFO - Load KV full_docs with 1 data
+2024-11-18 10:28:51,564 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-11-18 10:28:51,569 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges
+2024-11-18 10:29:42,605 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-11-18 10:29:42,607 - lightrag - INFO - Load KV llm_response_cache with 20 data
+2024-11-18 10:29:42,607 - lightrag - INFO - Load KV full_docs with 1 data
+2024-11-18 10:29:42,608 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-11-18 10:29:42,613 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges
+2024-11-18 10:30:17,879 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-11-18 10:30:17,881 - lightrag - INFO - Load KV llm_response_cache with 20 data
+2024-11-18 10:30:17,882 - lightrag - INFO - Load KV full_docs with 1 data
+2024-11-18 10:30:17,882 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-11-18 10:30:17,887 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges
+2024-11-18 13:33:47,524 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-11-18 13:33:47,525 - lightrag - INFO - Load KV llm_response_cache with 20 data
+2024-11-18 13:33:47,526 - lightrag - INFO - Load KV full_docs with 1 data
+2024-11-18 13:33:47,527 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-11-18 13:33:47,528 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges
+2024-11-18 13:33:47,532 - lightrag - WARNING - All docs are already in the storage
+2024-11-18 13:33:47,540 - lightrag - INFO - Writing graph with 59 nodes, 17 edges
+2024-11-18 13:33:48,368 - lightrag - INFO - Truncate 6 to 3 chunks
+2024-11-18 13:33:48,768 - lightrag - INFO - Local query uses 57 entites, 17 relations, 3 text units
+2024-11-27 15:00:15,600 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-11-27 15:00:15,608 - lightrag - INFO - Load KV llm_response_cache with 20 data
+2024-11-27 15:00:15,614 - lightrag - INFO - Load KV full_docs with 1 data
+2024-11-27 15:00:15,621 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-11-27 15:00:15,630 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges
+2024-11-27 15:01:06,215 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-11-27 15:01:06,217 - lightrag - INFO - Load KV llm_response_cache with 20 data
+2024-11-27 15:01:06,218 - lightrag - INFO - Load KV full_docs with 1 data
+2024-11-27 15:01:06,219 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-11-27 15:01:06,225 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges
+2024-11-27 15:13:23,935 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-11-27 15:13:23,938 - lightrag - INFO - Load KV llm_response_cache with 20 data
+2024-11-27 15:13:23,938 - lightrag - INFO - Load KV full_docs with 1 data
+2024-11-27 15:13:23,939 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-11-27 15:13:23,945 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges
+2024-12-08 09:17:01,983 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-12-08 09:17:01,985 - lightrag - INFO - Load KV llm_response_cache with 20 data
+2024-12-08 09:17:01,986 - lightrag - INFO - Load KV full_docs with 1 data
+2024-12-08 09:17:01,987 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-12-08 09:17:01,992 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges
+2024-12-08 09:17:32,172 - lightrag - INFO - Truncate 6 to 3 chunks
+2024-12-08 09:20:18,730 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-12-08 09:20:18,732 - lightrag - INFO - Load KV llm_response_cache with 20 data
+2024-12-08 09:20:18,733 - lightrag - INFO - Load KV full_docs with 1 data
+2024-12-08 09:20:18,733 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-12-08 09:20:18,738 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges
+2024-12-08 09:20:33,781 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-12-08 09:20:33,783 - lightrag - INFO - Load KV llm_response_cache with 20 data
+2024-12-08 09:20:33,784 - lightrag - INFO - Load KV full_docs with 1 data
+2024-12-08 09:20:33,785 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-12-08 09:20:33,790 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges
+2024-12-08 09:22:27,246 - lightrag - INFO - Logger initialized for working directory: ./dickens
+2024-12-08 09:22:27,248 - lightrag - INFO - Load KV llm_response_cache with 20 data
+2024-12-08 09:22:27,249 - lightrag - INFO - Load KV full_docs with 1 data
+2024-12-08 09:22:27,250 - lightrag - INFO - Load KV text_chunks with 6 data
+2024-12-08 09:22:27,254 - lightrag - INFO - Loaded graph from ./dickens\graph_chunk_entity_relation.graphml with 59 nodes, 17 edges

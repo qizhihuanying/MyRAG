@@ -13,7 +13,7 @@ total_start_time = time.time()
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
 print(torch.cuda.is_available())
 
-WORKING_DIR = "./results/multi_lightrag/index_results/legal"
+WORKING_DIR = "./dickens"
 time_records = {}  
 
 logging.basicConfig(
@@ -55,8 +55,8 @@ rag = LightRAG(
     ),
 )
 
-# with open("./book.txt", "r", encoding="utf-8") as f:
-#     rag.insert(f.read())
+with open("./book.txt", "r", encoding="utf-8") as f:
+    rag.insert(f.read())
 
 db_end_time = time.time()
 time_records['Database construction'] = db_end_time - db_start_time
@@ -75,7 +75,7 @@ def save_search_results(query, mode, filename):
 
 model_name = rag.llm_model_name.replace(":", "_")
 
-save_search_results("Can the company enforce remedies outlined in the contract if an 'Event of Default' is identified, and what are the risks?", "my", f"outputs/{model_name}_local_results.md")
+save_search_results("What role do initialization methods play in the performance of K-means clustering according to the description above?", "my", f"outputs/{model_name}_local_results.md")
 
 total_end_time = time.time()
 time_records['Total time'] = total_end_time - total_start_time

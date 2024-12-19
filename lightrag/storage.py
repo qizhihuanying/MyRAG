@@ -87,10 +87,11 @@ class NanoVectorDBStorage(BaseVectorStorage):
             {
                 "__id__": k,
                 **{k1: v1 for k1, v1 in v.items() if k1 in self.meta_fields},
+                "content": v["content"],
             }
             for k, v in data.items()
         ]
-        contents = [v["content"] for v in data.values()]   # question here
+        contents = [v["content"] for v in data.values()]   
         batches = [
             contents[i : i + self._max_batch_size]
             for i in range(0, len(contents), self._max_batch_size)
