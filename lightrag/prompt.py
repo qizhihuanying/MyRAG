@@ -198,104 +198,104 @@ Example 1:
 Query: "How does international trade influence global economic stability?"
 ################
 Output:
-{
+{{
   "entity_info": [
-    {
+    {{
       "entity_name": "International trade",
       "description": "International trade refers to the exchange of goods, services, and capital between countries, facilitating economic interaction across borders and affecting global markets."
-    },
-    {
+    }},
+    {{
       "entity_name": "Global economic stability",
       "description": "Global economic stability refers to the ability of the world economy to maintain consistent growth without severe fluctuations, ensuring prosperity and financial security for all countries."
-    }
+    }}
   ],
   "relation_info": [
-    {
+    {{
       "keyword": "influence",
       "src_id": "International trade",
       "tgt_id": "Global economic stability",
       "description": "Describes how the flow of goods, services, and capital across borders impacts the overall health and stability of the global economy, affecting factors like inflation, unemployment, and growth rates."
-    }
+    }}
   ]
-}
+}}
 #############################
 Example 2:
 
 Query: "What are the environmental consequences of deforestation on biodiversity?"
 ################
 Output:
-{
+{{
   "entity_info": [
-    {
+    {{
       "entity_name": "Deforestation",
       "description": "Deforestation is the large-scale removal or destruction of forests, typically to make way for agricultural activities, urban expansion, or logging, which leads to the loss of forest ecosystems."
-    },
-    {
+    }},
+    {{
       "entity_name": "Environmental consequences",
       "description": "Environmental consequences refer to the negative impacts of human activities or natural events on the environment, including alterations to ecosystems, climate, and biodiversity."
-    },
-    {
+    }},
+    {{
       "entity_name": "Biodiversity",
       "description": "Biodiversity encompasses the variety and variability of life forms on Earth, including plants, animals, fungi, and microorganisms, which are crucial for ecosystem health and resilience."
-    }
+    }}
   ],
   "relation_info": [
-    {
+    {{
       "keyword": "impact on",
       "src_id": "Deforestation",
       "tgt_id": "Biodiversity",
       "description": "Describes how the destruction of forests through deforestation leads to a loss of species, habitat fragmentation, and a decline in biodiversity, disrupting ecosystems and food webs."
-    },
-    {
+    }},
+    {{
       "keyword": "affects",
       "src_id": "Environmental consequences",
       "tgt_id": "Biodiversity",
       "description": "Explains how various environmental consequences, such as climate change and pollution, negatively influence biodiversity by altering habitats and threatening species survival."
-    }
+    }}
   ]
-}
+}}
 #############################
 Example 3:
 
 Query: "What is the role of education in reducing poverty and improving health outcomes?"
 ################
 Output:
-{
+{{
   "entity_info": [
-    {
+    {{
       "entity_name": "Education",
       "description": "Education is the process of acquiring knowledge, skills, values, and attitudes through teaching and learning, which is fundamental to personal development and societal progress."
-    },
-    {
+    }},
+    {{
       "entity_name": "Poverty",
       "description": "Poverty is the state of being unable to meet basic needs such as food, shelter, and healthcare, typically resulting from a lack of financial resources and access to opportunities."
-    },
-    {
+    }},
+    {{
       "entity_name": "Health outcomes",
       "description": "Health outcomes refer to the consequences of health interventions or lifestyle choices, including measures of well-being, disease prevention, and life expectancy in a population."
-    }
+    }}
   ],
   "relation_info": [
-    {
+    {{
       "keyword": "role in reducing",
       "src_id": "Education",
       "tgt_id": "Poverty",
       "description": "Describes how education plays a critical role in breaking the cycle of poverty by equipping individuals with skills that improve their employment opportunities, earning potential, and overall quality of life."
-    },
-    {
+    }},
+    {{
       "keyword": "improving",
       "src_id": "Education",
       "tgt_id": "Health outcomes",
       "description": "Describes how access to education contributes to better health outcomes by providing individuals with the knowledge to make healthier choices, access healthcare, and understand health risks."
-    },
-    {
+    }},
+    {{
       "keyword": "correlates with",
       "src_id": "Poverty",
       "tgt_id": "Health outcomes",
       "description": "Explains the strong correlation between poverty and health outcomes, where poverty often leads to poor health due to limited access to healthcare, nutrition, and clean environments."
-    }
+    }}
   ]
-}
+}}
 #############################
 -Real Data-
 ######################
@@ -304,8 +304,6 @@ Query: {query}
 Output:
 
 """
-
-
 
 PROMPTS["naive_rag_response"] = """---Role---
 

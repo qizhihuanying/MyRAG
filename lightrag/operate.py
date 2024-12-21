@@ -5,8 +5,8 @@ import os
 import random
 import re
 import sys
-from typing import Any, Dict, List, Tuple, Union
-from collections import Counter, defaultdict
+from typing import Any, Dict, List, Set, Tuple, Union
+from collections import Counter, defaultdict, deque
 import warnings
 import numpy as np
 
@@ -200,6 +200,7 @@ async def _merge_nodes_then_upsert(
         entity_name, description, global_config
     )
     node_data = dict(
+        entity_name=entity_name,
         entity_type=entity_type,
         description=description,
         history=history,
@@ -214,7 +215,6 @@ async def _merge_nodes_then_upsert(
         source_id=source_id,
         ),
     )
-    node_data["entity_name"] = entity_name
     return node_data
 
 
@@ -289,6 +289,8 @@ async def _merge_edges_then_upsert(
         tgt_id=tgt_id,
         description=description,
         history=history,
+        weight=weight,
+        source_id=source_id,
     )
 
     return edge_data
@@ -500,6 +502,24 @@ async def extract_entities(
     return knowledge_graph_inst
 
 
+def decide_top_k_by_similarity(sim: float) -> int:
+    """
+    根据节点与 relation 内容的相似度分段来选择 top k 条边。
+    你可以根据需要修改这个划分规则。
+    """
+    if sim > 0.9:
+        return 5
+    elif sim > 0.7:
+        return 4
+    elif sim > 0.5:
+        return 3
+    elif sim > 0.3:
+        return 2
+    elif sim > 0.1:
+        return 1
+    else:
+        return 0
+
 embedding_func=EmbeddingFunc(
         embedding_dim=768,
         max_token_size=8192,
@@ -645,6 +665,7 @@ async def my_query(
             return PROMPTS["fail_response"]
 
     if not entity_info and not relation_info:
+        print("No entity or relation info found.")
         return PROMPTS["fail_response"]
     print("Entity Info: ", entity_info)
     print("Relation Info: ", relation_info)
@@ -673,6 +694,7 @@ async def my_query(
         relationships_vdb.query(content, top_k=top_k) for content in relation_content_list
     ]
     relation_results_list = await asyncio.gather(*relation_tasks)
+    relation_results = [item for sublist in relation_results_list for item in sublist]
 
     # 2.3 聚集实体
     initial_nodes = set()
@@ -698,148 +720,141 @@ async def my_query(
         relation_initial_nodes_groups.append((current_relation_info, list(current_initial_nodes)))
 
     # 提取所有的相似度
-    all_relation_tasks = [
-        relationships_vdb.query(content, top_k=sys.maxsize) for content in relation_content_list
-    ]
-    all_relation_results_list = await asyncio.gather(*all_relation_tasks)
     all_similarities = {}
-    for idx, relation_results in enumerate(all_relation_results_list):
-        relation_content = relation_content_list[idx]
-        for r in relation_results:
-            content_key = r["content"]  
-            all_similarities[(relation_content, content_key)] = r["__metrics__"]
+
+    # 1) 收集任务
+    tasks = []
+    for r_content in relation_content_list:
+        # 查询实体库
+        task_entity = asyncio.create_task(entities_vdb.query(r_content, top_k=sys.maxsize))
+        tasks.append((r_content, "entity", task_entity))
+
+        # 查询关系库
+        task_relation = asyncio.create_task(relationships_vdb.query(r_content, top_k=sys.maxsize))
+        tasks.append((r_content, "relation", task_relation))
+
+    # 2) 并发执行所有查询
+    results = await asyncio.gather(*[task[2] for task in tasks])
+
+    # 3) 将查询结果写入 all_similarities
+    for i, (r_content, category, task_obj) in enumerate(tasks):
+        query_result = results[i]  
+
+        # 遍历查询得到的条目，写入相似度字典
+        for item in query_result:
+            content_key = item["content"]     
+            metrics_info = item["__metrics__"] 
+            all_similarities[(r_content, content_key)] = metrics_info
       
-    # 定义一个异步锁用于同步进度条更新
-    pbar_lock = asyncio.Lock()
+    node_content_map = {}
+    for r in entity_results:
+        node_name = r["entity_name"]
+        node_content = r["content"]  
+        node_content_map[node_name] = node_content
+        
+    edge_content_map = {}
+    for r in relation_results:
+        edge_keyword = r["keyword"]
+        edge_content = r["content"]
+        edge_content_map[edge_keyword] = edge_content
 
-    # 第3步：基于多重图的加权随机游走（Weighted RWR） - 对每个relation_keyword单独执行
-    async def perform_weighted_rwr(
-        start_nodes_name: List[str],
+    # ============== 第3步：基于 BFS + DFS 的混合搜索逻辑==============
+    async def bfs_dfs_walk_for_relation(
+        relation_content: str,
+        start_nodes: List[str],
         graph: "BaseGraphStorage",
-        relation_kw: str,
-        walk_steps: int = 50,
-        restart_prob: float = 0.05,
-        paths_to_collect: int = 10
-    ) -> List[List[tuple]]:
-        paths = []
-        total_paths = len(start_nodes_name) * (paths_to_collect // max(1, len(start_nodes_name)))
-        paths_per_node = paths_to_collect // max(1, len(start_nodes_name))
-        total_steps = paths_per_node * walk_steps * len(start_nodes_name)
-        print("initiate with total nodes: ", len(start_nodes_name))
-        # print("nodes name: ", start_nodes_name)
+        threshold: float = 0.5
+    ) -> List[Dict[str, List[str]]]:
+        """
+        针对某一个 relation_content，对一批初始节点进行 BFS+DFS 混合搜索。
+        规则：
+          1) 如果节点与 relation_content 的相似度 < threshold，则停止往下搜索。
+          2) 否则，根据节点与 relation_content 的相似度决定挑选多少条最相似的边进行并行扩展。
+          3) 整个过程中，不重复访问同一个节点或同一条边。
+        
+        返回值：所有遍历到的路径（含节点和边序列）。
+        """
+        visited_nodes: Set[str] = set()
+        visited_edges: Set[Tuple[str, str, str]] = set()  # (src, tgt, edge_kw)
+        result_paths: List[Dict[str, List[str]]] = []
 
-        async with rwr_semaphore:
-            # 初始化进度条
-            async with pbar_lock:
-                pbar = tqdm(total=total_steps, desc="Performing Weighted RWR (steps)", mininterval=1.0)
+        queue = deque()
+        print("len(start_nodes): ", len(start_nodes))
+        for node in start_nodes:
+            if all_similarities.get((relation_content, node_content_map.get(node, "")), 0.0) < threshold:
+                continue
+            path = {
+                "nodes": [node],
+                "edges": []
+            }
+            queue.append(path)
+            visited_nodes.add(node)
+            
+        while queue:
+            current_path = queue.popleft()
+            current_node = current_path["nodes"][-1]
 
-            async def walk(start_node_name: str) -> List[List[tuple]]:
-                local_paths = []
-                visited_edges = set()
+            node_sim = 0.0
+            if current_node in node_content_map:
+                node_sim = all_similarities.get((relation_content, node_content_map[current_node]), 0.0)
+            
+            if node_sim < threshold:
+                result_paths.append(current_path)  
+                continue
 
-                path = []
-                current_node_name = start_node_name
-                
-                for step in range(walk_steps):
-                    edges = await my_cache.get_edges(current_node_name, graph)
+            top_k_edges = decide_top_k_by_similarity(node_sim)
 
-                    if not edges:
-                        break
+            edges = await my_cache.get_edges(current_node, graph)
+            edge_candidates = []
+            for edge in edges:
+                src, tgt, edge_kw, data = edge
+                if src == tgt: 
+                    continue
+                edge_sim = all_similarities.get((relation_content, edge_content_map.get(edge_kw, "")), 0.0)
+                edge_candidates.append((edge, edge_sim))
 
-                    all_edge_pairs = set()
-                    for edge in edges:
-                        _, target_node_name, edge_kw, _ = edge
-                        if not isinstance(edge_kw, str):
-                            edge_kw = str(edge_kw)
-                        edge_id = (relation_kw, edge_kw)
-                        all_edge_pairs.add(edge_id)
+            edge_candidates.sort(key=lambda x: x[1], reverse=True)
+            chosen_edges = edge_candidates[:top_k_edges]
 
-                    if not all_edge_pairs:
-                        break
+            for (edge, edge_sim) in chosen_edges:
+                src, tgt, edge_kw, data = edge
+                if tgt in visited_nodes or (src, tgt, edge_kw) in visited_edges or (tgt, src, edge_kw) in visited_edges:
+                    continue
 
-                    similarities = {pair: all_similarities.get(pair, 0.0) for pair in all_edge_pairs}
-                    
-                    edges_info = []
-                    for edge in edges:
-                        _, target_node_name, edge_kw, data = edge
-                        if not isinstance(edge_kw, str):
-                            edge_kw = str(edge_kw)
-                        edge_id = (relation_kw, edge_kw)
-                        
-                        if (current_node_name, target_node_name, edge_kw) in visited_edges:
-                            continue
+                visited_nodes.add(tgt)
+                visited_edges.add((src, tgt, edge_kw))
 
-                        sim = similarities.get(edge_id, 0.0)
-                        w = data.get("weight", 1.0)
-                        score = w * sim
-                        # 用sim而不是score作为选择的依据，但仍然记录score
-                        if sim > 0:
-                            edges_info.append((current_node_name, target_node_name, edge_kw, data, sim, score))
-                            edges_scores[(current_node_name, target_node_name, edge_kw)] = score
-                        else:
-                            print("Warning: similarity is 0: ", edge_id)
+                new_path = {
+                    "nodes": current_path["nodes"] + [tgt],
+                    "edges": current_path["edges"] + [edge]
+                }
+                queue.append(new_path)  
 
-                    if not edges_info:
-                        break
+        return result_paths
 
-                    # 使用sim作为随机选择的权重 (edges_info的第五个元素)
-                    weights = [item[4] for item in edges_info]
-                    chosen = random.choices(edges_info, weights=weights, k=1)[0]
-                    _, chosen_node_name, chosen_edge_kw, chosen_edge_data, chosen_sim, chosen_score = chosen
-
-                    visited_edges.add((current_node_name, chosen_node_name, chosen_edge_kw))
-                    visited_edges.add((chosen_node_name, current_node_name, chosen_edge_kw))
-
-                    path.append((current_node_name, chosen_edge_data))
-                    current_node_name = chosen_node_name
-                    
-                    if random.random() < restart_prob:
-                        current_node_name = start_node_name
-
-                    async with pbar_lock:
-                        pbar.update(1)
-
-                # 添加路径最后一个节点
-                path.append((current_node_name, None))
-                local_paths.append(path)                
-                return local_paths
-
-            # 创建所有walk任务
-            walk_tasks = [walk(node) for node in start_nodes_name]
-            walk_results = await asyncio.gather(*walk_tasks)
-
-            # 关闭进度条
-            async with pbar_lock:
-                pbar.close()
-
-            # 收集所有路径
-            for walk_path in walk_results:
-                paths.extend(walk_path)
-
-        return paths
-
-
+    # ============== 执行针对每个 group 的 BFS+DFS，收集路径 ==============
     all_paths = []
     tasks = []
-    for relation_kw, start_nodes_name in relation_initial_nodes_groups:
-        task = perform_weighted_rwr(
-            start_nodes_name=start_nodes_name,
+
+    # 我们并行地对每个 relation_info 对应的 (relation_content, start_nodes) 去跑
+    for (relation_content, start_nodes_name) in relation_initial_nodes_groups:
+        task = bfs_dfs_walk_for_relation(
+            relation_content=relation_content,
+            start_nodes=start_nodes_name,
             graph=knowledge_graph_inst,
-            relation_kw=relation_kw,
-            walk_steps=1000,           # 调整后的步数
-            restart_prob=0.15,       # 调整后的重启概率
-            paths_to_collect=10      # 调整后的路径数
+            threshold=0.1
         )
         tasks.append(task)
 
-    # 并行执行所有RWR任务
+    # 并行执行
     all_paths_results = await asyncio.gather(*tasks)
     for paths in all_paths_results:
         all_paths.extend(paths)
-    
+
+    # 结果保存
     os.makedirs("analyze", exist_ok=True)
-    save_paths_to_file(all_paths, 'analyze/paths.json')
-        
+    save_paths_to_file(all_paths, "analyze/paths.json")
+
     print("cached embedding hit rate: ", my_cache.embedding_cache_hit_rate())
     print("cached edge hit rate: ", my_cache.edge_cache_hit_rate())
 
@@ -848,17 +863,18 @@ async def my_query(
     selected_nodes = set()
     selected_edges = []
     for path in all_paths:
-        for i in range(len(path) - 1):
-            src_node = path[i][0]
-            edge_info = path[i][1]
-            tgt_node = path[i + 1][0]
-            if edge_info is not None:
-                selected_nodes.add(src_node)
-                selected_nodes.add(tgt_node)
-                selected_edges.append((src_node, tgt_node, edge_info))
+        nodes = path["nodes"]
+        edges = path["edges"]
+        for i in range(len(edges)):
+            src_node = nodes[i]
+            edge_info = edges[i]  # 边信息现在直接是一个元组(src, tgt, edge_kw, data)
+            tgt_node = nodes[i + 1]
+            selected_nodes.add(src_node)
+            selected_nodes.add(tgt_node)
+            selected_edges.append((src_node, tgt_node, edge_info))
         # 添加路径最后一个节点
-        if path:
-            selected_nodes.add(path[-1][0])
+        if nodes:
+            selected_nodes.add(nodes[-1])
 
     selected_nodes = list(selected_nodes)
 
@@ -876,12 +892,12 @@ async def my_query(
     }
 
     # 第5步：评分路径
-    def score_path(path: List[Tuple[str, Dict[str, Any]]]) -> float:
-        edges_info = [e for (_, e) in path if e is not None]
-        total_edge_weight = sum(e.get("weight", 1.0) for e in edges_info)
-        total_kw_match = sum(edges_scores.get((path[i][0], path[i + 1][0], e.get("keyword")), 0.0) for i, e in enumerate(edges_info[:-1]))
-        node_degree_sum = sum(node_info[n]["degree"] for n, _ in path if n in node_info)
-        path_length = len(path)
+    def score_path(path: Dict[str, List[str]]) -> float:
+        edges_info = path["edges"]
+        total_edge_weight = sum(e[3].get("weight", 1.0) for e in edges_info)
+        total_kw_match = sum(edges_scores.get((path["nodes"][i], path["nodes"][i + 1], e[2].get("keyword")), 0.0) for i, e in enumerate(edges_info[:-1]))
+        node_degree_sum = sum(node_info[n]["degree"] for n in path["nodes"] if n in node_info)
+        path_length = len(path["nodes"])
         alpha, beta, gamma, delta = 1.0, 2.0, 1.0, 0.5
         score = alpha * total_edge_weight + beta * total_kw_match + gamma * node_degree_sum + delta * path_length
         return score
@@ -892,21 +908,24 @@ async def my_query(
     top_paths = [p for p, s in scored_paths[:scored_top_k]] if scored_paths else []
 
     if not top_paths:
+        print("No top paths found.")
         return PROMPTS["fail_response"]
 
     selected_nodes = set()
     selected_edges = []
     for path in top_paths:
-        for i in range(len(path) - 1):
-            src_node = path[i][0]
-            edge_info = path[i][1]
-            tgt_node = path[i + 1][0]
-            if edge_info is not None:
-                selected_nodes.add(src_node)
-                selected_nodes.add(tgt_node)
-                selected_edges.append((src_node, tgt_node, edge_info))
-        if path:
-            selected_nodes.add(path[-1][0])
+        nodes = path["nodes"]
+        edges = path["edges"]
+        for i in range(len(edges)):
+            src_node = nodes[i]
+            edge_info = edges[i]
+            edge_keyword = edge_info[2]
+            tgt_node = nodes[i + 1]
+            selected_nodes.add(src_node)
+            selected_nodes.add(tgt_node)
+            selected_edges.append((src_node, tgt_node, edge_keyword, edge_info[-1]))
+        if nodes:
+            selected_nodes.add(nodes[-1])
 
     selected_nodes = list(selected_nodes)
 
@@ -916,22 +935,22 @@ async def my_query(
         info = node_info[n]["data"]
         deg = node_info[n]["degree"]
         node_datas.append({**info, "entity_name": n, "rank": deg})
-        
-    # 获取文本信息
-    # 节点中有source_id，通过text_chunks_db获取文本块
-    all_text_ids = set()
-    for n in node_datas:
-        if "source_id" in n:
-            cids = split_string_by_multi_markers(n["source_id"], [GRAPH_FIELD_SEP])
-            for cid in cids:
-                all_text_ids.add(cid)
+            
+        # 获取文本信息
+        # 节点中有source_id，通过text_chunks_db获取文本块
+        all_text_ids = set()
+        for n in node_datas:
+            if "source_id" in n:
+                cids = split_string_by_multi_markers(n["source_id"], [GRAPH_FIELD_SEP])
+                for cid in cids:
+                    all_text_ids.add(cid)
 
-    # 处理边的source_id，如果存在
-    for (_, _, e_info) in selected_edges:
-        if "source_id" in e_info:
-            cids = split_string_by_multi_markers(e_info["source_id"], [GRAPH_FIELD_SEP])
-            for cid in cids:
-                all_text_ids.add(cid)
+        # 处理边的source_id，如果存在
+        for (_, _, _, e_info) in selected_edges:
+            if "source_id" in e_info:
+                cids = split_string_by_multi_markers(e_info["source_id"], [GRAPH_FIELD_SEP])
+                for cid in cids:
+                    all_text_ids.add(cid)
 
     all_text_units = []
     for cid in all_text_ids:
@@ -948,13 +967,13 @@ async def my_query(
 
     # 对edges进行结构化处理
     edges_context_data = []
-    for i, (s, t, e_info) in enumerate(selected_edges):
+    for i, (s, t, kw, e_info) in enumerate(selected_edges):
         # 计算edge的rank(即edge_degree)
         deg = await knowledge_graph_inst.edge_degree(s, t)
         edges_context_data.append({
             "src_tgt": (s, t),
+            "keyword": kw,
             "description": e_info.get("description", "UNKNOWN"),
-            "keyword": e_info.get("keyword", "UNKNOWN"),
             "weight": e_info.get("weight", 1.0),
             "rank": deg
         })
@@ -1020,6 +1039,7 @@ csv
         return context
 
     if context is None:
+        print("No context found.")
         return PROMPTS["fail_response"]
 
     # 第6步：调用模型生成最终回答
@@ -1047,19 +1067,33 @@ csv
 
 def save_paths_to_file(paths, filename):
     serializable_paths = []
+    
     for path in paths:
         serializable_path = []
-        for node, edge in path:
-            if edge:
-                keyword = edge.get('keyword', '')
-            else:
-                keyword = None
+        
+        # 遍历路径中的边和节点，构建序列化后的路径
+        for i in range(len(path["nodes"]) - 1):
+            src_node = path["nodes"][i]
+            tgt_node = path["nodes"][i + 1]
+            edge_info = path["edges"][i]  # edge_info 是 (src, tgt, edge_kw, data)
+
+            # 获取边的 keyword（即关系的描述）
+            edge_keyword = edge_info[2]  # edge_kw 是列表中的第三个元素
+            
+            # 处理边的数据部分
+            edge_data = edge_info[-1]  # 边的额外数据（例如 weight，description 等）
+
             serializable_path.append({
-                'entity': node,
-                'relation_keyword': keyword
+                'source': src_node,
+                'target': tgt_node,
+                'relation_keyword': edge_keyword,
+                'edge_data': edge_data  # 添加边的额外数据
             })
+
+        # 添加路径中的节点和对应的边
         serializable_paths.append(serializable_path)
     
+    # 将路径保存为 JSON 文件
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(serializable_paths, f, ensure_ascii=False, indent=4)
 
@@ -1073,6 +1107,7 @@ async def naive_query(
     use_model_func = global_config["llm_model_func"]
     results = await chunks_vdb.query(query, top_k=query_param.top_k)
     if not len(results):
+        print("No naive results found.")
         return PROMPTS["fail_response"]
     chunks_ids = [r["id"] for r in results]
     chunks = await text_chunks_db.get_by_ids(chunks_ids)
