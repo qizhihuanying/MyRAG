@@ -168,8 +168,6 @@ async def _merge_nodes_then_upsert(
     already_entitiy_types = []
     already_source_ids = []
     already_description = []
-    
-    entity_name = clean_str(entity_name)
 
     already_node = await knowledge_graph_inst.get_node(entity_name)
     if already_node is not None:
@@ -230,10 +228,6 @@ async def _merge_edges_then_upsert(
     already_source_ids = []
     already_description = []
     # already_keywords = []
-    
-    src_id = clean_str(src_id)
-    tgt_id = clean_str(tgt_id)
-    keyword = clean_str(keyword)
 
     if await knowledge_graph_inst.has_edge(src_id, tgt_id, keyword):
         already_edge = await knowledge_graph_inst.get_edge(src_id, tgt_id, keyword)
@@ -417,14 +411,44 @@ async def extract_entities(
             for k, v in maybe_edges.items()
         ]
     ) 
+    
     # 1. 在图构建完成后，遍历该多重图的所有节点，首先将每个节点的history用大模型做一次summary，然后将summary的结果作为节点的description，对边也做同样的处理 
     # 2. 在上面遍历的同时，每个节点构建指向自己的一条边, keyword为自己的entity_name，weight为节点的度数，description为节点的description 
+    
+    # 同步构建边时临时插入图中的节点到数据库中
+    all_nodes = await knowledge_graph_inst.get_all_nodes()
+    missing_nodes = set(all_nodes) - set([dp["entity_name"] for dp in all_entities_data])
+    for node in missing_nodes:
+        node_data = await knowledge_graph_inst.get_node(node)
+        all_entities_data.append(
+            dict(
+                entity_name=node,
+                entity_type=node_data["entity_type"],
+                description=node_data["description"],
+                history=node_data["description"],
+                source_id=node_data["source_id"],
+            )
+        )
     for node_data in all_entities_data:
+        print("node_names: ", node_data["entity_name"])
+        # 构建指向自己的边并存到数据库中
+        all_relationships_data.append(
+            dict(
+                src_id=node_data["entity_name"],
+                tgt_id=node_data["entity_name"],
+                keyword=node_data["entity_name"],
+                description=node_data["description"],
+                history=node_data["history"],
+                weight = len(await knowledge_graph_inst.get_node_edges(node_data["entity_name"])) if await knowledge_graph_inst.get_node_edges(node_data["entity_name"]) is not None else 0,
+                source_id=node_data["source_id"],
+            )
+        )
         entity_name = node_data["entity_name"]
         history = node_data["history"]
         all_description = await _handle_entity_relation_summary(
             entity_name, history, global_config
         )
+        # 将节点的description更新为summary的结果
         await knowledge_graph_inst.upsert_node(
             entity_name,
             node_data=dict(
@@ -434,19 +458,9 @@ async def extract_entities(
             source_id=node_data["source_id"],
             ),
         )
-        await knowledge_graph_inst.upsert_edge(
-            entity_name,
-            entity_name,
-            entity_name,
-            edge_data=dict(
-                keyword=entity_name,
-                weight=len(await knowledge_graph_inst.get_node_edges(entity_name)),
-                description=all_description,
-                history=node_data["history"],
-                source_id=node_data["source_id"],
-            ),
-        )
+    print("all nodes in graph: ", await knowledge_graph_inst.get_all_nodes())
     for edge_data in all_relationships_data:
+        print("edge_data: ", edge_data)
         src_id = edge_data["src_id"]
         tgt_id = edge_data["tgt_id"]
         keyword = edge_data["keyword"]
@@ -671,7 +685,7 @@ async def my_query(
     print("Relation Info: ", relation_info)
 
     # 设置总需要的Top K数量
-    top_k = 60
+    top_k = 10
 
     # 第2步：构建内容并查询向量数据库
     # 2.1 对每个entity_info构建content并查询entities_vdb
@@ -703,6 +717,7 @@ async def my_query(
 
     # 2.4 处理每个relation_info的关系
     relation_initial_nodes_groups = []  # 每个group对应一个relation_info
+    all_source_nodes = set()  # 用于收集所有源节点
     for idx, relation_results in enumerate(relation_results_list):
         current_relation_info = relation_info[idx]
         current_relation_info = f"The relationship '{current_relation_info['keyword']}' connects source ID '{current_relation_info['src_id']}' with target ID '{current_relation_info['tgt_id']}', and is described as: {current_relation_info['description']}."
@@ -716,6 +731,7 @@ async def my_query(
         current_initial_nodes = set(initial_nodes)  
         for (s, _, _) in initial_edges:
             current_initial_nodes.add(s)
+            all_source_nodes.add(s)  # 收集所有源节点
 
         relation_initial_nodes_groups.append((current_relation_info, list(current_initial_nodes)))
 
@@ -745,32 +761,31 @@ async def my_query(
             content_key = item["content"]     
             metrics_info = item["__metrics__"] 
             all_similarities[(r_content, content_key)] = metrics_info
-      
-    node_content_map = {}
-    for r in entity_results:
-        node_name = r["entity_name"]
-        node_content = r["content"]  
-        node_content_map[node_name] = node_content
-        
-    edge_content_map = {}
-    for r in relation_results:
-        edge_keyword = r["keyword"]
-        edge_content = r["content"]
-        edge_content_map[edge_keyword] = edge_content
+            
+    # 将所有相似度写入文件
+    os.makedirs("analyze", exist_ok=True)
+    with open("analyze/similarities.txt", "w", encoding="utf-8") as f:
+        for (r_content, content_key), sim in all_similarities.items():
+            f.write(f"{r_content}\t{content_key}\t{sim}\n")
 
     # ============== 第3步：基于 BFS + DFS 的混合搜索逻辑==============
+    MAX_PATH_LENGTH = 50
+
     async def bfs_dfs_walk_for_relation(
         relation_content: str,
         start_nodes: List[str],
         graph: "BaseGraphStorage",
-        threshold: float = 0.5
+        threshold: float = 0.5,
+        max_path_length: int = MAX_PATH_LENGTH  # 添加最大路径长度参数
     ) -> List[Dict[str, List[str]]]:
         """
         针对某一个 relation_content，对一批初始节点进行 BFS+DFS 混合搜索。
         规则：
-          1) 如果节点与 relation_content 的相似度 < threshold，则停止往下搜索。
-          2) 否则，根据节点与 relation_content 的相似度决定挑选多少条最相似的边进行并行扩展。
-          3) 整个过程中，不重复访问同一个节点或同一条边。
+        1) 如果节点与 relation_content 的相似度 < threshold，则停止往下搜索。
+        2) 否则，根据节点与 relation_content 的相似度决定挑选多少条最相似的边进行并行扩展。
+        3) 整个过程中，不重复访问同一个节点或同一条边。
+        4) 如果路径达到最大长度，则停止扩展并记录路径。
+        5) 如果当前节点没有更多可扩展的边，则记录路径。
         
         返回值：所有遍历到的路径（含节点和边序列）。
         """
@@ -778,10 +793,18 @@ async def my_query(
         visited_edges: Set[Tuple[str, str, str]] = set()  # (src, tgt, edge_kw)
         result_paths: List[Dict[str, List[str]]] = []
 
+        cnt = 0
         queue = deque()
         print("len(start_nodes): ", len(start_nodes))
+        print("start_nodes: ", start_nodes)
         for node in start_nodes:
-            if all_similarities.get((relation_content, node_content_map.get(node, "")), 0.0) < threshold:
+            node_content = f'The entity \'{node}\' is described as: {(await graph.get_node(node))["description"]}.'
+            node_sim = 0.0
+            node_sim = all_similarities.get((relation_content, node_content), 0.0)
+            if node_sim == 0.0:
+                print(f'The entity \'{node}\' is described as: {(await graph.get_node(node))["description"]}.')
+                cnt += 1
+            if node_sim < threshold:
                 continue
             path = {
                 "nodes": [node],
@@ -789,17 +812,25 @@ async def my_query(
             }
             queue.append(path)
             visited_nodes.add(node)
+        
+        print("cnt: ", cnt)
             
         while queue:
             current_path = queue.popleft()
             current_node = current_path["nodes"][-1]
 
+            current_node_content = f'The entity \'{current_node}\' is described as: {(await graph.get_node(current_node))["description"]}.'
             node_sim = 0.0
-            if current_node in node_content_map:
-                node_sim = all_similarities.get((relation_content, node_content_map[current_node]), 0.0)
+            node_sim = all_similarities.get((relation_content, current_node_content))
             
+            # 检查相似度阈值
             if node_sim < threshold:
                 result_paths.append(current_path)  
+                continue
+
+            # 检查路径长度是否达到最大值
+            if len(current_path["nodes"]) >= max_path_length:
+                result_paths.append(current_path)
                 continue
 
             top_k_edges = decide_top_k_by_similarity(node_sim)
@@ -810,17 +841,25 @@ async def my_query(
                 src, tgt, edge_kw, data = edge
                 if src == tgt: 
                     continue
-                edge_sim = all_similarities.get((relation_content, edge_content_map.get(edge_kw, "")), 0.0)
+                edge_content = f'The relationship {edge_kw} connects source ID {src} with target ID {tgt}, and is described as: {data["description"]}.'
+                edge_sim = all_similarities.get((relation_content, edge_content), 0.0)
                 edge_candidates.append((edge, edge_sim))
 
+            if not edge_candidates:
+                result_paths.append(current_path)
+                continue
             edge_candidates.sort(key=lambda x: x[1], reverse=True)
             chosen_edges = edge_candidates[:top_k_edges]
 
             for (edge, edge_sim) in chosen_edges:
                 src, tgt, edge_kw, data = edge
+                # 检测是否已访问
                 if tgt in visited_nodes or (src, tgt, edge_kw) in visited_edges or (tgt, src, edge_kw) in visited_edges:
+                    # 在检测到已访问时，将当前路径添加到结果中
+                    result_paths.append(current_path)
                     continue
 
+                # 标记节点和边为已访问
                 visited_nodes.add(tgt)
                 visited_edges.add((src, tgt, edge_kw))
 

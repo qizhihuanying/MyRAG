@@ -247,6 +247,9 @@ class NetworkXStorage(BaseGraphStorage):
 
     async def get_node(self, node_id: str) -> Union[dict, None]:
         return self._graph.nodes.get(node_id)
+    
+    async def get_all_nodes(self) -> list[str]:
+        return list(self._graph.nodes)
 
     async def node_degree(self, node_id: str) -> int:
         return self._graph.degree(node_id)

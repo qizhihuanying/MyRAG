@@ -1,44 +1,20 @@
 [
-    [
-        {
-            "source": "\"SCROOGE\"",
-            "target": "\"COLD WEATHER\"",
-            "relation_keyword": "isolation",
-            "edge_data": {
-                "keyword": "isolation",
-                "weight": 16.0,
-                "description": "\"The cold weather does not affect Scrooge, unlike others; it emphasizes his detachment from humanity.\"",
-                "history": "\"The cold weather does not affect Scrooge, unlike others; it emphasizes his detachment from humanity.\"",
-                "source_id": "chunk-47a6e0832175c65e1ddab9d7d45facfb"
-            }
-        }
-    ],
-    [
-        {
-            "source": "\"CITY CLOCKS\"",
-            "target": "\"TIME AND NORMS\"",
-            "relation_keyword": "ignoring norms",
-            "edge_data": {
-                "keyword": "ignoring norms",
-                "weight": 10.0,
-                "description": "\"City clocks symbolize the passage of time and societal norms that Scrooge ignores or disregards.\"",
-                "history": "\"City clocks symbolize the passage of time and societal norms that Scrooge ignores or disregards.\"",
-                "source_id": "chunk-47a6e0832175c65e1ddab9d7d45facfb"
-            }
-        }
-    ],
-    [
-        {
-            "source": "\"FOG\"",
-            "target": "\"GLOOMINESS AND UNCERTAINTY\"",
-            "relation_keyword": "metaphorical representation",
-            "edge_data": {
-                "keyword": "metaphorical representation",
-                "weight": 14.0,
-                "description": "\"Fog represents the gloominess and uncertainty in Scrooge's outlook on life.\"",
-                "history": "\"Fog represents the gloominess and uncertainty in Scrooge's outlook on life.\"",
-                "source_id": "chunk-47a6e0832175c65e1ddab9d7d45facfb"
-            }
-        }
-    ]
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
 ]
