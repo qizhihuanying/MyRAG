@@ -75,7 +75,7 @@ def save_search_results(query, mode, filename):
 
 model_name = rag.llm_model_name.replace(":", "_")
 
-save_search_results("What the top themes of this article?", "my", f"outputs/{model_name}_local_results.md")
+save_search_results("What is the top themes of this article?", "my", f"outputs/{model_name}_local_results.md")
 
 total_end_time = time.time()
 time_records['Total time'] = total_end_time - total_start_time

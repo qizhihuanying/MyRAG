@@ -128,6 +128,7 @@ async def _handle_single_relationship_extraction(
         return None
     # add this record as edge
     source = clean_str(record_attributes[1].upper())
+    print("source: ", source)
     target = clean_str(record_attributes[2].upper())
     edge_description = clean_str(record_attributes[3])
 
@@ -137,15 +138,15 @@ async def _handle_single_relationship_extraction(
         float(record_attributes[-1]) if is_float_regex(record_attributes[-1]) else 1.0
     )
     
-    edge_keywords = edge_keywords.strip().strip('"').strip("'")
-    
     keywords_list = split_string_by_multi_markers(
         edge_keywords, [',']
     )
     
     edges_data = []
     for keyword in keywords_list:
-        keyword = keyword.strip().strip('"').strip("'")
+        keyword = clean_str(keyword).replace('<', '').replace('>', '').replace('("', '').replace('")', '').replace('<', '').replace('>', '').strip().strip('"')
+        keyword = f'"{keyword}"'
+        print("keyword: ", keyword)
         if keyword:
             edge_data = dict(
                 src_id=source,
@@ -168,6 +169,8 @@ async def _merge_nodes_then_upsert(
     already_entitiy_types = []
     already_source_ids = []
     already_description = []
+    
+    entity_name = clean_str(entity_name)
 
     already_node = await knowledge_graph_inst.get_node(entity_name)
     if already_node is not None:
@@ -185,7 +188,7 @@ async def _merge_nodes_then_upsert(
         reverse=True,
     )[0][0]
     description = GRAPH_FIELD_SEP.join(
-        sorted(set([dp["description"] for dp in nodes_data] + already_description))
+        set([dp["description"] for dp in nodes_data] + already_description)
     )
     # 定义history属性存储所有description的拼接
     history = GRAPH_FIELD_SEP.join(
@@ -228,6 +231,10 @@ async def _merge_edges_then_upsert(
     already_source_ids = []
     already_description = []
     # already_keywords = []
+    
+    src_id = clean_str(src_id)
+    tgt_id = clean_str(tgt_id)
+    keyword = clean_str(keyword)
 
     if await knowledge_graph_inst.has_edge(src_id, tgt_id, keyword):
         already_edge = await knowledge_graph_inst.get_edge(src_id, tgt_id, keyword)
@@ -242,7 +249,7 @@ async def _merge_edges_then_upsert(
 
     weight = sum([dp["weight"] for dp in edges_data] + already_weights)
     description = GRAPH_FIELD_SEP.join(
-        sorted(set([dp["description"] for dp in edges_data] + already_description))
+        set([dp["description"] for dp in edges_data] + already_description)
     )
     # 定义history属性存储所有description的拼接
     history = GRAPH_FIELD_SEP.join(
@@ -460,7 +467,6 @@ async def extract_entities(
         )
     print("all nodes in graph: ", await knowledge_graph_inst.get_all_nodes())
     for edge_data in all_relationships_data:
-        print("edge_data: ", edge_data)
         src_id = edge_data["src_id"]
         tgt_id = edge_data["tgt_id"]
         keyword = edge_data["keyword"]
@@ -542,99 +548,6 @@ embedding_func=EmbeddingFunc(
         ),
     )
 
-class MY_Cache:
-    def __init__(self, embedding_func, batch_size=20000):
-        self.embedding_func = embedding_func
-        self.embedding_cache = {}
-        self.edge_cache = {}
-        self.lock = asyncio.Lock()
-        self.batch_size = batch_size
-        self.embedding_access_count = 0
-        self.embedding_hit_count = 0
-        self.edge_access_count = 0
-        self.edge_hit_count = 0
-
-    async def get_embeddings(self, keywords: List[str]) -> Dict[str, List[float]]:
-        missing = [kw for kw in keywords if kw not in self.embedding_cache]
-        self.embedding_access_count += len(keywords)
-        self.embedding_hit_count += (len(keywords) - len(missing))
-
-        if missing:
-            for i in range(0, len(missing), self.batch_size):
-                batch = missing[i:i + self.batch_size]
-                embeddings = await self.embedding_func.func(batch)
-                for kw, emb in zip(batch, embeddings):
-                    self.embedding_cache[kw] = emb
-        return {kw: self.embedding_cache[kw] for kw in keywords}
-    
-    async def get_similarities_batch(self, edge_pairs: set) -> Dict[tuple, float]:
-        """
-        Computes similarities for a batch of (relation_kw, edge_kw) pairs using vectorized operations.
-        Returns a dictionary mapping (relation_kw, edge_kw) to similarity.
-        """
-        # Extract all unique keywords
-        keywords = {str(kw) for pair in edge_pairs for kw in pair}
-        
-        # Get embeddings for all keywords
-        embeddings = await self.get_embeddings(list(keywords))
-        
-        # Convert embeddings into a matrix
-        keywords_list = list(keywords)
-        embedding_matrix = np.array([embeddings[kw] for kw in keywords_list])
-        
-        # Normalize the embeddings to unit vectors
-        norms = np.linalg.norm(embedding_matrix, axis=1, keepdims=True)
-        norms[norms == 0] = 1  # To avoid division by zero
-        normalized_embeddings = embedding_matrix / norms
-        
-        # Create a map from keyword to its index in the matrix
-        keyword_to_index = {kw: i for i, kw in enumerate(keywords_list)}
-        
-        # Compute all similarities at once using matrix multiplication
-        similarity_matrix = np.dot(normalized_embeddings, normalized_embeddings.T)
-        
-        # Extract the similarities for the requested pairs
-        similarities = {}
-        for relation_kw, edge_kw in edge_pairs:
-            idx1 = keyword_to_index[str(relation_kw)]
-            idx2 = keyword_to_index[str(edge_kw)]
-            similarity = similarity_matrix[idx1, idx2]
-            similarities[(relation_kw, edge_kw)] = similarity
-
-        return similarities
-    
-    async def get_edges(self, node: str, graph: "BaseGraphStorage") -> List[tuple]:
-        self.edge_access_count += 1
-        if node in self.edge_cache:
-            self.edge_hit_count += 1
-            return self.edge_cache[node]
-
-        edges = await graph.get_node_edges(node)
-        self.edge_cache[node] = edges
-        return edges
-
-    def embedding_cache_hit_rate(self):
-        if self.embedding_access_count == 0:
-            return 0.0
-        return self.embedding_hit_count / self.embedding_access_count
-
-    def edge_cache_hit_rate(self):
-        if self.edge_access_count == 0:
-            return 0.0
-        return self.edge_hit_count / self.edge_access_count
-    
-    def reset_cache(self):
-        """Reset both embedding and edge caches."""
-        self.embedding_cache.clear()
-        self.edge_cache.clear()
-        self.embedding_access_count = 0
-        self.embedding_hit_count = 0
-        self.edge_access_count = 0
-        self.edge_hit_count = 0
-
-# 初始化全局缓存
-my_cache = MY_Cache(embedding_func)
-rwr_semaphore = asyncio.Semaphore(1000)
 edges_scores = {}
 
 async def my_query(
@@ -762,6 +675,8 @@ async def my_query(
             metrics_info = item["__metrics__"] 
             all_similarities[(r_content, content_key)] = metrics_info
             
+    print("all_similarities: ", all_similarities)
+            
     # 将所有相似度写入文件
     os.makedirs("analyze", exist_ok=True)
     with open("analyze/similarities.txt", "w", encoding="utf-8") as f:
@@ -799,11 +714,7 @@ async def my_query(
         print("start_nodes: ", start_nodes)
         for node in start_nodes:
             node_content = f'The entity \'{node}\' is described as: {(await graph.get_node(node))["description"]}.'
-            node_sim = 0.0
-            node_sim = all_similarities.get((relation_content, node_content), 0.0)
-            if node_sim == 0.0:
-                print(f'The entity \'{node}\' is described as: {(await graph.get_node(node))["description"]}.')
-                cnt += 1
+            node_sim = all_similarities.get((relation_content, node_content))
             if node_sim < threshold:
                 continue
             path = {
@@ -812,40 +723,44 @@ async def my_query(
             }
             queue.append(path)
             visited_nodes.add(node)
-        
-        print("cnt: ", cnt)
             
         while queue:
             current_path = queue.popleft()
             current_node = current_path["nodes"][-1]
 
             current_node_content = f'The entity \'{current_node}\' is described as: {(await graph.get_node(current_node))["description"]}.'
-            node_sim = 0.0
             node_sim = all_similarities.get((relation_content, current_node_content))
             
             # 检查相似度阈值
             if node_sim < threshold:
+                print("similarity below threshold")
                 result_paths.append(current_path)  
                 continue
 
             # 检查路径长度是否达到最大值
             if len(current_path["nodes"]) >= max_path_length:
+                print("max path length reached")
                 result_paths.append(current_path)
                 continue
 
             top_k_edges = decide_top_k_by_similarity(node_sim)
 
-            edges = await my_cache.get_edges(current_node, graph)
+            edges = await graph.get_node_edges(current_node)
             edge_candidates = []
             for edge in edges:
                 src, tgt, edge_kw, data = edge
                 if src == tgt: 
                     continue
-                edge_content = f'The relationship {edge_kw} connects source ID {src} with target ID {tgt}, and is described as: {data["description"]}.'
-                edge_sim = all_similarities.get((relation_content, edge_content), 0.0)
+                edge_content = f'The relationship \'{edge_kw}\' connects source ID \'{src}\' with target ID \'{tgt}\', and is described as: {data["description"]}.'
+                edge_content_reverse = f'The relationship \'{edge_kw}\' connects source ID \'{tgt}\' with target ID \'{src}\', and is described as: {data["description"]}.'
+                # print("edge_content: ", edge_content)
+                # print("edge_content_reverse: ", edge_content_reverse)
+                # print("all_similarities: ", all_similarities)
+                edge_sim = all_similarities.get((relation_content, edge_content)) if (relation_content, edge_content) in all_similarities else all_similarities.get((relation_content, edge_content_reverse))
                 edge_candidates.append((edge, edge_sim))
 
             if not edge_candidates:
+                print("no more edges to expand")
                 result_paths.append(current_path)
                 continue
             edge_candidates.sort(key=lambda x: x[1], reverse=True)
@@ -856,6 +771,7 @@ async def my_query(
                 # 检测是否已访问
                 if tgt in visited_nodes or (src, tgt, edge_kw) in visited_edges or (tgt, src, edge_kw) in visited_edges:
                     # 在检测到已访问时，将当前路径添加到结果中
+                    print("visited node or edge, add to result")
                     result_paths.append(current_path)
                     continue
 
@@ -894,9 +810,6 @@ async def my_query(
     os.makedirs("analyze", exist_ok=True)
     save_paths_to_file(all_paths, "analyze/paths.json")
 
-    print("cached embedding hit rate: ", my_cache.embedding_cache_hit_rate())
-    print("cached edge hit rate: ", my_cache.edge_cache_hit_rate())
-
     # 第4步：从筛选出的路径中提取节点、边以及相应文本构建上下文，并进行评分
     # 收集路径中的节点和边
     selected_nodes = set()
@@ -933,8 +846,9 @@ async def my_query(
     # 第5步：评分路径
     def score_path(path: Dict[str, List[str]]) -> float:
         edges_info = path["edges"]
+        # print("edges_info: ", edges_info)
         total_edge_weight = sum(e[3].get("weight", 1.0) for e in edges_info)
-        total_kw_match = sum(edges_scores.get((path["nodes"][i], path["nodes"][i + 1], e[2].get("keyword")), 0.0) for i, e in enumerate(edges_info[:-1]))
+        total_kw_match = sum(edges_scores.get((path["nodes"][i], path["nodes"][i + 1], e[3].get("keyword")), 0.0) for i, e in enumerate(edges_info[:-1]))
         node_degree_sum = sum(node_info[n]["degree"] for n in path["nodes"] if n in node_info)
         path_length = len(path["nodes"])
         alpha, beta, gamma, delta = 1.0, 2.0, 1.0, 0.5
