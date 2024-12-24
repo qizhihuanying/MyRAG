@@ -528,15 +528,15 @@ def decide_top_k_by_similarity(sim: float) -> int:
     你可以根据需要修改这个划分规则。
     """
     if sim > 0.9:
-        return 5
+        return 100
     elif sim > 0.7:
-        return 4
+        return 80
     elif sim > 0.5:
-        return 3
+        return 60
     elif sim > 0.3:
-        return 2
+        return 40
     elif sim > 0.1:
-        return 1
+        return 20
     else:
         return 0
 
@@ -598,7 +598,7 @@ async def my_query(
     print("Relation Info: ", relation_info)
 
     # 设置总需要的Top K数量
-    top_k = 10
+    top_k = 60
 
     # 第2步：构建内容并查询向量数据库
     # 2.1 对每个entity_info构建content并查询entities_vdb
@@ -730,13 +730,13 @@ async def my_query(
             
             # 检查相似度阈值
             if node_sim < threshold:
-                print("similarity below threshold")
+                # print("similarity below threshold")
                 result_paths.append(current_path)  
                 continue
 
             # 检查路径长度是否达到最大值
             if len(current_path["nodes"]) >= max_path_length:
-                print("max path length reached")
+                # print("max path length reached")
                 result_paths.append(current_path)
                 continue
 
@@ -754,7 +754,7 @@ async def my_query(
                 edge_candidates.append((edge, edge_sim))
 
             if not edge_candidates:
-                print("no more edges to expand")
+                # print("no more edges to expand")
                 result_paths.append(current_path)
                 continue
             edge_candidates.sort(key=lambda x: x[1], reverse=True)
@@ -765,7 +765,7 @@ async def my_query(
                 # 检测是否已访问
                 if tgt in visited_nodes or (src, tgt, edge_kw) in visited_edges or (tgt, src, edge_kw) in visited_edges:
                     # 在检测到已访问时，将当前路径添加到结果中
-                    print("visited node or edge")
+                    # print("visited node or edge")
                     result_paths.append(current_path)
                     continue
 
@@ -799,6 +799,9 @@ async def my_query(
     all_paths_results = await asyncio.gather(*tasks)
     for paths in all_paths_results:
         all_paths.extend(paths)
+        
+    # 对路径进行去重
+    all_paths = list({tuple(path["nodes"]): path for path in all_paths}.values())
 
     # 结果保存
     os.makedirs("analyze", exist_ok=True)

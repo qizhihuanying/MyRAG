@@ -17,3 +17,8 @@ index中定义history属性存储所有description的拼接   done    ---是否�
 ---query---
 query的时候修改prompt让entity、relation生成对应的description(relation额外生成src,tgt)拼接在一起做嵌入
 更新游走方式
+
+
+
+去重在chosen_edge还是edge_candidate
+index完那一部分效率加快

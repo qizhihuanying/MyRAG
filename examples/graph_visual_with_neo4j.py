@@ -1,6 +1,6 @@
 import os
 import json
-from lightrag.utils import xml_to_json
+import xml.etree.ElementTree as ET
 from neo4j import GraphDatabase
 
 # Constants
@@ -13,6 +13,52 @@ NEO4J_URI = "bolt://localhost:7687"
 NEO4J_USERNAME = "neo4j"
 NEO4J_PASSWORD = "hzqxs86302266"
 
+def xml_to_json(xml_file):
+    try:
+        tree = ET.parse(xml_file)
+        root = tree.getroot()
+
+        # Print the root element's tag and attributes to confirm the file has been correctly loaded
+        print(f"Root element: {root.tag}")
+        print(f"Root attributes: {root.attrib}")
+
+        data = {"nodes": [], "edges": []}
+
+        # Use namespace
+        namespace = {"": "http://graphml.graphdrawing.org/xmlns"}
+
+        for node in root.findall(".//node", namespace):
+            node_data = {
+                "id": node.get("id").strip('"'),
+                "entity_type": node.find("./data[@key='d0']", namespace).text.strip('"') if node.find("./data[@key='d0']", namespace) is not None else "",
+                "description": node.find("./data[@key='d1']", namespace).text.strip('"') if node.find("./data[@key='d1']", namespace) is not None else "",
+                "history": node.find("./data[@key='d2']", namespace).text.strip('"') if node.find("./data[@key='d2']", namespace) is not None else "",
+                "source_id": node.find("./data[@key='d3']", namespace).text.strip('"') if node.find("./data[@key='d3']", namespace) is not None else "",
+            }
+            data["nodes"].append(node_data)
+
+        for edge in root.findall(".//edge", namespace):
+            edge_data = {
+                "source": edge.get("source").strip('"'),
+                "target": edge.get("target").strip('"'),
+                "keyword": edge.find("./data[@key='d4']", namespace).text.strip('"') if edge.find("./data[@key='d4']", namespace) is not None else "",
+                "weight": float(edge.find("./data[@key='d5']", namespace).text) if edge.find("./data[@key='d5']", namespace) is not None else 0.0,
+                "description": edge.find("./data[@key='d6']", namespace).text.strip('"') if edge.find("./data[@key='d6']", namespace) is not None else "",
+                "history": edge.find("./data[@key='d7']", namespace).text.strip('"') if edge.find("./data[@key='d7']", namespace) is not None else "",
+                "source_id": edge.find("./data[@key='d8']", namespace).text.strip('"') if edge.find("./data[@key='d8']", namespace) is not None else "",
+            }
+            data["edges"].append(edge_data)
+
+        # Print the number of nodes and edges found
+        print(f"Found {len(data['nodes'])} nodes and {len(data['edges'])} edges")
+
+        return data
+    except ET.ParseError as e:
+        print(f"Error parsing XML file: {e}")
+        return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
 
 def convert_xml_to_json(xml_path, output_path):
     """Converts XML file to JSON and saves the output."""
@@ -58,6 +104,7 @@ def main():
     MERGE (e:Entity {id: node.id})
     SET e.entity_type = node.entity_type,
         e.description = node.description,
+        e.history = node.history,
         e.source_id = node.source_id,
         e.displayName = node.id
     REMOVE e:Entity
@@ -72,17 +119,17 @@ def main():
     MATCH (target {id: edge.target})
     WITH source, target, edge,
          CASE
-            WHEN edge.keywords CONTAINS 'lead' THEN 'lead'
-            WHEN edge.keywords CONTAINS 'participate' THEN 'participate'
-            WHEN edge.keywords CONTAINS 'uses' THEN 'uses'
-            WHEN edge.keywords CONTAINS 'located' THEN 'located'
-            WHEN edge.keywords CONTAINS 'occurs' THEN 'occurs'
-           ELSE REPLACE(SPLIT(edge.keywords, ',')[0], '\"', '')
+            WHEN edge.keyword CONTAINS 'lead' THEN 'LEAD'
+            WHEN edge.keyword CONTAINS 'participate' THEN 'PARTICIPATE'
+            WHEN edge.keyword CONTAINS 'uses' THEN 'USES'
+            WHEN edge.keyword CONTAINS 'located' THEN 'LOCATED'
+            WHEN edge.keyword CONTAINS 'occurs' THEN 'OCCURS'
+           ELSE REPLACE(SPLIT(edge.keyword, ',')[0], '\"', '')
          END AS relType
     CALL apoc.create.relationship(source, relType, {
       weight: edge.weight,
       description: edge.description,
-      keywords: edge.keywords,
+      history: edge.history,
       source_id: edge.source_id
     }, target) YIELD rel
     RETURN count(*)
