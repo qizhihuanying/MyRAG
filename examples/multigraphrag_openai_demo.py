@@ -53,12 +53,14 @@ embedding_func=EmbeddingFunc(
 
 def openai_llm_model_func(prompt, system_prompt=None, history_messages=[], **kwargs) -> str:
     return openai_complete_if_cache(
+        # model="gpt-3.5-turbo",
         model="gpt-4-turbo",
         prompt=prompt,
         system_prompt=system_prompt,
         history_messages=history_messages,
         api_key=os.getenv("OPENAI_API_KEY"),  
         base_url="http://47.89.164.141:9000/v1",  
+        # base_url="http://xiaoai.plus/v1",  
         **kwargs,
     )
 

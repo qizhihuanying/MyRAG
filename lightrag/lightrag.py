@@ -315,6 +315,7 @@ class LightRAG:
                 self.chunk_entity_relation_graph,
                 self.entities_vdb,
                 self.relationships_vdb,
+                self.chunks_vdb,
                 self.text_chunks,
                 param,
                 asdict(self),

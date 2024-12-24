@@ -188,7 +188,7 @@ async def _merge_nodes_then_upsert(
         reverse=True,
     )[0][0]
     description = GRAPH_FIELD_SEP.join(
-        set([dp["description"] for dp in nodes_data] + already_description)
+        set([dp["description"] for dp in nodes_data])
     )
     # 定义history属性存储所有description的拼接
     history = GRAPH_FIELD_SEP.join(
@@ -196,9 +196,6 @@ async def _merge_nodes_then_upsert(
     )
     source_id = GRAPH_FIELD_SEP.join(
         set([dp["source_id"] for dp in nodes_data] + already_source_ids)
-    )
-    description = await _handle_entity_relation_summary(
-        entity_name, description, global_config
     )
     node_data = dict(
         entity_name=entity_name,
@@ -249,7 +246,7 @@ async def _merge_edges_then_upsert(
 
     weight = sum([dp["weight"] for dp in edges_data] + already_weights)
     description = GRAPH_FIELD_SEP.join(
-        set([dp["description"] for dp in edges_data] + already_description)
+        set([dp["description"] for dp in edges_data])
     )
     # 定义history属性存储所有description的拼接
     history = GRAPH_FIELD_SEP.join(
@@ -268,9 +265,6 @@ async def _merge_edges_then_upsert(
                     "entity_type": '"UNKNOWN"',
                 },
             )
-    description = await _handle_entity_relation_summary(
-        (src_id, tgt_id, keyword), description, global_config
-    )
     await knowledge_graph_inst.upsert_edge(
         src_id,
         tgt_id,
@@ -437,7 +431,6 @@ async def extract_entities(
             )
         )
     for node_data in all_entities_data:
-        print("node_names: ", node_data["entity_name"])
         # 构建指向自己的边并存到数据库中
         all_relationships_data.append(
             dict(
@@ -465,7 +458,9 @@ async def extract_entities(
             source_id=node_data["source_id"],
             ),
         )
-    print("all nodes in graph: ", await knowledge_graph_inst.get_all_nodes())
+        # 更新all_entities_data中的description
+        node_data["description"] = all_description
+
     for edge_data in all_relationships_data:
         src_id = edge_data["src_id"]
         tgt_id = edge_data["tgt_id"]
@@ -486,6 +481,8 @@ async def extract_entities(
                 source_id=edge_data["source_id"],
             ),
         )
+        # 更新all_relationships_data中的description
+        edge_data["description"] = all_description
     
     # 整个图构建完成以后，将所有的实体和关系数据存储到向量数据库中
     if not len(all_entities_data):
@@ -528,17 +525,54 @@ def decide_top_k_by_similarity(sim: float) -> int:
     你可以根据需要修改这个划分规则。
     """
     if sim > 0.9:
-        return 100
-    elif sim > 0.7:
+        return 90
+    elif sim > 0.8:
         return 80
-    elif sim > 0.5:
+    elif sim > 0.7:
+        return 70
+    elif sim > 0.6:
         return 60
-    elif sim > 0.3:
+    elif sim > 0.5:
+        return 50
+    elif sim > 0.4:
         return 40
-    elif sim > 0.1:
+    elif sim > 0.3:
+        return 30
+    elif sim > 0.2:
         return 20
+    elif sim > 0.1:
+        return 10
     else:
         return 0
+
+def save_paths_to_file(paths, filename):
+    serializable_paths = []
+    
+    for path in paths:
+        serializable_path = {
+            'nodes': path["nodes"],
+            'edges': []
+        }
+        
+        for i in range(len(path["nodes"]) - 1):
+            src_node = path["nodes"][i]
+            tgt_node = path["nodes"][i + 1]
+            edge_info = path["edges"][i]  # edge_info 是 (src, tgt, edge_kw, data)
+
+            edge_keyword = edge_info[2]
+            edge_data = edge_info[-1]
+
+            serializable_path['edges'].append({
+                'source': src_node,
+                'target': tgt_node,
+                'relation_keyword': edge_keyword,
+                'edge_data': edge_data
+            })
+        
+        serializable_paths.append(serializable_path)
+    
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(serializable_paths, f, ensure_ascii=False, indent=4)
 
 embedding_func=EmbeddingFunc(
         embedding_dim=768,
@@ -555,6 +589,7 @@ async def my_query(
     knowledge_graph_inst: "BaseGraphStorage",
     entities_vdb: "BaseVectorStorage",
     relationships_vdb: "BaseVectorStorage",
+    chunks_vdb: BaseVectorStorage,
     text_chunks_db: "BaseKVStorage[TextChunkSchema]",
     query_param: "QueryParam",
     global_config: dict,
@@ -591,11 +626,16 @@ async def my_query(
             print(f"JSON解析错误: {e}")
             return PROMPTS["fail_response"]
 
-    if not entity_info and not relation_info:
-        print("No entity or relation info found.")
-        return PROMPTS["fail_response"]
     print("Entity Info: ", entity_info)
     print("Relation Info: ", relation_info)
+    
+    if not entity_info and not relation_info:
+        print("!!!!!!!No entity or relation info found. Use naive_query!!!!!!!")
+        return await naive_query(query, chunks_vdb, text_chunks_db, query_param, global_config)
+        
+    if not relation_info:
+        print("!!!!!!!No relation info found. Use local_query!!!!!!!")
+        return await local_query(entity_info, query, knowledge_graph_inst, entities_vdb, relationships_vdb, text_chunks_db, query_param, global_config)
 
     # 设置总需要的Top K数量
     top_k = 60
@@ -852,7 +892,7 @@ async def my_query(
         score = alpha * total_edge_weight + beta * total_kw_match + gamma * node_degree_sum + delta * path_length
         return score
 
-    scored_top_k = 1000
+    scored_top_k = 60
     scored_paths = [(p, score_path(p)) for p in all_paths]
     scored_paths.sort(key=lambda x: x[1], reverse=True)
     top_paths = [p for p, s in scored_paths[:scored_top_k]] if scored_paths else []
@@ -1015,34 +1055,255 @@ csv
     print("Done.")
     return response
 
-def save_paths_to_file(paths, filename):
-    serializable_paths = []
-    
-    for path in paths:
-        serializable_path = {
-            'nodes': path["nodes"],
-            'edges': []
+async def local_query(
+    entity_info: List[dict],
+    query,
+    knowledge_graph_inst: BaseGraphStorage,
+    entities_vdb: BaseVectorStorage,
+    relationships_vdb: BaseVectorStorage,
+    text_chunks_db: BaseKVStorage[TextChunkSchema],
+    query_param: QueryParam,
+    global_config: dict,
+) -> str:
+    context = None
+    use_model_func = global_config["llm_model_func"]
+
+    context = await asyncio.gather(
+        *[
+            _build_local_query_context(
+                f"The entity '{entity['entity_name']}' is described as: {entity['description']}.",
+                knowledge_graph_inst,
+                entities_vdb,
+                text_chunks_db,
+                query_param,
+            )
+            for entity in entity_info
+        ]
+    )
+    if query_param.only_need_context:
+        return context
+    if context is None:
+        return PROMPTS["fail_response"]
+    sys_prompt_temp = PROMPTS["rag_response"]
+    sys_prompt = sys_prompt_temp.format(
+        context_data=context, response_type=query_param.response_type
+    )
+    response = await use_model_func(
+        query,
+        system_prompt=sys_prompt,
+    )
+    if len(response) > len(sys_prompt):
+        response = (
+            response.replace(sys_prompt, "")
+            .replace("user", "")
+            .replace("model", "")
+            .replace(query, "")
+            .replace("<system>", "")
+            .replace("</system>", "")
+            .strip()
+        )
+
+    return response
+
+
+async def _build_local_query_context(
+    query,
+    knowledge_graph_inst: BaseGraphStorage,
+    entities_vdb: BaseVectorStorage,
+    text_chunks_db: BaseKVStorage[TextChunkSchema],
+    query_param: QueryParam,
+):
+    results = await entities_vdb.query(query, top_k=query_param.top_k)
+    if not len(results):
+        return None
+    node_datas = await asyncio.gather(
+        *[knowledge_graph_inst.get_node(r["entity_name"]) for r in results]
+    )
+    if not all([n is not None for n in node_datas]):
+        logger.warning("Some nodes are missing, maybe the storage is damaged")
+    node_degrees = await asyncio.gather(
+        *[knowledge_graph_inst.node_degree(r["entity_name"]) for r in results]
+    )
+    node_datas = [
+        {**n, "entity_name": k["entity_name"], "rank": d}
+        for k, n, d in zip(results, node_datas, node_degrees)
+        if n is not None
+    ]  # what is this text_chunks_db doing.  dont remember it in airvx.  check the diagram.
+    use_text_units = await _find_most_related_text_unit_from_entities(
+        node_datas, query_param, text_chunks_db, knowledge_graph_inst
+    )
+    use_relations = await _find_most_related_edges_from_entities(
+        node_datas, query_param, knowledge_graph_inst
+    )
+    logger.info(
+        f"Local query uses {len(node_datas)} entites, {len(use_relations)} relations, {len(use_text_units)} text units"
+    )
+    entites_section_list = [["id", "entity", "type", "description", "rank"]]
+    for i, n in enumerate(node_datas):
+        entites_section_list.append(
+            [
+                i,
+                n["entity_name"],
+                n.get("entity_type", "UNKNOWN"),
+                n.get("description", "UNKNOWN"),
+                n["rank"],
+            ]
+        )
+    entities_context = list_of_list_to_csv(entites_section_list)
+
+    relations_section_list = [
+        ["id", "source", "target", "description", "keyword", "weight", "rank"]
+    ]
+    for i, e in enumerate(use_relations):
+        relations_section_list.append(
+            [
+                i,
+                e["src_tgt"][0],
+                e["src_tgt"][1],
+                e["description"],
+                e["keyword"],
+                e["weight"],
+                e["rank"],
+            ]
+        )
+    relations_context = list_of_list_to_csv(relations_section_list)
+
+    text_units_section_list = [["id", "content"]]
+    for i, t in enumerate(use_text_units):
+        text_units_section_list.append([i, t["content"]])
+    text_units_context = list_of_list_to_csv(text_units_section_list)
+    return f"""
+-----Entities-----
+```csv
+{entities_context}
+```
+-----Relationships-----
+```csv
+{relations_context}
+```
+-----Sources-----
+```csv
+{text_units_context}
+```
+"""
+
+
+async def _find_most_related_text_unit_from_entities(
+    node_datas: list[dict],
+    query_param: QueryParam,
+    text_chunks_db: BaseKVStorage[TextChunkSchema],
+    knowledge_graph_inst: BaseGraphStorage,
+):
+    text_units = [
+        split_string_by_multi_markers(dp["source_id"], [GRAPH_FIELD_SEP])
+        for dp in node_datas
+    ]
+    edges = await asyncio.gather(
+        *[knowledge_graph_inst.get_node_edges(dp["entity_name"]) for dp in node_datas]
+    )
+    all_one_hop_nodes = set()
+    for this_edges in edges:
+        if not this_edges:
+            continue
+        all_one_hop_nodes.update([e[1] for e in this_edges])
+
+    all_one_hop_nodes = list(all_one_hop_nodes)
+    all_one_hop_nodes_data = await asyncio.gather(
+        *[knowledge_graph_inst.get_node(e) for e in all_one_hop_nodes]
+    )
+
+    # Add null check for node data
+    all_one_hop_text_units_lookup = {
+        k: set(split_string_by_multi_markers(v["source_id"], [GRAPH_FIELD_SEP]))
+        for k, v in zip(all_one_hop_nodes, all_one_hop_nodes_data)
+        if v is not None and "source_id" in v  # Add source_id check
+    }
+
+    all_text_units_lookup = {}
+    for index, (this_text_units, this_edges) in enumerate(zip(text_units, edges)):
+        for c_id in this_text_units:
+            if c_id in all_text_units_lookup:
+                continue
+            relation_counts = 0
+            if this_edges:  # Add check for None edges
+                for e in this_edges:
+                    if (
+                        e[1] in all_one_hop_text_units_lookup
+                        and c_id in all_one_hop_text_units_lookup[e[1]]
+                    ):
+                        relation_counts += 1
+
+            chunk_data = await text_chunks_db.get_by_id(c_id)
+            if chunk_data is not None and "content" in chunk_data:  # Add content check
+                all_text_units_lookup[c_id] = {
+                    "data": chunk_data,
+                    "order": index,
+                    "relation_counts": relation_counts,
+                }
+
+    # Filter out None values and ensure data has content
+    all_text_units = [
+        {"id": k, **v}
+        for k, v in all_text_units_lookup.items()
+        if v is not None and v.get("data") is not None and "content" in v["data"]
+    ]
+
+    if not all_text_units:
+        logger.warning("No valid text units found")
+        return []
+
+    all_text_units = sorted(
+        all_text_units, key=lambda x: (x["order"], -x["relation_counts"])
+    )
+
+    all_text_units = truncate_list_by_token_size(
+        all_text_units,
+        key=lambda x: x["data"]["content"],
+        max_token_size=query_param.max_token_for_text_unit,
+    )
+
+    all_text_units = [t["data"] for t in all_text_units]
+    return all_text_units
+
+
+async def _find_most_related_edges_from_entities(
+    node_datas: list[dict],
+    query_param: QueryParam,
+    knowledge_graph_inst: BaseGraphStorage,
+):
+    all_related_edges = await asyncio.gather(
+        *[knowledge_graph_inst.get_node_edges(dp["entity_name"]) for dp in node_datas]
+    )
+    all_edges = {}
+    for this_edges in all_related_edges:
+        for e in this_edges:
+            if e is not None:
+                sorted_edge = tuple(sorted((e[0], e[1])))
+                edge_key = (sorted_edge[0], sorted_edge[1], e[2]) 
+                if edge_key not in all_edges: 
+                    all_edges[edge_key] = e[3]  
+    all_edges = [(key[0], key[1], key[2], all_edges[key]) for key in all_edges]
+    all_edges_degree = await asyncio.gather(
+        *[knowledge_graph_inst.edge_degree(e[0], e[1]) for e in all_edges]
+    )
+    all_edges_data = [
+        {
+            "src_tgt": (k[0], k[1]),
+            "rank": v,
+            **k[3],
         }
-        
-        for i in range(len(path["nodes"]) - 1):
-            src_node = path["nodes"][i]
-            tgt_node = path["nodes"][i + 1]
-            edge_info = path["edges"][i]  # edge_info 是 (src, tgt, edge_kw, data)
-
-            edge_keyword = edge_info[2]
-            edge_data = edge_info[-1]
-
-            serializable_path['edges'].append({
-                'source': src_node,
-                'target': tgt_node,
-                'relation_keyword': edge_keyword,
-                'edge_data': edge_data
-            })
-        
-        serializable_paths.append(serializable_path)
-    
-    with open(filename, 'w', encoding='utf-8') as f:
-        json.dump(serializable_paths, f, ensure_ascii=False, indent=4)
+        for k, v in zip(all_edges, all_edges_degree)
+        if v is not None
+    ]
+    all_edges_data = sorted(
+        all_edges_data, key=lambda x: (x["rank"], x["weight"]), reverse=True
+    )
+    all_edges_data = truncate_list_by_token_size(
+        all_edges_data,
+        key=lambda x: x["description"],
+        max_token_size=query_param.max_token_for_global_context,
+    )
+    return all_edges_data
 
 
 async def naive_query(

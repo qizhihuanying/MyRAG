@@ -189,7 +189,6 @@ Given the query, provide both entity_info and relation_info.
 - The JSON should have two keys:
   - "entity_info" for the detailed information of entities.
   - "relation_info" for the detailed information of relationships between entities.
-  - You shoud ensure that both entity_info and relation_info are non-empty lists and entity_info contains at least two entities.
 
 ######################
 -Examples-

@@ -22,3 +22,5 @@ query的时候修改prompt让entity、relation生成对应的description(relatio
 
 去重在chosen_edge还是edge_candidate
 index完那一部分效率加快
+
+测试naive和local有无bug
