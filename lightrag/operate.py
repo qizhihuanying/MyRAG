@@ -128,7 +128,7 @@ async def _handle_single_relationship_extraction(
         return None
     # add this record as edge
     source = clean_str(record_attributes[1].upper())
-    print("source: ", source)
+    # print("source: ", source)
     target = clean_str(record_attributes[2].upper())
     edge_description = clean_str(record_attributes[3])
 
@@ -146,7 +146,7 @@ async def _handle_single_relationship_extraction(
     for keyword in keywords_list:
         keyword = clean_str(keyword).replace('<', '').replace('>', '').replace('("', '').replace('")', '').replace('<', '').replace('>', '').strip().strip('"')
         keyword = f'"{keyword}"'
-        print("keyword: ", keyword)
+        # print("keyword: ", keyword)
         if keyword:
             edge_data = dict(
                 src_id=source,
@@ -675,8 +675,6 @@ async def my_query(
             metrics_info = item["__metrics__"] 
             all_similarities[(r_content, content_key)] = metrics_info
             
-    print("all_similarities: ", all_similarities)
-            
     # 将所有相似度写入文件
     os.makedirs("analyze", exist_ok=True)
     with open("analyze/similarities.txt", "w", encoding="utf-8") as f:
@@ -708,7 +706,6 @@ async def my_query(
         visited_edges: Set[Tuple[str, str, str]] = set()  # (src, tgt, edge_kw)
         result_paths: List[Dict[str, List[str]]] = []
 
-        cnt = 0
         queue = deque()
         print("len(start_nodes): ", len(start_nodes))
         print("start_nodes: ", start_nodes)
@@ -753,9 +750,6 @@ async def my_query(
                     continue
                 edge_content = f'The relationship \'{edge_kw}\' connects source ID \'{src}\' with target ID \'{tgt}\', and is described as: {data["description"]}.'
                 edge_content_reverse = f'The relationship \'{edge_kw}\' connects source ID \'{tgt}\' with target ID \'{src}\', and is described as: {data["description"]}.'
-                # print("edge_content: ", edge_content)
-                # print("edge_content_reverse: ", edge_content_reverse)
-                # print("all_similarities: ", all_similarities)
                 edge_sim = all_similarities.get((relation_content, edge_content)) if (relation_content, edge_content) in all_similarities else all_similarities.get((relation_content, edge_content_reverse))
                 edge_candidates.append((edge, edge_sim))
 
@@ -771,20 +765,20 @@ async def my_query(
                 # 检测是否已访问
                 if tgt in visited_nodes or (src, tgt, edge_kw) in visited_edges or (tgt, src, edge_kw) in visited_edges:
                     # 在检测到已访问时，将当前路径添加到结果中
-                    print("visited node or edge, add to result")
+                    print("visited node or edge")
                     result_paths.append(current_path)
                     continue
 
                 # 标记节点和边为已访问
                 visited_nodes.add(tgt)
                 visited_edges.add((src, tgt, edge_kw))
-
+            
                 new_path = {
                     "nodes": current_path["nodes"] + [tgt],
                     "edges": current_path["edges"] + [edge]
                 }
                 queue.append(new_path)  
-
+                
         return result_paths
 
     # ============== 执行针对每个 group 的 BFS+DFS，收集路径 ==============
@@ -1022,33 +1016,31 @@ def save_paths_to_file(paths, filename):
     serializable_paths = []
     
     for path in paths:
-        serializable_path = []
+        serializable_path = {
+            'nodes': path["nodes"],
+            'edges': []
+        }
         
-        # 遍历路径中的边和节点，构建序列化后的路径
         for i in range(len(path["nodes"]) - 1):
             src_node = path["nodes"][i]
             tgt_node = path["nodes"][i + 1]
             edge_info = path["edges"][i]  # edge_info 是 (src, tgt, edge_kw, data)
 
-            # 获取边的 keyword（即关系的描述）
-            edge_keyword = edge_info[2]  # edge_kw 是列表中的第三个元素
-            
-            # 处理边的数据部分
-            edge_data = edge_info[-1]  # 边的额外数据（例如 weight，description 等）
+            edge_keyword = edge_info[2]
+            edge_data = edge_info[-1]
 
-            serializable_path.append({
+            serializable_path['edges'].append({
                 'source': src_node,
                 'target': tgt_node,
                 'relation_keyword': edge_keyword,
-                'edge_data': edge_data  # 添加边的额外数据
+                'edge_data': edge_data
             })
-
-        # 添加路径中的节点和对应的边
+        
         serializable_paths.append(serializable_path)
     
-    # 将路径保存为 JSON 文件
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(serializable_paths, f, ensure_ascii=False, indent=4)
+
 
 async def naive_query(
     query,

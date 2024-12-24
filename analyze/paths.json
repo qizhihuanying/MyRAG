@@ -1,733 +1,1101 @@
 [
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [
-        {
-            "source": "\"BED-CURTAINS\"",
-            "target": "\"MONEY\"",
-            "relation_keyword": "\"finances\"",
-            "edge_data": {
-                "keyword": "\"finances\"",
-                "weight": 12.0,
-                "description": "\"Old Joe questions the legitimacy of taking bed-curtains and money together, indicating a relationship between these objects.\" \"",
-                "history": "\"Old Joe questions the legitimacy of taking bed-curtains and money together, indicating a relationship between these objects.\" \"",
-                "source_id": "chunk-e1f29eeadc1d8ab46dc8a0bbd3c56b64"
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG™\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG™\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"BED-CURTAINS\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"PAST, PRESENT, AND FUTURE\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"INTELLIGENCE\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"INTELLIGENCE\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"CONTROL\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"CONTROL\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"CONTROL\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"EBOOK\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"EBOOK\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"EBOOK\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"FREE EBOOKS AND DIGITAL TEXTS\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"FREE EBOOKS AND DIGITAL TEXTS\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"FREE EBOOKS AND DIGITAL TEXTS\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"TAYLOR\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"EXTERIOR ENVIRONMENT\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"FROST\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG EBOOK OF A CHRISTMAS CAROL\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"TRANSCRIBER'S NOTE\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"TRANSCRIBER'S NOTE\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG™ EBOOKS\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"CORPORATION\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"LIVERY\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"LIVERY\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"DIGITAL LIBRARY\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"DIGITAL LIBRARY\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"DIGITAL LIBRARY\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG™\"",
+            "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\""
+        ],
+        "edges": [
+            {
+                "source": "\"PROJECT GUTENBERG™\"",
+                "target": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
+                "relation_keyword": "\"collection management\"",
+                "edge_data": {
+                    "keyword": "\"collection management\"",
+                    "weight": 18.0,
+                    "description": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
+                    "history": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
+                    "source_id": "chunk-c51b3dc560b408cce12cdfe5c9c94f57"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"BED-CURTAINS\"",
-            "target": "\"MONEY\"",
-            "relation_keyword": "\"finances\"",
-            "edge_data": {
-                "keyword": "\"finances\"",
-                "weight": 12.0,
-                "description": "\"Old Joe questions the legitimacy of taking bed-curtains and money together, indicating a relationship between these objects.\" \"",
-                "history": "\"Old Joe questions the legitimacy of taking bed-curtains and money together, indicating a relationship between these objects.\" \"",
-                "source_id": "chunk-e1f29eeadc1d8ab46dc8a0bbd3c56b64"
+        ]
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG™\"",
+            "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\""
+        ],
+        "edges": [
+            {
+                "source": "\"PROJECT GUTENBERG™\"",
+                "target": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
+                "relation_keyword": "\"collection management\"",
+                "edge_data": {
+                    "keyword": "\"collection management\"",
+                    "weight": 18.0,
+                    "description": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
+                    "history": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
+                    "source_id": "chunk-c51b3dc560b408cce12cdfe5c9c94f57"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"PROJECT GUTENBERG EBOOK OF A CHRISTMAS CAROL\"",
-            "target": "\"END OF THE PROJECT GUTENBERG EBOOK\"",
-            "relation_keyword": "\"document completion\"",
-            "edge_data": {
-                "keyword": "\"document completion\"",
-                "weight": 16.0,
-                "description": "\"The end of the e-book marks its completion and distribution as a whole work.\"",
-                "history": "\"The end of the e-book marks its completion and distribution as a whole work.\"",
-                "source_id": "chunk-194cd9680f4967f48bea89678f7ece21"
+        ]
+    },
+    {
+        "nodes": [
+            "\"BED-CURTAINS\"",
+            "\"MONEY\""
+        ],
+        "edges": [
+            {
+                "source": "\"BED-CURTAINS\"",
+                "target": "\"MONEY\"",
+                "relation_keyword": "\"finances\"",
+                "edge_data": {
+                    "keyword": "\"finances\"",
+                    "weight": 12.0,
+                    "description": "\"Old Joe questions the legitimacy of taking bed-curtains and money together, indicating a relationship between these objects.\" \"",
+                    "history": "\"Old Joe questions the legitimacy of taking bed-curtains and money together, indicating a relationship between these objects.\" \"",
+                    "source_id": "chunk-e1f29eeadc1d8ab46dc8a0bbd3c56b64"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"PROJECT GUTENBERG EBOOK OF A CHRISTMAS CAROL\"",
-            "target": "\"END OF THE PROJECT GUTENBERG EBOOK\"",
-            "relation_keyword": "\"document completion\"",
-            "edge_data": {
-                "keyword": "\"document completion\"",
-                "weight": 16.0,
-                "description": "\"The end of the e-book marks its completion and distribution as a whole work.\"",
-                "history": "\"The end of the e-book marks its completion and distribution as a whole work.\"",
-                "source_id": "chunk-194cd9680f4967f48bea89678f7ece21"
+        ]
+    },
+    {
+        "nodes": [
+            "\"BED-CURTAINS\"",
+            "\"MONEY\""
+        ],
+        "edges": [
+            {
+                "source": "\"BED-CURTAINS\"",
+                "target": "\"MONEY\"",
+                "relation_keyword": "\"finances\"",
+                "edge_data": {
+                    "keyword": "\"finances\"",
+                    "weight": 12.0,
+                    "description": "\"Old Joe questions the legitimacy of taking bed-curtains and money together, indicating a relationship between these objects.\" \"",
+                    "history": "\"Old Joe questions the legitimacy of taking bed-curtains and money together, indicating a relationship between these objects.\" \"",
+                    "source_id": "chunk-e1f29eeadc1d8ab46dc8a0bbd3c56b64"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"LIVERY\"",
-            "target": "\"SCROOGE\"",
-            "relation_keyword": "\"identity\"",
-            "edge_data": {
-                "keyword": "\"identity\"",
-                "weight": 14.0,
-                "description": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "history": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+        ]
+    },
+    {
+        "nodes": [
+            "\"INTELLIGENCE\"",
+            "\"SAM RIVERA\""
+        ],
+        "edges": [
+            {
+                "source": "\"INTELLIGENCE\"",
+                "target": "\"SAM RIVERA\"",
+                "relation_keyword": "\"relationship_description\"",
+                "edge_data": {
+                    "keyword": "\"relationship_description\"",
+                    "weight": 9.0,
+                    "description": "\"Sam Rivera is directly involved in the process of learning to communicate with the unknown intelligence.\"",
+                    "history": "\"Sam Rivera is directly involved in the process of learning to communicate with the unknown intelligence.\"",
+                    "source_id": "chunk-773d0df1dd25c356f7b771d780583e09"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"INTELLIGENCE\"",
-            "target": "\"SAM RIVERA\"",
-            "relation_keyword": "\"relationship_description\"",
-            "edge_data": {
-                "keyword": "\"relationship_description\"",
-                "weight": 9.0,
-                "description": "\"Sam Rivera is directly involved in the process of learning to communicate with the unknown intelligence.\"",
-                "history": "\"Sam Rivera is directly involved in the process of learning to communicate with the unknown intelligence.\"",
-                "source_id": "chunk-773d0df1dd25c356f7b771d780583e09"
+        ]
+    },
+    {
+        "nodes": [
+            "\"INTELLIGENCE\"",
+            "\"SAM RIVERA\""
+        ],
+        "edges": [
+            {
+                "source": "\"INTELLIGENCE\"",
+                "target": "\"SAM RIVERA\"",
+                "relation_keyword": "\"relationship_description\"",
+                "edge_data": {
+                    "keyword": "\"relationship_description\"",
+                    "weight": 9.0,
+                    "description": "\"Sam Rivera is directly involved in the process of learning to communicate with the unknown intelligence.\"",
+                    "history": "\"Sam Rivera is directly involved in the process of learning to communicate with the unknown intelligence.\"",
+                    "source_id": "chunk-773d0df1dd25c356f7b771d780583e09"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"INTELLIGENCE\"",
-            "target": "\"SAM RIVERA\"",
-            "relation_keyword": "\"relationship_description\"",
-            "edge_data": {
-                "keyword": "\"relationship_description\"",
-                "weight": 9.0,
-                "description": "\"Sam Rivera is directly involved in the process of learning to communicate with the unknown intelligence.\"",
-                "history": "\"Sam Rivera is directly involved in the process of learning to communicate with the unknown intelligence.\"",
-                "source_id": "chunk-773d0df1dd25c356f7b771d780583e09"
+        ]
+    },
+    {
+        "nodes": [
+            "\"INTELLIGENCE\"",
+            "\"SAM RIVERA\""
+        ],
+        "edges": [
+            {
+                "source": "\"INTELLIGENCE\"",
+                "target": "\"SAM RIVERA\"",
+                "relation_keyword": "\"relationship_description\"",
+                "edge_data": {
+                    "keyword": "\"relationship_description\"",
+                    "weight": 9.0,
+                    "description": "\"Sam Rivera is directly involved in the process of learning to communicate with the unknown intelligence.\"",
+                    "history": "\"Sam Rivera is directly involved in the process of learning to communicate with the unknown intelligence.\"",
+                    "source_id": "chunk-773d0df1dd25c356f7b771d780583e09"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"INTELLIGENCE\"",
-            "target": "\"SAM RIVERA\"",
-            "relation_keyword": "\"relationship_description\"",
-            "edge_data": {
-                "keyword": "\"relationship_description\"",
-                "weight": 9.0,
-                "description": "\"Sam Rivera is directly involved in the process of learning to communicate with the unknown intelligence.\"",
-                "history": "\"Sam Rivera is directly involved in the process of learning to communicate with the unknown intelligence.\"",
-                "source_id": "chunk-773d0df1dd25c356f7b771d780583e09"
+        ]
+    },
+    {
+        "nodes": [
+            "\"TAYLOR\"",
+            "\"THE DEVICE\""
+        ],
+        "edges": [
+            {
+                "source": "\"TAYLOR\"",
+                "target": "\"THE DEVICE\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 9.0,
+                    "description": "\"Taylor shows reverence towards the device, indicating its importance and potential impact.\"",
+                    "history": "\"Taylor shows reverence towards the device, indicating its importance and potential impact.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"TAYLOR\"",
-            "target": "\"THE DEVICE\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 9.0,
-                "description": "\"Taylor shows reverence towards the device, indicating its importance and potential impact.\"",
-                "history": "\"Taylor shows reverence towards the device, indicating its importance and potential impact.\"",
-                "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+        ]
+    },
+    {
+        "nodes": [
+            "\"TAYLOR\"",
+            "\"THE DEVICE\""
+        ],
+        "edges": [
+            {
+                "source": "\"TAYLOR\"",
+                "target": "\"THE DEVICE\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 9.0,
+                    "description": "\"Taylor shows reverence towards the device, indicating its importance and potential impact.\"",
+                    "history": "\"Taylor shows reverence towards the device, indicating its importance and potential impact.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"TAYLOR\"",
-            "target": "\"THE DEVICE\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 9.0,
-                "description": "\"Taylor shows reverence towards the device, indicating its importance and potential impact.\"",
-                "history": "\"Taylor shows reverence towards the device, indicating its importance and potential impact.\"",
-                "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+        ]
+    },
+    {
+        "nodes": [
+            "\"TAYLOR\"",
+            "\"THE DEVICE\""
+        ],
+        "edges": [
+            {
+                "source": "\"TAYLOR\"",
+                "target": "\"THE DEVICE\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 9.0,
+                    "description": "\"Taylor shows reverence towards the device, indicating its importance and potential impact.\"",
+                    "history": "\"Taylor shows reverence towards the device, indicating its importance and potential impact.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"TAYLOR\"",
-            "target": "\"THE DEVICE\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 9.0,
-                "description": "\"Taylor shows reverence towards the device, indicating its importance and potential impact.\"",
-                "history": "\"Taylor shows reverence towards the device, indicating its importance and potential impact.\"",
-                "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+        ]
+    },
+    {
+        "nodes": [
+            "\"TAYLOR\"",
+            "\"ALEX\""
+        ],
+        "edges": [
+            {
+                "source": "\"TAYLOR\"",
+                "target": "\"ALEX\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 7.0,
+                    "description": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
+                    "history": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"TAYLOR\"",
-            "target": "\"ALEX\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 7.0,
-                "description": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
-                "history": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
-                "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+        ]
+    },
+    {
+        "nodes": [
+            "\"TAYLOR\"",
+            "\"ALEX\""
+        ],
+        "edges": [
+            {
+                "source": "\"TAYLOR\"",
+                "target": "\"ALEX\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 7.0,
+                    "description": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
+                    "history": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"TAYLOR\"",
-            "target": "\"ALEX\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 7.0,
-                "description": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
-                "history": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
-                "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+        ]
+    },
+    {
+        "nodes": [
+            "\"FROST\"",
+            "\"WATER\""
+        ],
+        "edges": [
+            {
+                "source": "\"FROST\"",
+                "target": "\"WATER\"",
+                "relation_keyword": "\"control\"",
+                "edge_data": {
+                    "keyword": "\"control\"",
+                    "weight": 10.0,
+                    "description": "\"The frost holds back the water on the moor, preventing it from spreading freely, symbolizing a restriction or barrier.\"",
+                    "history": "\"The frost holds back the water on the moor, preventing it from spreading freely, symbolizing a restriction or barrier.\"",
+                    "source_id": "chunk-91614df5cb74cbe5e109a338a82041e9"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"PROJECT GUTENBERG™\"",
-            "target": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
-            "relation_keyword": "\"collection management\"",
-            "edge_data": {
-                "keyword": "\"collection management\"",
-                "weight": 18.0,
-                "description": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
-                "history": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
-                "source_id": "chunk-c51b3dc560b408cce12cdfe5c9c94f57"
+        ]
+    },
+    {
+        "nodes": [
+            "\"FROST\"",
+            "\"WATER\""
+        ],
+        "edges": [
+            {
+                "source": "\"FROST\"",
+                "target": "\"WATER\"",
+                "relation_keyword": "\"control\"",
+                "edge_data": {
+                    "keyword": "\"control\"",
+                    "weight": 10.0,
+                    "description": "\"The frost holds back the water on the moor, preventing it from spreading freely, symbolizing a restriction or barrier.\"",
+                    "history": "\"The frost holds back the water on the moor, preventing it from spreading freely, symbolizing a restriction or barrier.\"",
+                    "source_id": "chunk-91614df5cb74cbe5e109a338a82041e9"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"PROJECT GUTENBERG™\"",
-            "target": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
-            "relation_keyword": "\"collection management\"",
-            "edge_data": {
-                "keyword": "\"collection management\"",
-                "weight": 18.0,
-                "description": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
-                "history": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
-                "source_id": "chunk-c51b3dc560b408cce12cdfe5c9c94f57"
+        ]
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG EBOOK OF A CHRISTMAS CAROL\"",
+            "\"END OF THE PROJECT GUTENBERG EBOOK\""
+        ],
+        "edges": [
+            {
+                "source": "\"PROJECT GUTENBERG EBOOK OF A CHRISTMAS CAROL\"",
+                "target": "\"END OF THE PROJECT GUTENBERG EBOOK\"",
+                "relation_keyword": "\"document completion\"",
+                "edge_data": {
+                    "keyword": "\"document completion\"",
+                    "weight": 16.0,
+                    "description": "\"The end of the e-book marks its completion and distribution as a whole work.\"",
+                    "history": "\"The end of the e-book marks its completion and distribution as a whole work.\"",
+                    "source_id": "chunk-194cd9680f4967f48bea89678f7ece21"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"FROST\"",
-            "target": "\"WATER\"",
-            "relation_keyword": "\"control\"",
-            "edge_data": {
-                "keyword": "\"control\"",
-                "weight": 10.0,
-                "description": "\"The frost holds back the water on the moor, preventing it from spreading freely, symbolizing a restriction or barrier.\"",
-                "history": "\"The frost holds back the water on the moor, preventing it from spreading freely, symbolizing a restriction or barrier.\"",
-                "source_id": "chunk-91614df5cb74cbe5e109a338a82041e9"
+        ]
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG EBOOK OF A CHRISTMAS CAROL\"",
+            "\"END OF THE PROJECT GUTENBERG EBOOK\""
+        ],
+        "edges": [
+            {
+                "source": "\"PROJECT GUTENBERG EBOOK OF A CHRISTMAS CAROL\"",
+                "target": "\"END OF THE PROJECT GUTENBERG EBOOK\"",
+                "relation_keyword": "\"document completion\"",
+                "edge_data": {
+                    "keyword": "\"document completion\"",
+                    "weight": 16.0,
+                    "description": "\"The end of the e-book marks its completion and distribution as a whole work.\"",
+                    "history": "\"The end of the e-book marks its completion and distribution as a whole work.\"",
+                    "source_id": "chunk-194cd9680f4967f48bea89678f7ece21"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"FROST\"",
-            "target": "\"WATER\"",
-            "relation_keyword": "\"control\"",
-            "edge_data": {
-                "keyword": "\"control\"",
-                "weight": 10.0,
-                "description": "\"The frost holds back the water on the moor, preventing it from spreading freely, symbolizing a restriction or barrier.\"",
-                "history": "\"The frost holds back the water on the moor, preventing it from spreading freely, symbolizing a restriction or barrier.\"",
-                "source_id": "chunk-91614df5cb74cbe5e109a338a82041e9"
+        ]
+    },
+    {
+        "nodes": [
+            "\"CORPORATION\"",
+            "\"SCROOGE\""
+        ],
+        "edges": [
+            {
+                "source": "\"CORPORATION\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"corporate environment\"",
+                "edge_data": {
+                    "keyword": "\"corporate environment\"",
+                    "weight": 14.0,
+                    "description": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "history": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"LIVERY\"",
-            "target": "\"SCROOGE\"",
-            "relation_keyword": "\"identity\"",
-            "edge_data": {
-                "keyword": "\"identity\"",
-                "weight": 14.0,
-                "description": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "history": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+        ]
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG™\"",
+            "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
+            "\"SAMUEL P. G. VILLARD III\""
+        ],
+        "edges": [
+            {
+                "source": "\"PROJECT GUTENBERG™\"",
+                "target": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
+                "relation_keyword": "\"collection management\"",
+                "edge_data": {
+                    "keyword": "\"collection management\"",
+                    "weight": 18.0,
+                    "description": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
+                    "history": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
+                    "source_id": "chunk-c51b3dc560b408cce12cdfe5c9c94f57"
+                }
+            },
+            {
+                "source": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
+                "target": "\"SAMUEL P. G. VILLARD III\"",
+                "relation_keyword": "\"management\"",
+                "edge_data": {
+                    "keyword": "\"management\"",
+                    "weight": 16.0,
+                    "description": "\"Samuel P. G. Villard III manages the Project Gutenberg Literary Archive Foundation and its operations, including overseeing legal and operational aspects.\"",
+                    "history": "\"Samuel P. G. Villard III manages the Project Gutenberg Literary Archive Foundation and its operations, including overseeing legal and operational aspects.\"",
+                    "source_id": "chunk-c51b3dc560b408cce12cdfe5c9c94f57"
+                }
             }
-        },
-        {
-            "source": "\"SCROOGE\"",
-            "target": "\"OFFICE\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 9.0,
-                "description": "\"Scrooge’s visit to his office is symbolic of his old, business-oriented self and the realization that he needs to change his ways.\"",
-                "history": "\"Scrooge’s visit to his office is symbolic of his old, business-oriented self and the realization that he needs to change his ways.\"",
-                "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+        ]
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG™\"",
+            "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
+            "\"SAMUEL P. G. VILLARD III\""
+        ],
+        "edges": [
+            {
+                "source": "\"PROJECT GUTENBERG™\"",
+                "target": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
+                "relation_keyword": "\"collection management\"",
+                "edge_data": {
+                    "keyword": "\"collection management\"",
+                    "weight": 18.0,
+                    "description": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
+                    "history": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
+                    "source_id": "chunk-c51b3dc560b408cce12cdfe5c9c94f57"
+                }
+            },
+            {
+                "source": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
+                "target": "\"SAMUEL P. G. VILLARD III\"",
+                "relation_keyword": "\"management\"",
+                "edge_data": {
+                    "keyword": "\"management\"",
+                    "weight": 16.0,
+                    "description": "\"Samuel P. G. Villard III manages the Project Gutenberg Literary Archive Foundation and its operations, including overseeing legal and operational aspects.\"",
+                    "history": "\"Samuel P. G. Villard III manages the Project Gutenberg Literary Archive Foundation and its operations, including overseeing legal and operational aspects.\"",
+                    "source_id": "chunk-c51b3dc560b408cce12cdfe5c9c94f57"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"LIVERY\"",
-            "target": "\"SCROOGE\"",
-            "relation_keyword": "\"identity\"",
-            "edge_data": {
-                "keyword": "\"identity\"",
-                "weight": 14.0,
-                "description": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "history": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+        ]
+    },
+    {
+        "nodes": [
+            "\"TAYLOR\"",
+            "\"ALEX\"",
+            "\"JORDAN\""
+        ],
+        "edges": [
+            {
+                "source": "\"TAYLOR\"",
+                "target": "\"ALEX\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 7.0,
+                    "description": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
+                    "history": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
+            },
+            {
+                "source": "\"ALEX\"",
+                "target": "\"JORDAN\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 6.0,
+                    "description": "\"Alex and Jordan share a commitment to discovery, which contrasts with Cruz's vision.\"",
+                    "history": "\"Alex and Jordan share a commitment to discovery, which contrasts with Cruz's vision.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
             }
-        },
-        {
-            "source": "\"SCROOGE\"",
-            "target": "\"OFFICE\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 9.0,
-                "description": "\"Scrooge’s visit to his office is symbolic of his old, business-oriented self and the realization that he needs to change his ways.\"",
-                "history": "\"Scrooge’s visit to his office is symbolic of his old, business-oriented self and the realization that he needs to change his ways.\"",
-                "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+        ]
+    },
+    {
+        "nodes": [
+            "\"TAYLOR\"",
+            "\"ALEX\"",
+            "\"JORDAN\""
+        ],
+        "edges": [
+            {
+                "source": "\"TAYLOR\"",
+                "target": "\"ALEX\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 7.0,
+                    "description": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
+                    "history": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
+            },
+            {
+                "source": "\"ALEX\"",
+                "target": "\"JORDAN\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 6.0,
+                    "description": "\"Alex and Jordan share a commitment to discovery, which contrasts with Cruz's vision.\"",
+                    "history": "\"Alex and Jordan share a commitment to discovery, which contrasts with Cruz's vision.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"LIVERY\"",
-            "target": "\"SCROOGE\"",
-            "relation_keyword": "\"identity\"",
-            "edge_data": {
-                "keyword": "\"identity\"",
-                "weight": 14.0,
-                "description": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "history": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+        ]
+    },
+    {
+        "nodes": [
+            "\"TAYLOR\"",
+            "\"ALEX\"",
+            "\"JORDAN\""
+        ],
+        "edges": [
+            {
+                "source": "\"TAYLOR\"",
+                "target": "\"ALEX\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 7.0,
+                    "description": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
+                    "history": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
+            },
+            {
+                "source": "\"ALEX\"",
+                "target": "\"JORDAN\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 6.0,
+                    "description": "\"Alex and Jordan share a commitment to discovery, which contrasts with Cruz's vision.\"",
+                    "history": "\"Alex and Jordan share a commitment to discovery, which contrasts with Cruz's vision.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
             }
-        },
-        {
-            "source": "\"SCROOGE\"",
-            "target": "\"OFFICE\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 9.0,
-                "description": "\"Scrooge’s visit to his office is symbolic of his old, business-oriented self and the realization that he needs to change his ways.\"",
-                "history": "\"Scrooge’s visit to his office is symbolic of his old, business-oriented self and the realization that he needs to change his ways.\"",
-                "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+        ]
+    },
+    {
+        "nodes": [
+            "\"CORPORATION\"",
+            "\"SCROOGE\"",
+            "\"OFFICE\""
+        ],
+        "edges": [
+            {
+                "source": "\"CORPORATION\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"corporate environment\"",
+                "edge_data": {
+                    "keyword": "\"corporate environment\"",
+                    "weight": 14.0,
+                    "description": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "history": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"OFFICE\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 9.0,
+                    "description": "\"Scrooge’s visit to his office is symbolic of his old, business-oriented self and the realization that he needs to change his ways.\"",
+                    "history": "\"Scrooge’s visit to his office is symbolic of his old, business-oriented self and the realization that he needs to change his ways.\"",
+                    "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"LIVERY\"",
-            "target": "\"SCROOGE\"",
-            "relation_keyword": "\"identity\"",
-            "edge_data": {
-                "keyword": "\"identity\"",
-                "weight": 14.0,
-                "description": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "history": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+        ]
+    },
+    {
+        "nodes": [
+            "\"CORPORATION\"",
+            "\"SCROOGE\"",
+            "\"OFFICE\""
+        ],
+        "edges": [
+            {
+                "source": "\"CORPORATION\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"corporate environment\"",
+                "edge_data": {
+                    "keyword": "\"corporate environment\"",
+                    "weight": 14.0,
+                    "description": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "history": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"OFFICE\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 9.0,
+                    "description": "\"Scrooge’s visit to his office is symbolic of his old, business-oriented self and the realization that he needs to change his ways.\"",
+                    "history": "\"Scrooge’s visit to his office is symbolic of his old, business-oriented self and the realization that he needs to change his ways.\"",
+                    "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+                }
             }
-        },
-        {
-            "source": "\"SCROOGE\"",
-            "target": "\"TINY TIM\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 10.0,
-                "description": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
-                "history": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
-                "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+        ]
+    },
+    {
+        "nodes": [
+            "\"CORPORATION\"",
+            "\"SCROOGE\"",
+            "\"OFFICE\""
+        ],
+        "edges": [
+            {
+                "source": "\"CORPORATION\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"corporate environment\"",
+                "edge_data": {
+                    "keyword": "\"corporate environment\"",
+                    "weight": 14.0,
+                    "description": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "history": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"OFFICE\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 9.0,
+                    "description": "\"Scrooge’s visit to his office is symbolic of his old, business-oriented self and the realization that he needs to change his ways.\"",
+                    "history": "\"Scrooge’s visit to his office is symbolic of his old, business-oriented self and the realization that he needs to change his ways.\"",
+                    "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"TAYLOR\"",
-            "target": "\"ALEX\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 7.0,
-                "description": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
-                "history": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
-                "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+        ]
+    },
+    {
+        "nodes": [
+            "\"CORPORATION\"",
+            "\"SCROOGE\"",
+            "\"TINY TIM\""
+        ],
+        "edges": [
+            {
+                "source": "\"CORPORATION\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"corporate environment\"",
+                "edge_data": {
+                    "keyword": "\"corporate environment\"",
+                    "weight": 14.0,
+                    "description": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "history": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"TINY TIM\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 10.0,
+                    "description": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
+                    "history": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
+                    "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+                }
             }
-        },
-        {
-            "source": "\"ALEX\"",
-            "target": "\"JORDAN\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 6.0,
-                "description": "\"Alex and Jordan share a commitment to discovery, which contrasts with Cruz's vision.\"",
-                "history": "\"Alex and Jordan share a commitment to discovery, which contrasts with Cruz's vision.\"",
-                "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+        ]
+    },
+    {
+        "nodes": [
+            "\"CORPORATION\"",
+            "\"SCROOGE\"",
+            "\"TINY TIM\"",
+            "\"BOB CRATCHIT\""
+        ],
+        "edges": [
+            {
+                "source": "\"CORPORATION\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"corporate environment\"",
+                "edge_data": {
+                    "keyword": "\"corporate environment\"",
+                    "weight": 14.0,
+                    "description": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "history": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"TINY TIM\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 10.0,
+                    "description": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
+                    "history": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
+                    "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+                }
+            },
+            {
+                "source": "\"TINY TIM\"",
+                "target": "\"BOB CRATCHIT\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 16.0,
+                    "description": "\"Bob cares for Tiny Tim, showing love and devotion despite their difficult circumstances. Tiny Tim is a symbol of hope within the family.\"<SEP>\"Bob is a caring father to his son Tiny Tim, who is ill but remains hopeful and optimistic despite the hardships of their lives.\"",
+                    "history": "\"Bob cares for Tiny Tim, showing love and devotion despite their difficult circumstances. Tiny Tim is a symbol of hope within the family.\"<SEP>\"Bob is a caring father to his son Tiny Tim, who is ill but remains hopeful and optimistic despite the hardships of their lives.\"",
+                    "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"TAYLOR\"",
-            "target": "\"ALEX\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 7.0,
-                "description": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
-                "history": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
-                "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+        ]
+    },
+    {
+        "nodes": [
+            "\"CORPORATION\"",
+            "\"SCROOGE\"",
+            "\"TINY TIM\"",
+            "\"BOB CRATCHIT\""
+        ],
+        "edges": [
+            {
+                "source": "\"CORPORATION\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"corporate environment\"",
+                "edge_data": {
+                    "keyword": "\"corporate environment\"",
+                    "weight": 14.0,
+                    "description": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "history": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"TINY TIM\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 10.0,
+                    "description": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
+                    "history": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
+                    "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+                }
+            },
+            {
+                "source": "\"TINY TIM\"",
+                "target": "\"BOB CRATCHIT\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 16.0,
+                    "description": "\"Bob cares for Tiny Tim, showing love and devotion despite their difficult circumstances. Tiny Tim is a symbol of hope within the family.\"<SEP>\"Bob is a caring father to his son Tiny Tim, who is ill but remains hopeful and optimistic despite the hardships of their lives.\"",
+                    "history": "\"Bob cares for Tiny Tim, showing love and devotion despite their difficult circumstances. Tiny Tim is a symbol of hope within the family.\"<SEP>\"Bob is a caring father to his son Tiny Tim, who is ill but remains hopeful and optimistic despite the hardships of their lives.\"",
+                    "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+                }
             }
-        },
-        {
-            "source": "\"ALEX\"",
-            "target": "\"JORDAN\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 6.0,
-                "description": "\"Alex and Jordan share a commitment to discovery, which contrasts with Cruz's vision.\"",
-                "history": "\"Alex and Jordan share a commitment to discovery, which contrasts with Cruz's vision.\"",
-                "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+        ]
+    },
+    {
+        "nodes": [
+            "\"CORPORATION\"",
+            "\"SCROOGE\"",
+            "\"TINY TIM\"",
+            "\"BOB CRATCHIT\""
+        ],
+        "edges": [
+            {
+                "source": "\"CORPORATION\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"corporate environment\"",
+                "edge_data": {
+                    "keyword": "\"corporate environment\"",
+                    "weight": 14.0,
+                    "description": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "history": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"TINY TIM\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 10.0,
+                    "description": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
+                    "history": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
+                    "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+                }
+            },
+            {
+                "source": "\"TINY TIM\"",
+                "target": "\"BOB CRATCHIT\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 16.0,
+                    "description": "\"Bob cares for Tiny Tim, showing love and devotion despite their difficult circumstances. Tiny Tim is a symbol of hope within the family.\"<SEP>\"Bob is a caring father to his son Tiny Tim, who is ill but remains hopeful and optimistic despite the hardships of their lives.\"",
+                    "history": "\"Bob cares for Tiny Tim, showing love and devotion despite their difficult circumstances. Tiny Tim is a symbol of hope within the family.\"<SEP>\"Bob is a caring father to his son Tiny Tim, who is ill but remains hopeful and optimistic despite the hardships of their lives.\"",
+                    "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"TAYLOR\"",
-            "target": "\"ALEX\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 7.0,
-                "description": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
-                "history": "\"Alex is affected by Taylor's authoritarian certainty and observes changes in Taylor's attitude towards the device.\"",
-                "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+        ]
+    },
+    {
+        "nodes": [
+            "\"CORPORATION\"",
+            "\"SCROOGE\"",
+            "\"TINY TIM\"",
+            "\"MRS. CRATCHIT\""
+        ],
+        "edges": [
+            {
+                "source": "\"CORPORATION\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"corporate environment\"",
+                "edge_data": {
+                    "keyword": "\"corporate environment\"",
+                    "weight": 14.0,
+                    "description": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "history": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"TINY TIM\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 10.0,
+                    "description": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
+                    "history": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
+                    "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+                }
+            },
+            {
+                "source": "\"TINY TIM\"",
+                "target": "\"MRS. CRATCHIT\"",
+                "relation_keyword": "\"support\"",
+                "edge_data": {
+                    "keyword": "\"support\"",
+                    "weight": 24.0,
+                    "description": "\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband's emotional state.\"<SEP>\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband.\"",
+                    "history": "\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband's emotional state.\"<SEP>\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband.\"",
+                    "source_id": "chunk-1d4b58de5429cd1261370c231c8673e8"
+                }
             }
-        },
-        {
-            "source": "\"ALEX\"",
-            "target": "\"JORDAN\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 6.0,
-                "description": "\"Alex and Jordan share a commitment to discovery, which contrasts with Cruz's vision.\"",
-                "history": "\"Alex and Jordan share a commitment to discovery, which contrasts with Cruz's vision.\"",
-                "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+        ]
+    },
+    {
+        "nodes": [
+            "\"CORPORATION\"",
+            "\"SCROOGE\"",
+            "\"TINY TIM\"",
+            "\"MRS. CRATCHIT\""
+        ],
+        "edges": [
+            {
+                "source": "\"CORPORATION\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"corporate environment\"",
+                "edge_data": {
+                    "keyword": "\"corporate environment\"",
+                    "weight": 14.0,
+                    "description": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "history": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"TINY TIM\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 10.0,
+                    "description": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
+                    "history": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
+                    "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+                }
+            },
+            {
+                "source": "\"TINY TIM\"",
+                "target": "\"MRS. CRATCHIT\"",
+                "relation_keyword": "\"support\"",
+                "edge_data": {
+                    "keyword": "\"support\"",
+                    "weight": 24.0,
+                    "description": "\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband's emotional state.\"<SEP>\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband.\"",
+                    "history": "\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband's emotional state.\"<SEP>\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband.\"",
+                    "source_id": "chunk-1d4b58de5429cd1261370c231c8673e8"
+                }
             }
-        }
-    ],
-    [
-        {
-            "source": "\"PROJECT GUTENBERG™\"",
-            "target": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
-            "relation_keyword": "\"collection management\"",
-            "edge_data": {
-                "keyword": "\"collection management\"",
-                "weight": 18.0,
-                "description": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
-                "history": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
-                "source_id": "chunk-c51b3dc560b408cce12cdfe5c9c94f57"
+        ]
+    },
+    {
+        "nodes": [
+            "\"CORPORATION\"",
+            "\"SCROOGE\"",
+            "\"TINY TIM\"",
+            "\"MRS. CRATCHIT\""
+        ],
+        "edges": [
+            {
+                "source": "\"CORPORATION\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"corporate environment\"",
+                "edge_data": {
+                    "keyword": "\"corporate environment\"",
+                    "weight": 14.0,
+                    "description": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "history": "\"Scrooge operates within the corporation, dealing with its norms and expectations.\"",
+                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"TINY TIM\"",
+                "relation_keyword": "\"relationship_keywords\"",
+                "edge_data": {
+                    "keyword": "\"relationship_keywords\"",
+                    "weight": 10.0,
+                    "description": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
+                    "history": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
+                    "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
+                }
+            },
+            {
+                "source": "\"TINY TIM\"",
+                "target": "\"MRS. CRATCHIT\"",
+                "relation_keyword": "\"support\"",
+                "edge_data": {
+                    "keyword": "\"support\"",
+                    "weight": 24.0,
+                    "description": "\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband's emotional state.\"<SEP>\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband.\"",
+                    "history": "\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband's emotional state.\"<SEP>\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband.\"",
+                    "source_id": "chunk-1d4b58de5429cd1261370c231c8673e8"
+                }
             }
-        },
-        {
-            "source": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
-            "target": "\"SAMUEL P. G. VILLARD III\"",
-            "relation_keyword": "\"management\"",
-            "edge_data": {
-                "keyword": "\"management\"",
-                "weight": 16.0,
-                "description": "\"Samuel P. G. Villard III manages the Project Gutenberg Literary Archive Foundation and its operations, including overseeing legal and operational aspects.\"",
-                "history": "\"Samuel P. G. Villard III manages the Project Gutenberg Literary Archive Foundation and its operations, including overseeing legal and operational aspects.\"",
-                "source_id": "chunk-c51b3dc560b408cce12cdfe5c9c94f57"
-            }
-        }
-    ],
-    [
-        {
-            "source": "\"PROJECT GUTENBERG™\"",
-            "target": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
-            "relation_keyword": "\"collection management\"",
-            "edge_data": {
-                "keyword": "\"collection management\"",
-                "weight": 18.0,
-                "description": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
-                "history": "\"The Project Gutenberg Literary Archive Foundation is responsible for managing and maintaining the Project Gutenberg™ collection.\"",
-                "source_id": "chunk-c51b3dc560b408cce12cdfe5c9c94f57"
-            }
-        },
-        {
-            "source": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
-            "target": "\"SAMUEL P. G. VILLARD III\"",
-            "relation_keyword": "\"management\"",
-            "edge_data": {
-                "keyword": "\"management\"",
-                "weight": 16.0,
-                "description": "\"Samuel P. G. Villard III manages the Project Gutenberg Literary Archive Foundation and its operations, including overseeing legal and operational aspects.\"",
-                "history": "\"Samuel P. G. Villard III manages the Project Gutenberg Literary Archive Foundation and its operations, including overseeing legal and operational aspects.\"",
-                "source_id": "chunk-c51b3dc560b408cce12cdfe5c9c94f57"
-            }
-        }
-    ],
-    [
-        {
-            "source": "\"LIVERY\"",
-            "target": "\"SCROOGE\"",
-            "relation_keyword": "\"identity\"",
-            "edge_data": {
-                "keyword": "\"identity\"",
-                "weight": 14.0,
-                "description": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "history": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
-            }
-        },
-        {
-            "source": "\"SCROOGE\"",
-            "target": "\"TINY TIM\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 10.0,
-                "description": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
-                "history": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
-                "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
-            }
-        },
-        {
-            "source": "\"TINY TIM\"",
-            "target": "\"BOB CRATCHIT\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 16.0,
-                "description": "\"Bob cares for Tiny Tim, showing love and devotion despite their difficult circumstances. Tiny Tim is a symbol of hope within the family.\"<SEP>\"Bob is a caring father to his son Tiny Tim, who is ill but remains hopeful and optimistic despite the hardships of their lives.\"",
-                "history": "\"Bob cares for Tiny Tim, showing love and devotion despite their difficult circumstances. Tiny Tim is a symbol of hope within the family.\"<SEP>\"Bob is a caring father to his son Tiny Tim, who is ill but remains hopeful and optimistic despite the hardships of their lives.\"",
-                "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
-            }
-        }
-    ],
-    [
-        {
-            "source": "\"LIVERY\"",
-            "target": "\"SCROOGE\"",
-            "relation_keyword": "\"identity\"",
-            "edge_data": {
-                "keyword": "\"identity\"",
-                "weight": 14.0,
-                "description": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "history": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
-            }
-        },
-        {
-            "source": "\"SCROOGE\"",
-            "target": "\"TINY TIM\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 10.0,
-                "description": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
-                "history": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
-                "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
-            }
-        },
-        {
-            "source": "\"TINY TIM\"",
-            "target": "\"BOB CRATCHIT\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 16.0,
-                "description": "\"Bob cares for Tiny Tim, showing love and devotion despite their difficult circumstances. Tiny Tim is a symbol of hope within the family.\"<SEP>\"Bob is a caring father to his son Tiny Tim, who is ill but remains hopeful and optimistic despite the hardships of their lives.\"",
-                "history": "\"Bob cares for Tiny Tim, showing love and devotion despite their difficult circumstances. Tiny Tim is a symbol of hope within the family.\"<SEP>\"Bob is a caring father to his son Tiny Tim, who is ill but remains hopeful and optimistic despite the hardships of their lives.\"",
-                "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
-            }
-        }
-    ],
-    [
-        {
-            "source": "\"LIVERY\"",
-            "target": "\"SCROOGE\"",
-            "relation_keyword": "\"identity\"",
-            "edge_data": {
-                "keyword": "\"identity\"",
-                "weight": 14.0,
-                "description": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "history": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
-            }
-        },
-        {
-            "source": "\"SCROOGE\"",
-            "target": "\"TINY TIM\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 10.0,
-                "description": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
-                "history": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
-                "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
-            }
-        },
-        {
-            "source": "\"TINY TIM\"",
-            "target": "\"BOB CRATCHIT\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 16.0,
-                "description": "\"Bob cares for Tiny Tim, showing love and devotion despite their difficult circumstances. Tiny Tim is a symbol of hope within the family.\"<SEP>\"Bob is a caring father to his son Tiny Tim, who is ill but remains hopeful and optimistic despite the hardships of their lives.\"",
-                "history": "\"Bob cares for Tiny Tim, showing love and devotion despite their difficult circumstances. Tiny Tim is a symbol of hope within the family.\"<SEP>\"Bob is a caring father to his son Tiny Tim, who is ill but remains hopeful and optimistic despite the hardships of their lives.\"",
-                "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
-            }
-        }
-    ],
-    [
-        {
-            "source": "\"LIVERY\"",
-            "target": "\"SCROOGE\"",
-            "relation_keyword": "\"identity\"",
-            "edge_data": {
-                "keyword": "\"identity\"",
-                "weight": 14.0,
-                "description": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "history": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
-            }
-        },
-        {
-            "source": "\"SCROOGE\"",
-            "target": "\"TINY TIM\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 10.0,
-                "description": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
-                "history": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
-                "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
-            }
-        },
-        {
-            "source": "\"TINY TIM\"",
-            "target": "\"MRS. CRATCHIT\"",
-            "relation_keyword": "\"support\"",
-            "edge_data": {
-                "keyword": "\"support\"",
-                "weight": 24.0,
-                "description": "\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband's emotional state.\"<SEP>\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband.\"",
-                "history": "\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband's emotional state.\"<SEP>\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband.\"",
-                "source_id": "chunk-1d4b58de5429cd1261370c231c8673e8"
-            }
-        }
-    ],
-    [
-        {
-            "source": "\"LIVERY\"",
-            "target": "\"SCROOGE\"",
-            "relation_keyword": "\"identity\"",
-            "edge_data": {
-                "keyword": "\"identity\"",
-                "weight": 14.0,
-                "description": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "history": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
-            }
-        },
-        {
-            "source": "\"SCROOGE\"",
-            "target": "\"TINY TIM\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 10.0,
-                "description": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
-                "history": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
-                "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
-            }
-        },
-        {
-            "source": "\"TINY TIM\"",
-            "target": "\"MRS. CRATCHIT\"",
-            "relation_keyword": "\"support\"",
-            "edge_data": {
-                "keyword": "\"support\"",
-                "weight": 24.0,
-                "description": "\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband's emotional state.\"<SEP>\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband.\"",
-                "history": "\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband's emotional state.\"<SEP>\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband.\"",
-                "source_id": "chunk-1d4b58de5429cd1261370c231c8673e8"
-            }
-        }
-    ],
-    [
-        {
-            "source": "\"LIVERY\"",
-            "target": "\"SCROOGE\"",
-            "relation_keyword": "\"identity\"",
-            "edge_data": {
-                "keyword": "\"identity\"",
-                "weight": 14.0,
-                "description": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "history": "\"Scrooge interacts with members of the Livery, indicating his professional identity and status in the corporation.\"",
-                "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
-            }
-        },
-        {
-            "source": "\"SCROOGE\"",
-            "target": "\"TINY TIM\"",
-            "relation_keyword": "\"relationship_keywords\"",
-            "edge_data": {
-                "keyword": "\"relationship_keywords\"",
-                "weight": 10.0,
-                "description": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
-                "history": "\"Scrooge visits Tiny Tim at home after recognizing the importance of family and generosity. Tiny Tim symbolizes Scrooge's new values.\"",
-                "source_id": "chunk-94bea83e7153fc2064aa382b494936a1"
-            }
-        },
-        {
-            "source": "\"TINY TIM\"",
-            "target": "\"MRS. CRATCHIT\"",
-            "relation_keyword": "\"support\"",
-            "edge_data": {
-                "keyword": "\"support\"",
-                "weight": 24.0,
-                "description": "\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband's emotional state.\"<SEP>\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband.\"",
-                "history": "\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband's emotional state.\"<SEP>\"Mrs. Cratchit cares for Tiny Tim and supports his father in managing the household while also showing concern for her husband.\"",
-                "source_id": "chunk-1d4b58de5429cd1261370c231c8673e8"
-            }
-        }
-    ]
+        ]
+    }
 ]
