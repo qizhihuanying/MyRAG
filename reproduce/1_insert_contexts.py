@@ -13,7 +13,7 @@ sys.path.append(parent_dir)
 
 from lightrag import LightRAG
 from lightrag.utils import EmbeddingFunc
-from lightrag.llm import ollama_embedding, ollama_model_complete
+from lightrag.llm import ollama_embedding, openai_complete_if_cache
 
 logging.basicConfig(
     format="%(asctime)s %(levelname)s:%(name)s:%(message)s",
@@ -30,6 +30,27 @@ stream_handler.setFormatter(logging.Formatter(
     datefmt="%Y-%m-%d %H:%M:%S"
 ))
 httpx_logger.addHandler(stream_handler)
+
+embedding_func=EmbeddingFunc(
+        embedding_dim=768,
+        max_token_size=8192,
+        func=lambda texts: ollama_embedding(
+            texts, embed_model="nomic-embed-text", host="http://localhost:11434"
+        ),
+    )
+
+def openai_llm_model_func(prompt, system_prompt=None, history_messages=[], **kwargs) -> str:
+    return openai_complete_if_cache(
+        # model="gpt-3.5-turbo",
+        model="gpt-4-turbo",
+        prompt=prompt,
+        system_prompt=system_prompt,
+        history_messages=history_messages,
+        api_key=os.getenv("OPENAI_API_KEY"),  
+        base_url="http://47.89.164.141:9000/v1",  
+        # base_url="http://xiaoai.plus/v1",  
+        **kwargs,
+    )
 
 def insert_text(rag, file_path):
     with open(file_path, mode="r", encoding="utf-8") as f:
@@ -58,25 +79,19 @@ def start_ollama_server(port, gpu_id):
 def process_dataset(cls, port, gpu_id):
     time.sleep(10)
 
-    model = "lightrag"
+    model = "multigraghrag"
     WORKING_DIR = f"./results/{model}/index_results/{cls}"
 
     os.makedirs(WORKING_DIR, exist_ok=True)
 
     rag = LightRAG(
         working_dir=WORKING_DIR,
-        llm_model_func=ollama_model_complete,
-        llm_model_name="qwen2.5:14b",
-        llm_model_max_async=4,
-        llm_model_max_token_size=32768,
-        llm_model_kwargs={"host": f"http://localhost:{port}", "options": {"num_ctx": 32768}},
-        embedding_func=EmbeddingFunc(
-            embedding_dim=768,
-            max_token_size=8192,
-            func=lambda texts: ollama_embedding(
-                texts, embed_model="nomic-embed-text", host=f"http://localhost:{port}"
-            ),
-        ),
+        llm_model_func=openai_llm_model_func,  
+        llm_model_name="gpt-4-turbo",  
+        llm_model_max_async=4,  
+        llm_model_max_token_size=8192, 
+        llm_model_kwargs={},  
+        embedding_func=embedding_func,  
     )
 
     file_path = f"./datasets/unique_contexts/{cls}_unique_contexts.json"

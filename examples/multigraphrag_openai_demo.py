@@ -11,7 +11,6 @@ from lightrag.utils import EmbeddingFunc
 from dotenv import load_dotenv
 
 dotenv_path = os.path.join(os.path.dirname(__file__), '../env', '.env')
-print("dotenv_path:", dotenv_path)
 load_dotenv(dotenv_path)
 
 total_start_time = time.time()
@@ -71,7 +70,7 @@ rag = LightRAG(
     llm_model_func=openai_llm_model_func,  
     llm_model_name="gpt-4-turbo",  
     llm_model_max_async=4,  
-    llm_model_max_token_size=4096, 
+    llm_model_max_token_size=8192, 
     llm_model_kwargs={},  
     embedding_func=embedding_func,  
 )
