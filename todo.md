@@ -24,3 +24,6 @@ query的时候修改prompt让entity、relation生成对应的description(relatio
 index完那一部分效率加快
 
 测试naive和local有无bug
+
+
+自边的weight

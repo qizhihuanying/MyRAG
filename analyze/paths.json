@@ -1,235 +1,61 @@
 [
     {
         "nodes": [
-            "\"THE FEAST\""
+            "\"SPEAKER\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"CHRISTMAS\""
+            "\"TURKEYS\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"CHRISTMAS MORNING\""
+            "\"STARS AND STRIPES\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"PROFESSOR MICHAEL S. HART\""
+            "\"RED-HOT CHESTNUTS\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"FIRST OF EXCHANGE\""
+            "\"THE MEN\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"WANT\""
+            "\"SHIP\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"GHOST OF CHRISTMAS PRESENT\""
+            "\"MAN\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"CHRISTMAS DAY\""
+            "\"COMMUNICATIONS\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"THE FIREPLACE\""
+            "\"MISSION\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"WWW.GUTENBERG.ORG/DONATE\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"THE DEAD MAN\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"U.S. FEDERAL LAWS\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"JOE\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"J. B. LIPPINCOTT COMPANY\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"GIRL\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"THE SPIRITS\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"MINERS\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"SCROOGE'S NIECE'S SISTER\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"THE PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"WWW.GUTENBERG.ORG/CONTACT\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"WASHINGTON\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"UNITED STATES\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"CITY\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"CHRISTIAN SPIRIT\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"MARKET-TOWN\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"EBENEZER SCROOGE\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"PGLAF\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"THE CHAINS\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"SCROOGE'S CLERK\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"THE OPEN COUNTRY ROAD\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"ROBIN CRUSOE\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"ELECTRONIC WORK\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"TWELFTH-CAKES\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"BUSINESS\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"DISCLAIMER OF DAMAGES\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"PROJECT GUTENBERG™ LICENSE\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"NEW YORK\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"U.S. COPYRIGHT LAW\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"CHRISTMAS TOYS AND PRESENTS\""
+            "\"EMAIL NEWSLETTER\""
         ],
         "edges": []
     },
@@ -241,109 +67,25 @@
     },
     {
         "nodes": [
-            "\"THE ROOM\""
+            "\"IGNORANCE\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"DEATH\""
+            "\"GENIUS OF THE WEATHER\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\""
+            "\"MESSAGE FROM A REALM BEYOND STARS AND STRIPES\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"MISSISSIPPI\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"INTERNAL REVENUE SERVICE (IRS)\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"ONLINE DISTRIBUTED PROOFREADING TEAM\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"CHARLES DICKENS\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"VOLUNTEERS\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"THE SPIRIT\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"THE SPIRITS OF ALL THREE\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"OLD SCRATCH\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"A CHRISTMAS CAROL\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"SCROOGE\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"FULL PROJECT GUTENBERG LICENSE\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"ILLUSTRATION\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"THE COMMUNITY\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"UNCLE SCROOGE\""
-        ],
-        "edges": []
-    },
-    {
-        "nodes": [
-            "\"TOPPER\""
+            "\"BELL\""
         ],
         "edges": []
     },
@@ -355,139 +97,223 @@
     },
     {
         "nodes": [
-            "\"VALENTINE\""
+            "\"CONTROL\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"DUTCH TILES\""
+            "\"THE PAST, THE PRESENT, THE FUTURE\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"LIMITED WARRANTY\""
+            "\"WEBSITE\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"CHRISTMAS HOLIDAYS\""
+            "\"SAUSAGES\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"THE HEARTH\""
+            "\"CHRISTMAS EVE\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"THE SHOP\""
+            "\"GAME\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"LAMPLIGHTER\""
+            "\"THE BEDPOST\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"GREAT BRITAIN\""
+            "\"COSMOS\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"TWELFTH NIGHT PARTY\""
+            "\"EMPLOYEES\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"THE THREE SPIRITS\""
+            "\"MASTER SCROOGE'S TRUNK\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"DEFECTS\""
+            "\"OPERATION: DULCE\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"ST. PAUL'S CHURCHYARD\""
+            "\"MINCE-PIES\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"PETER CRATCHIT\""
+            "\"WWW.GUTENBERG.ORG/CONTACT\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"LONDON\""
+            "\"TOPPER\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"TRUTH\""
+            "\"DEFECT\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"THE HOUSE-FRONTS\""
+            "\"THE WEATHER\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"TINY TIM\""
+            "\"THRESHOLD GUARDIANS\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"CHILDREN\""
+            "\"BED\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"WWW.GUTENBERG.ORG\""
+            "\"ST. DUNSTAN\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"IGNORANCE\""
+            "\"TENSION\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"MEMORY\""
+            "\"PROJECT GUTENBERG VOLUNTEERS\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"CHRISTMAS PARTY\""
+            "\"TAXES\""
         ],
         "edges": []
     },
     {
         "nodes": [
-            "\"ALI BABA\""
+            "\"UNITED STATES\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"GAS-PIPES\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"GUARDIANS\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"A CHRISTMAS CAROL\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"PROFESSOR MICHAEL S. HART\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"ELECTRONIC WORKS\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"POULTRY\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"THE TEAM\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"THE CHILDREN\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"EBOOKS\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"BARRELS OF OYSTERS\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"CHERRY-CHEEKED APPLES\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"TEAM\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"FOUNDATION’S WEBSITE\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS\""
         ],
         "edges": []
     },
@@ -505,19 +331,223 @@
     },
     {
         "nodes": [
-            "\"THE FEAST\"",
+            "\"BRAZIER\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"A WOMAN WITH A HEAVY BUNDLE\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"ABUNDANCE\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"TRANSCRIBER\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"GIRL WANT\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"MEAT\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"INTELLIGENCE\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"IMMENSE TWELFTH-CAKES\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"LUSCIOUS PEARS\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"GROUP\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"MERCER\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS SPIRIT\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"SAM RIVERA\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"THE SPIRIT\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"BOY IGNORANCE\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"IRON, OLD RAGS, BOTTLES MERCHANT\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"WASHINGTON\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"PROMINENTLY\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"PG SEARCH FACILITY\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"LAWS\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG™\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"ALEX\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS TOYS\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"MACHINE-READABLE\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"GEESE\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"LITERARY WORKS\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"PAPER EDITION\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"OPERATIVES\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"BOB\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"OLD SHIP FIGUREHEAD\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"AGREEMENT\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"THRESHOLD\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"ST. PAUL'S CHURCHYARD\""
+        ],
+        "edges": []
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
             "\"BOB CRATCHIT\""
         ],
         "edges": [
             {
-                "source": "\"THE FEAST\"",
+                "source": "\"CHRISTMAS DAY\"",
                 "target": "\"BOB CRATCHIT\"",
-                "relation_keyword": "\"festivity\"",
+                "relation_keyword": "\"family bonds\"",
                 "edge_data": {
-                    "keyword": "\"festivity\"",
-                    "weight": 8.0,
-                    "description": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "history": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
+                    "keyword": "\"family bonds\"",
+                    "weight": 7.0,
+                    "description": "\"Bob Cratchit shares insights about his family's festivities during Christmas, highlighting family bonds.\"",
+                    "history": "\"Bob Cratchit shares insights about his family's festivities during Christmas, highlighting family bonds.\"",
                     "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
                 }
             }
@@ -525,19 +555,39 @@
     },
     {
         "nodes": [
-            "\"THE FEAST\"",
-            "\"MARTHA\""
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\""
         ],
         "edges": [
             {
-                "source": "\"THE FEAST\"",
-                "target": "\"MARTHA\"",
-                "relation_keyword": "\"family participation\"",
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
                 "edge_data": {
-                    "keyword": "\"family participation\"",
-                    "weight": 7.0,
-                    "description": "\"Martha spends the holiday with her family, contributing to the festive spirit and family dynamics discussed during The Feast.\"",
-                    "history": "\"Martha spends the holiday with her family, contributing to the festive spirit and family dynamics discussed during The Feast.\"",
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"MRS. CRATCHIT\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"MRS. CRATCHIT\"",
+                "relation_keyword": "\"tension\"",
+                "edge_data": {
+                    "keyword": "\"tension\"",
+                    "weight": 5.0,
+                    "description": "\"Mrs. Cratchit criticizes the celebration of Christmas due to Scrooge's presence, creating tension.\"",
+                    "history": "\"Mrs. Cratchit criticizes the celebration of Christmas due to Scrooge's presence, creating tension.\"",
                     "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
                 }
             }
@@ -545,139 +595,39 @@
     },
     {
         "nodes": [
-            "\"CHRISTMAS\"",
-            "\"SCROOGE'S NEPHEW\""
+            "\"CHRISTMAS DAY\"",
+            "\"TINY TIM\""
         ],
         "edges": [
             {
-                "source": "\"CHRISTMAS\"",
-                "target": "\"SCROOGE'S NEPHEW\"",
-                "relation_keyword": "\"festivity value\"",
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"TINY TIM\"",
+                "relation_keyword": "\"family unity\"",
                 "edge_data": {
-                    "keyword": "\"festivity value\"",
-                    "weight": 9.0,
-                    "description": "\"Scrooge's nephew holds a positive view of Christmas, seeing it as a time of generosity and goodwill, contrasting with Scrooge’s negative perception.\"",
-                    "history": "\"Scrooge's nephew holds a positive view of Christmas, seeing it as a time of generosity and goodwill, contrasting with Scrooge’s negative perception.\"",
-                    "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"CHRISTMAS\"",
-            "\"SCROOGE'S NIECE\""
-        ],
-        "edges": [
-            {
-                "source": "\"CHRISTMAS\"",
-                "target": "\"SCROOGE'S NIECE\"",
-                "relation_keyword": "\"support\"",
-                "edge_data": {
-                    "keyword": "\"support\"",
+                    "keyword": "\"family unity\"",
                     "weight": 7.0,
-                    "description": "\"Scrooge's Niece embodies the joy and communal spirit of Christmas, directly contrasting with Scrooge’s disdain for the event.\"",
-                    "history": "\"Scrooge's Niece embodies the joy and communal spirit of Christmas, directly contrasting with Scrooge’s disdain for the event.\"",
-                    "source_id": "chunk-773d0df1dd25c356f7b771d780583e09"
+                    "description": "\"Tiny Tim's participation in the family's Christmas toast symbolizes unity and care within the Cratchit family.\"",
+                    "history": "\"Tiny Tim's participation in the family's Christmas toast symbolizes unity and care within the Cratchit family.\"",
+                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
                 }
             }
         ]
     },
     {
         "nodes": [
-            "\"CHRISTMAS\"",
-            "\"THE FAMILY\""
+            "\"BELL\"",
+            "\"DOOR\""
         ],
         "edges": [
             {
-                "source": "\"CHRISTMAS\"",
-                "target": "\"THE FAMILY\"",
-                "relation_keyword": "\"communal values\"",
+                "source": "\"BELL\"",
+                "target": "\"DOOR\"",
+                "relation_keyword": "\"sound reverberation\"",
                 "edge_data": {
-                    "keyword": "\"communal values\"",
-                    "weight": 8.0,
-                    "description": "\"The Family, including Scrooge’s relatives and their friends, gathers to celebrate Christmas, demonstrating their collective embrace of its values contrary to Scrooge’s views.\"",
-                    "history": "\"The Family, including Scrooge’s relatives and their friends, gathers to celebrate Christmas, demonstrating their collective embrace of its values contrary to Scrooge’s views.\"",
-                    "source_id": "chunk-773d0df1dd25c356f7b771d780583e09"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"CHRISTMAS\"",
-            "\"LITTLE FAN\""
-        ],
-        "edges": [
-            {
-                "source": "\"CHRISTMAS\"",
-                "target": "\"LITTLE FAN\"",
-                "relation_keyword": "\"celebration\"",
-                "edge_data": {
-                    "keyword": "\"celebration\"",
+                    "keyword": "\"sound reverberation\"",
                     "weight": 7.0,
-                    "description": "\"Little Fan's arrival to bring Master Scrooge home for Christmas highlights the significance and joy associated with the event during their reunion.\"",
-                    "history": "\"Little Fan's arrival to bring Master Scrooge home for Christmas highlights the significance and joy associated with the event during their reunion.\"",
-                    "source_id": "chunk-c6c248858d1b13ab7ee9ca13c1aeed6b"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"CHRISTMAS MORNING\"",
-            "\"THE POULTERERS' SHOPS\""
-        ],
-        "edges": [
-            {
-                "source": "\"CHRISTMAS MORNING\"",
-                "target": "\"THE POULTERERS' SHOPS\"",
-                "relation_keyword": "\"market activity\"",
-                "edge_data": {
-                    "keyword": "\"market activity\"",
-                    "weight": 7.0,
-                    "description": "\"The Poulterers' Shops are part of the vibrant scene described on Christmas Morning, contributing to the joyful atmosphere.\"",
-                    "history": "\"The Poulterers' Shops are part of the vibrant scene described on Christmas Morning, contributing to the joyful atmosphere.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"CHRISTMAS MORNING\"",
-            "\"THE GROCERS'\""
-        ],
-        "edges": [
-            {
-                "source": "\"CHRISTMAS MORNING\"",
-                "target": "\"THE GROCERS'\"",
-                "relation_keyword": "\"festive contribution\"",
-                "edge_data": {
-                    "keyword": "\"festive contribution\"",
-                    "weight": 9.0,
-                    "description": "\"The Grocers' shops contribute significantly to the festive spirit and community engagement on Christmas Morning.\"",
-                    "history": "\"The Grocers' shops contribute significantly to the festive spirit and community engagement on Christmas Morning.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"THE FIREPLACE\"",
-            "\"MARLEY'S GHOST\""
-        ],
-        "edges": [
-            {
-                "source": "\"THE FIREPLACE\"",
-                "target": "\"MARLEY'S GHOST\"",
-                "relation_keyword": "\"supernatural recognition\"",
-                "edge_data": {
-                    "keyword": "\"supernatural recognition\"",
-                    "weight": 9.0,
-                    "description": "\"As Marley's Ghost appears, the dying flame in the fireplace leaps up, as if recognizing the ghost.\"",
-                    "history": "\"As Marley's Ghost appears, the dying flame in the fireplace leaps up, as if recognizing the ghost.\"",
+                    "description": "\"Closing the Door creates loud sounds that reverberate through the house.\";",
+                    "history": "\"Closing the Door creates loud sounds that reverberate through the house.\";",
                     "source_id": "chunk-9c43dac2fcd5b578242d907ea6f8fc7b"
                 }
             }
@@ -685,80 +635,20 @@
     },
     {
         "nodes": [
-            "\"THE DEAD MAN\"",
-            "\"THE FIRST WOMAN\""
+            "\"PROJECT GUTENBERG\"",
+            "\"ROYALTY FEE\""
         ],
         "edges": [
             {
-                "source": "\"THE DEAD MAN\"",
-                "target": "\"THE FIRST WOMAN\"",
-                "relation_keyword": "\"opportunistic actions\"",
+                "source": "\"PROJECT GUTENBERG\"",
+                "target": "\"ROYALTY FEE\"",
+                "relation_keyword": "\"financial support\"",
                 "edge_data": {
-                    "keyword": "\"opportunistic actions\"",
-                    "weight": 8.0,
-                    "description": "\"The First Woman discusses taking belongings from The Dead Man, showing a direct connection in her actions towards his possessions.\"",
-                    "history": "\"The First Woman discusses taking belongings from The Dead Man, showing a direct connection in her actions towards his possessions.\"",
-                    "source_id": "chunk-e1f29eeadc1d8ab46dc8a0bbd3c56b64"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"JOE\"",
-            "\"THE WOMAN\""
-        ],
-        "edges": [
-            {
-                "source": "\"JOE\"",
-                "target": "\"THE WOMAN\"",
-                "relation_keyword": "\"interaction\"",
-                "edge_data": {
-                    "keyword": "\"interaction\"",
-                    "weight": 7.0,
-                    "description": "\"The woman converses with Joe about the morally dubious act of removing bed-curtains, showing their interaction over moral boundaries.\"",
-                    "history": "\"The woman converses with Joe about the morally dubious act of removing bed-curtains, showing their interaction over moral boundaries.\"",
-                    "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"J. B. LIPPINCOTT COMPANY\"",
-            "\"PHILADELPHIA\""
-        ],
-        "edges": [
-            {
-                "source": "\"J. B. LIPPINCOTT COMPANY\"",
-                "target": "\"PHILADELPHIA\"",
-                "relation_keyword": "\"literary activity\"",
-                "edge_data": {
-                    "keyword": "\"literary activity\"",
-                    "weight": 7.0,
-                    "description": "\"J. B. Lippincott Company, based in Philadelphia, published 'A Christmas Carol' aligning the city with significant literary publishing activity.\"",
-                    "history": "\"J. B. Lippincott Company, based in Philadelphia, published 'A Christmas Carol' aligning the city with significant literary publishing activity.\"",
-                    "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"GIRL\"",
-            "\"FATHER\""
-        ],
-        "edges": [
-            {
-                "source": "\"GIRL\"",
-                "target": "\"FATHER\"",
-                "relation_keyword": "\"family\"",
-                "edge_data": {
-                    "keyword": "\"family\"",
+                    "keyword": "\"financial support\"",
                     "weight": 9.0,
-                    "description": "\"The Father is the Girl's husband, shown reuniting with his family, highlighting their familial ties and domestic happiness.\"",
-                    "history": "\"The Father is the Girl's husband, shown reuniting with his family, highlighting their familial ties and domestic happiness.\"",
-                    "source_id": "chunk-54bdd22db1f84a965b5f4c06c9216d8d"
+                    "description": "\"The royalty fee is paid to the Project Gutenberg Literary Archive Foundation as a form of support.\"",
+                    "history": "\"The royalty fee is paid to the Project Gutenberg Literary Archive Foundation as a form of support.\"",
+                    "source_id": "chunk-af4ae173c561e4594c5aea96198cce9d"
                 }
             }
         ]
@@ -766,78 +656,18 @@
     {
         "nodes": [
             "\"EBENEZER SCROOGE\"",
-            "\"THE CLOCK\""
-        ],
-        "edges": [
-            {
-                "source": "\"EBENEZER SCROOGE\"",
-                "target": "\"THE CLOCK\"",
-                "relation_keyword": "\"interaction\"",
-                "edge_data": {
-                    "keyword": "\"interaction\"",
-                    "weight": 7.0,
-                    "description": "\"Scrooge interacts with The Clock, trying to understand and adjust it amidst his confusion about time, which is central to his experience of the supernatural events.\"",
-                    "history": "\"Scrooge interacts with The Clock, trying to understand and adjust it amidst his confusion about time, which is central to his experience of the supernatural events.\"",
-                    "source_id": "chunk-c7b10789a9cb0af6c553730b29bd9034"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"EBENEZER SCROOGE\"",
-            "\"THE GHOST\""
-        ],
-        "edges": [
-            {
-                "source": "\"EBENEZER SCROOGE\"",
-                "target": "\"THE GHOST\"",
-                "relation_keyword": "\"fear\"",
-                "edge_data": {
-                    "keyword": "\"fear\"",
-                    "weight": 9.0,
-                    "description": "\"The Ghost appears to Scrooge, drawing aside the curtains of his bed, intensifying his supernatural experiences.\"",
-                    "history": "\"The Ghost appears to Scrooge, drawing aside the curtains of his bed, intensifying his supernatural experiences.\"",
-                    "source_id": "chunk-c7b10789a9cb0af6c553730b29bd9034"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"EBENEZER SCROOGE\"",
-            "\"THE HOUR BELL\""
-        ],
-        "edges": [
-            {
-                "source": "\"EBENEZER SCROOGE\"",
-                "target": "\"THE HOUR BELL\"",
-                "relation_keyword": "\"anticipation\"",
-                "edge_data": {
-                    "keyword": "\"anticipation\"",
-                    "weight": 8.0,
-                    "description": "\"Scrooge anxiously awaits the tolling of The Hour Bell, which signals the exact time and the arrival of the forewarned ghostly visitations.\"",
-                    "history": "\"Scrooge anxiously awaits the tolling of The Hour Bell, which signals the exact time and the arrival of the forewarned ghostly visitations.\"",
-                    "source_id": "chunk-c7b10789a9cb0af6c553730b29bd9034"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"BUSINESS\"",
             "\"JACOB MARLEY\""
         ],
         "edges": [
             {
-                "source": "\"BUSINESS\"",
+                "source": "\"EBENEZER SCROOGE\"",
                 "target": "\"JACOB MARLEY\"",
-                "relation_keyword": "\"spiritual growth\"",
+                "relation_keyword": "\"guidance\"",
                 "edge_data": {
-                    "keyword": "\"spiritual growth\"",
-                    "weight": 8.0,
-                    "description": "\"Jacob Marley articulates that unlike his previous narrow view in life, business should encompass extensive humanitarian efforts, which he regretted not understanding earlier.\"",
-                    "history": "\"Jacob Marley articulates that unlike his previous narrow view in life, business should encompass extensive humanitarian efforts, which he regretted not understanding earlier.\"",
+                    "keyword": "\"guidance\"",
+                    "weight": 7.0,
+                    "description": "\"Scrooge seeks comfort and guidance from Jacob Marley, showing a desire for reprieve from his current situation.\"",
+                    "history": "\"Scrooge seeks comfort and guidance from Jacob Marley, showing a desire for reprieve from his current situation.\"",
                     "source_id": "chunk-359187e7571bda4b0b08b2e0b6581e52"
                 }
             }
@@ -845,80 +675,80 @@
     },
     {
         "nodes": [
-            "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
-            "\"SALT LAKE CITY\""
+            "\"EBENEZER SCROOGE\"",
+            "\"GHOST\""
         ],
         "edges": [
             {
-                "source": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
-                "target": "\"SALT LAKE CITY\"",
-                "relation_keyword": "\"location\"",
+                "source": "\"EBENEZER SCROOGE\"",
+                "target": "\"GHOST\"",
+                "relation_keyword": "\"introspection\"",
                 "edge_data": {
-                    "keyword": "\"location\"",
-                    "weight": 7.0,
-                    "description": "\"The business office of the Project Gutenberg Literary Archive Foundation is located in Salt Lake City.\"",
-                    "history": "\"The business office of the Project Gutenberg Literary Archive Foundation is located in Salt Lake City.\"",
-                    "source_id": "chunk-c51b3dc560b408cce12cdfe5c9c94f57"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
-            "\"EIN (64-6221541)\""
-        ],
-        "edges": [
-            {
-                "source": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
-                "target": "\"EIN (64-6221541)\"",
-                "relation_keyword": "\"identification\"",
-                "edge_data": {
-                    "keyword": "\"identification\"",
+                    "keyword": "\"introspection\"",
                     "weight": 8.0,
-                    "description": "\"The Foundation uses its EIN for all matters of identification and operation in the context of U.S. tax law.\"",
-                    "history": "\"The Foundation uses its EIN for all matters of identification and operation in the context of U.S. tax law.\"",
-                    "source_id": "chunk-85f77f5e3a9aba01133555a2d20e2fd8"
+                    "description": "\"Scrooge interacts with the Ghost, discussing beliefs in spirits and the consequences of their actions.\"",
+                    "history": "\"Scrooge interacts with the Ghost, discussing beliefs in spirits and the consequences of their actions.\"",
+                    "source_id": "chunk-359187e7571bda4b0b08b2e0b6581e52"
                 }
             }
         ]
     },
     {
         "nodes": [
-            "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
-            "\"INTERNAL REVENUE SERVICE\""
+            "\"CHRISTMAS EVE\"",
+            "\"CLERK\""
         ],
         "edges": [
             {
-                "source": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
-                "target": "\"INTERNAL REVENUE SERVICE\"",
-                "relation_keyword": "\"regulatory relationship\"",
+                "source": "\"CHRISTMAS EVE\"",
+                "target": "\"CLERK\"",
+                "relation_keyword": "\"festive participation\"",
                 "edge_data": {
-                    "keyword": "\"regulatory relationship\"",
-                    "weight": 8.0,
-                    "description": "\"The IRS grants tax exempt status to the Foundation, influencing its financial and operational capabilities.\"",
-                    "history": "\"The IRS grants tax exempt status to the Foundation, influencing its financial and operational capabilities.\"",
-                    "source_id": "chunk-c51b3dc560b408cce12cdfe5c9c94f57"
+                    "keyword": "\"festive participation\"",
+                    "weight": 6.0,
+                    "description": "\"The Clerk partakes in celebrations and activities in honor of Christmas Eve.\"",
+                    "history": "\"The Clerk partakes in celebrations and activities in honor of Christmas Eve.\"",
+                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
                 }
             }
         ]
     },
     {
         "nodes": [
-            "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
-            "\"SALT LAKE CITY, UT\""
+            "\"TOPPER\"",
+            "\"SCROOGE'S NIECE\""
         ],
         "edges": [
             {
-                "source": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
-                "target": "\"SALT LAKE CITY, UT\"",
-                "relation_keyword": "\"administrative activities\"",
+                "source": "\"TOPPER\"",
+                "target": "\"SCROOGE'S NIECE\"",
+                "relation_keyword": "\"musical collaboration\"",
                 "edge_data": {
-                    "keyword": "\"administrative activities\"",
+                    "keyword": "\"musical collaboration\"",
                     "weight": 7.0,
-                    "description": "\"The business office of the Foundation is located in Salt Lake City, serving as its administrative headquarters.\"",
-                    "history": "\"The business office of the Foundation is located in Salt Lake City, serving as its administrative headquarters.\"",
-                    "source_id": "chunk-85f77f5e3a9aba01133555a2d20e2fd8"
+                    "description": "\"Topper and Scrooge's Niece engage in music together, showcasing their musical abilities.\"",
+                    "history": "\"Topper and Scrooge's Niece engage in music together, showcasing their musical abilities.\"",
+                    "source_id": "chunk-43c9bee23adfa77aa9dedd22401bba7d"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"A CHRISTMAS CAROL\"",
+            "\"CHARLES DICKENS\""
+        ],
+        "edges": [
+            {
+                "source": "\"A CHRISTMAS CAROL\"",
+                "target": "\"CHARLES DICKENS\"",
+                "relation_keyword": "\"authorship\"",
+                "edge_data": {
+                    "keyword": "\"authorship\"",
+                    "weight": 10.0,
+                    "description": "\"Charles Dickens wrote the story A Christmas Carol, contributing to the portrayal of various characters and themes.\"",
+                    "history": "\"Charles Dickens wrote the story A Christmas Carol, contributing to the portrayal of various characters and themes.\"",
+                    "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
                 }
             }
         ]
@@ -935,9 +765,29 @@
                 "relation_keyword": "\"illustration\"",
                 "edge_data": {
                     "keyword": "\"illustration\"",
-                    "weight": 8.0,
-                    "description": "\"Arthur Rackham provided illustrations for the edition of 'A Christmas Carol', adding visual elements to complement the text.\"",
-                    "history": "\"Arthur Rackham provided illustrations for the edition of 'A Christmas Carol', adding visual elements to complement the text.\"",
+                    "weight": 9.0,
+                    "description": "\"Arthur Rackham provided illustrations for A Christmas Carol, enhancing the visual representation of the story.\"",
+                    "history": "\"Arthur Rackham provided illustrations for A Christmas Carol, enhancing the visual representation of the story.\"",
+                    "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"A CHRISTMAS CAROL\"",
+            "\"JANET BLENKINSHIP\""
+        ],
+        "edges": [
+            {
+                "source": "\"A CHRISTMAS CAROL\"",
+                "target": "\"JANET BLENKINSHIP\"",
+                "relation_keyword": "\"contribution\"",
+                "edge_data": {
+                    "keyword": "\"contribution\"",
+                    "weight": 7.0,
+                    "description": "\"Janet Blenkinship contributed to the production of the digital version of A Christmas Carol.\"",
+                    "history": "\"Janet Blenkinship contributed to the production of the digital version of A Christmas Carol.\"",
                     "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
                 }
             }
@@ -955,249 +805,49 @@
                 "relation_keyword": "\"production\"",
                 "edge_data": {
                     "keyword": "\"production\"",
-                    "weight": 8.0,
-                    "description": "\"Suzanne Shell's production efforts for the Project Gutenberg eBook of 'A Christmas Carol' assist its distribution and digital access.\"",
-                    "history": "\"Suzanne Shell's production efforts for the Project Gutenberg eBook of 'A Christmas Carol' assist its distribution and digital access.\"",
-                    "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"A CHRISTMAS CAROL\"",
-            "\"JANET BLENKINSHIP\""
-        ],
-        "edges": [
-            {
-                "source": "\"A CHRISTMAS CAROL\"",
-                "target": "\"JANET BLENKINSHIP\"",
-                "relation_keyword": "\"production\"",
-                "edge_data": {
-                    "keyword": "\"production\"",
-                    "weight": 8.0,
-                    "description": "\"Janet Blenkinship's role in producing the eBook version of 'A Christmas Carol' supports its digital preservation and accessibility.\"",
-                    "history": "\"Janet Blenkinship's role in producing the eBook version of 'A Christmas Carol' supports its digital preservation and accessibility.\"",
-                    "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"SCROOGE\"",
-            "\"THE TREADMILL AND THE POOR LAW\""
-        ],
-        "edges": [
-            {
-                "source": "\"SCROOGE\"",
-                "target": "\"THE TREADMILL AND THE POOR LAW\"",
-                "relation_keyword": "\"alignment of values\"",
-                "edge_data": {
-                    "keyword": "\"alignment of values\"",
                     "weight": 7.0,
-                    "description": "\"Scrooge expresses satisfaction that these institutions are still operational, as they align with his views on handling the destitute through rigorous, often punitive measures.\"",
-                    "history": "\"Scrooge expresses satisfaction that these institutions are still operational, as they align with his views on handling the destitute through rigorous, often punitive measures.\"",
-                    "source_id": "chunk-90d5764e301321c087f5a8f78b73a145"
+                    "description": "\"Suzanne Shell played a role in the production process of the digital version of A Christmas Carol.\"",
+                    "history": "\"Suzanne Shell played a role in the production process of the digital version of A Christmas Carol.\"",
+                    "source_id": "chunk-9e3921da66da5d761ab73cd849af6c43"
                 }
             }
         ]
     },
     {
         "nodes": [
-            "\"SCROOGE\"",
-            "\"PARROT\""
+            "\"SHE\"",
+            "\"FATHER\""
         ],
         "edges": [
             {
-                "source": "\"SCROOGE\"",
-                "target": "\"PARROT\"",
-                "relation_keyword": "\"literary connection\"",
+                "source": "\"SHE\"",
+                "target": "\"FATHER\"",
+                "relation_keyword": "\"behavior change\"",
                 "edge_data": {
-                    "keyword": "\"literary connection\"",
-                    "weight": 5.0,
-                    "description": "\"Scrooge identifies the Parrot in his visions, relating it to the story of Robinson Crusoe, indicating the depth of his literary connections.\"",
-                    "history": "\"Scrooge identifies the Parrot in his visions, relating it to the story of Robinson Crusoe, indicating the depth of his literary connections.\"",
-                    "source_id": "chunk-8590d9263cd2cd4fa583c432fc54e6c3"
+                    "keyword": "\"behavior change\"",
+                    "weight": 7.0,
+                    "description": "\"Father has become kinder, leading to a change in behavior that is positively received by She.\"",
+                    "history": "\"Father has become kinder, leading to a change in behavior that is positively received by She.\"",
+                    "source_id": "chunk-c6c248858d1b13ab7ee9ca13c1aeed6b"
                 }
             }
         ]
     },
     {
         "nodes": [
-            "\"SCROOGE\"",
-            "\"BELLE\""
+            "\"THE CHILDREN\"",
+            "\"WANT\""
         ],
         "edges": [
             {
-                "source": "\"SCROOGE\"",
-                "target": "\"BELLE\"",
-                "relation_keyword": "\"emotional impact\"",
+                "source": "\"THE CHILDREN\"",
+                "target": "\"WANT\"",
+                "relation_keyword": "\"symbolic representation\"",
                 "edge_data": {
-                    "keyword": "\"emotional impact\"",
-                    "weight": 6.0,
-                    "description": "\"Scrooge has a connection with Belle through past acquaintance, and her name arises in conversations that affect him deeply.\"",
-                    "history": "\"Scrooge has a connection with Belle through past acquaintance, and her name arises in conversations that affect him deeply.\"",
-                    "source_id": "chunk-da2472b4ef2a535b62908f14d0fb0ca9"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"SCROOGE\"",
-            "\"JACOB\""
-        ],
-        "edges": [
-            {
-                "source": "\"SCROOGE\"",
-                "target": "\"JACOB\"",
-                "relation_keyword": "\"partnership reflection\"",
-                "edge_data": {
-                    "keyword": "\"partnership reflection\"",
+                    "keyword": "\"symbolic representation\"",
                     "weight": 8.0,
-                    "description": "\"Scrooge reflects on his past dealings and relationship with his deceased partner Jacob, influencing his current introspections.\"",
-                    "history": "\"Scrooge reflects on his past dealings and relationship with his deceased partner Jacob, influencing his current introspections.\"",
-                    "source_id": "chunk-f1a4fbcf1ed86864b9bfd5e8dba4c683"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"SCROOGE\"",
-            "\"GHOST\""
-        ],
-        "edges": [
-            {
-                "source": "\"SCROOGE\"",
-                "target": "\"GHOST\"",
-                "relation_keyword": "\"emotional influence\"",
-                "edge_data": {
-                    "keyword": "\"emotional influence\"",
-                    "weight": 8.0,
-                    "description": "\"The Ghost interacts with Scrooge, guiding him through his past experiences and affecting his current emotions and perspectives.\"",
-                    "history": "\"The Ghost interacts with Scrooge, guiding him through his past experiences and affecting his current emotions and perspectives.\"",
-                    "source_id": "chunk-8590d9263cd2cd4fa583c432fc54e6c3"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"SCROOGE\"",
-            "\"THE CITY\""
-        ],
-        "edges": [
-            {
-                "source": "\"SCROOGE\"",
-                "target": "\"THE CITY\"",
-                "relation_keyword": "\"setting influence\"",
-                "edge_data": {
-                    "keyword": "\"setting influence\"",
-                    "weight": 5.0,
-                    "description": "\"Scrooge is described in metaphorical synchrony with the cold and bitterness of the city during Christmas time.\"",
-                    "history": "\"Scrooge is described in metaphorical synchrony with the cold and bitterness of the city during Christmas time.\"",
-                    "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"SCROOGE\"",
-            "\"SCROOGE AND MARLEY'S\""
-        ],
-        "edges": [
-            {
-                "source": "\"SCROOGE\"",
-                "target": "\"SCROOGE AND MARLEY'S\"",
-                "relation_keyword": "\"management\"",
-                "edge_data": {
-                    "keyword": "\"management\"",
-                    "weight": 9.0,
-                    "description": "\"Scrooge is the current manager of the company he once co-owned with Marley, responsible for its operations.\"",
-                    "history": "\"Scrooge is the current manager of the company he once co-owned with Marley, responsible for its operations.\"",
-                    "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"SCROOGE\"",
-            "\"THE COUNTING-HOUSE\""
-        ],
-        "edges": [
-            {
-                "source": "\"SCROOGE\"",
-                "target": "\"THE COUNTING-HOUSE\"",
-                "relation_keyword": "\"business operations\"",
-                "edge_data": {
-                    "keyword": "\"business operations\"",
-                    "weight": 6.0,
-                    "description": "\"The counting-house is central to Scrooge’s business activities, impacting his personality and life decisions.\"",
-                    "history": "\"The counting-house is central to Scrooge’s business activities, impacting his personality and life decisions.\"",
-                    "source_id": "chunk-8f738cb25d60a7dab782162d9d0a25ed"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"SCROOGE\"",
-            "\"SCROOGE'S COUNTING-HOUSE\""
-        ],
-        "edges": [
-            {
-                "source": "\"SCROOGE\"",
-                "target": "\"SCROOGE'S COUNTING-HOUSE\"",
-                "relation_keyword": "\"workplace environment\"",
-                "edge_data": {
-                    "keyword": "\"workplace environment\"",
-                    "weight": 6.0,
-                    "description": "\"Scrooge's own business environment, which is an extension of his personality, being cold and unwelcoming.\"",
-                    "history": "\"Scrooge's own business environment, which is an extension of his personality, being cold and unwelcoming.\"",
-                    "source_id": "chunk-74e2466de2f67fd710ef2f20c0a8d9e0"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"SCROOGE\"",
-            "\"FRIDAY\""
-        ],
-        "edges": [
-            {
-                "source": "\"SCROOGE\"",
-                "target": "\"FRIDAY\"",
-                "relation_keyword": "\"contrast\"",
-                "edge_data": {
-                    "keyword": "\"contrast\"",
-                    "weight": 5.0,
-                    "description": "\"Friday's mention by Scrooge highlights an aspect of companionship in his recollections, contrasting with his personal loneliness.\"",
-                    "history": "\"Friday's mention by Scrooge highlights an aspect of companionship in his recollections, contrasting with his personal loneliness.\"",
-                    "source_id": "chunk-8590d9263cd2cd4fa583c432fc54e6c3"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"UNCLE SCROOGE\"",
-            "\"FRED\""
-        ],
-        "edges": [
-            {
-                "source": "\"UNCLE SCROOGE\"",
-                "target": "\"FRED\"",
-                "relation_keyword": "\"familial ties\"",
-                "edge_data": {
-                    "keyword": "\"familial ties\"",
-                    "weight": 8.0,
-                    "description": "\"Fred is directly interacting and celebrating Uncle Scrooge at a festive gathering, showing familial or close social ties.\"",
-                    "history": "\"Fred is directly interacting and celebrating Uncle Scrooge at a festive gathering, showing familial or close social ties.\"",
+                    "description": "\"The child symbolizing Want accompanies Ignorance, depicting a state of need or lack within humanity.\"",
+                    "history": "\"The child symbolizing Want accompanies Ignorance, depicting a state of need or lack within humanity.\"",
                     "source_id": "chunk-e7637ff18c5ded77a68cce0a87883fad"
                 }
             }
@@ -1205,437 +855,20 @@
     },
     {
         "nodes": [
-            "\"TOPPER\"",
-            "\"THE PLUMP SISTER\""
+            "\"CHRISTMAS\"",
+            "\"THE FAMILY\""
         ],
         "edges": [
             {
-                "source": "\"TOPPER\"",
-                "target": "\"THE PLUMP SISTER\"",
-                "relation_keyword": "\"romantic interest\"",
-                "edge_data": {
-                    "keyword": "\"romantic interest\"",
-                    "weight": 14.0,
-                    "description": "\"Topper’s romantic interest is particularly directed towards the Plump Sister, as evidenced during their interaction at the family's Christmas gathering.\"<SEP>\"Topper shows a clear interest in the Plump Sister during the game, focusing his efforts to catch her specifically, indicating a personal or romantic interest.\"",
-                    "history": "\"Topper’s romantic interest is particularly directed towards the Plump Sister, as evidenced during their interaction at the family's Christmas gathering.\"<SEP>\"Topper shows a clear interest in the Plump Sister during the game, focusing his efforts to catch her specifically, indicating a personal or romantic interest.\"",
-                    "source_id": "chunk-773d0df1dd25c356f7b771d780583e09<SEP>chunk-43c9bee23adfa77aa9dedd22401bba7d"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"PETER CRATCHIT\"",
-            "\"CRATCHIT'S WIFE\""
-        ],
-        "edges": [
-            {
-                "source": "\"PETER CRATCHIT\"",
-                "target": "\"CRATCHIT'S WIFE\"",
-                "relation_keyword": "\"nurturing\"",
-                "edge_data": {
-                    "keyword": "\"nurturing\"",
-                    "weight": 7.0,
-                    "description": "\"Peter, observed by Cratchit's Wife, takes a caring role reading to his siblings, reflecting strong family bonds.\"",
-                    "history": "\"Peter, observed by Cratchit's Wife, takes a caring role reading to his siblings, reflecting strong family bonds.\"",
-                    "source_id": "chunk-83ac129dc9b56f84c46760d153d68e93"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"LONDON\"",
-            "\"POULTERERS' AND GROCERS'\""
-        ],
-        "edges": [
-            {
-                "source": "\"LONDON\"",
-                "target": "\"POULTERERS' AND GROCERS'\"",
-                "relation_keyword": "\"holiday preparations\"",
-                "edge_data": {
-                    "keyword": "\"holiday preparations\"",
-                    "weight": 6.0,
-                    "description": "\"These trades being busy during Christmas season show the city's economic vibrancy and commercial involvement in holiday preparations, which is part of the broader societal setting.\"",
-                    "history": "\"These trades being busy during Christmas season show the city's economic vibrancy and commercial involvement in holiday preparations, which is part of the broader societal setting.\"",
-                    "source_id": "chunk-90d5764e301321c087f5a8f78b73a145"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"TINY TIM\"",
-            "\"BOB\""
-        ],
-        "edges": [
-            {
-                "source": "\"TINY TIM\"",
-                "target": "\"BOB\"",
-                "relation_keyword": "\"family unity\"",
-                "edge_data": {
-                    "keyword": "\"family unity\"",
-                    "weight": 7.0,
-                    "description": "\"Bob speaks fondly of Tiny Tim, reminding his family of Tim's gentle spirit, which helps maintain peace in the family.\"",
-                    "history": "\"Bob speaks fondly of Tiny Tim, reminding his family of Tim's gentle spirit, which helps maintain peace in the family.\"",
-                    "source_id": "chunk-91572b3cd42786ba4cb2f180ca25cbf4"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"TINY TIM\"",
-            "\"THE CRATCHIT FAMILY\""
-        ],
-        "edges": [
-            {
-                "source": "\"TINY TIM\"",
-                "target": "\"THE CRATCHIT FAMILY\"",
+                "source": "\"CHRISTMAS\"",
+                "target": "\"THE FAMILY\"",
                 "relation_keyword": "\"family unity\"",
                 "edge_data": {
                     "keyword": "\"family unity\"",
                     "weight": 8.0,
-                    "description": "\"Tiny Tim is a loved member of The Cratchit Family, and his health and happiness are central concerns during their Christmas celebration.\"",
-                    "history": "\"Tiny Tim is a loved member of The Cratchit Family, and his health and happiness are central concerns during their Christmas celebration.\"",
-                    "source_id": "chunk-503f0bfa5453467c7c61d160a3540eca"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"CHILDREN\"",
-            "\"PORTER\""
-        ],
-        "edges": [
-            {
-                "source": "\"CHILDREN\"",
-                "target": "\"PORTER\"",
-                "relation_keyword": "\"playful interaction\"",
-                "edge_data": {
-                    "keyword": "\"playful interaction\"",
-                    "weight": 7.0,
-                    "description": "\"The children energetically engage with the porter, climbing and searching him for gifts.\"",
-                    "history": "\"The children energetically engage with the porter, climbing and searching him for gifts.\"",
-                    "source_id": "chunk-da2472b4ef2a535b62908f14d0fb0ca9"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"SPIRIT\"",
-            "\"PHANTOM\""
-        ],
-        "edges": [
-            {
-                "source": "\"SPIRIT\"",
-                "target": "\"PHANTOM\"",
-                "relation_keyword": "\"allegorical representation\"",
-                "edge_data": {
-                    "keyword": "\"allegorical representation\"",
-                    "weight": 6.0,
-                    "description": "\"The Phantom, as a guiding figure, may represent or interact with other spirits or supernatural elements guiding Scrooge.\"",
-                    "history": "\"The Phantom, as a guiding figure, may represent or interact with other spirits or supernatural elements guiding Scrooge.\"",
-                    "source_id": "chunk-f1a4fbcf1ed86864b9bfd5e8dba4c683"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"THE FEAST\"",
-            "\"BOB CRATCHIT\"",
-            "\"THE GIRLS\""
-        ],
-        "edges": [
-            {
-                "source": "\"THE FEAST\"",
-                "target": "\"BOB CRATCHIT\"",
-                "relation_keyword": "\"festivity\"",
-                "edge_data": {
-                    "keyword": "\"festivity\"",
-                    "weight": 8.0,
-                    "description": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "history": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
-                }
-            },
-            {
-                "source": "\"BOB CRATCHIT\"",
-                "target": "\"THE GIRLS\"",
-                "relation_keyword": "\"family dynamics\"",
-                "edge_data": {
-                    "keyword": "\"family dynamics\"",
-                    "weight": 6.0,
-                    "description": "\"The girls assist Bob Cratchit in household activities and participate in supportive interactions, showing their active roles in family dynamics and everyday life.\"",
-                    "history": "\"The girls assist Bob Cratchit in household activities and participate in supportive interactions, showing their active roles in family dynamics and everyday life.\"",
-                    "source_id": "chunk-1d4b58de5429cd1261370c231c8673e8"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"THE FEAST\"",
-            "\"BOB CRATCHIT\"",
-            "\"MASTER PETER CRATCHIT\""
-        ],
-        "edges": [
-            {
-                "source": "\"THE FEAST\"",
-                "target": "\"BOB CRATCHIT\"",
-                "relation_keyword": "\"festivity\"",
-                "edge_data": {
-                    "keyword": "\"festivity\"",
-                    "weight": 8.0,
-                    "description": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "history": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
-                }
-            },
-            {
-                "source": "\"BOB CRATCHIT\"",
-                "target": "\"MASTER PETER CRATCHIT\"",
-                "relation_keyword": "\"economic management\"",
-                "edge_data": {
-                    "keyword": "\"economic management\"",
-                    "weight": 5.0,
-                    "description": "\"Master Peter is wearing his father Bob's shirt, which symbolizes the passing of items within the family due to economic necessity.\"",
-                    "history": "\"Master Peter is wearing his father Bob's shirt, which symbolizes the passing of items within the family due to economic necessity.\"",
-                    "source_id": "chunk-b0f459f5af1c3a5e0b92cbe4ee48b77b"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"THE FEAST\"",
-            "\"BOB CRATCHIT\"",
-            "\"MRS. CRATCHIT\""
-        ],
-        "edges": [
-            {
-                "source": "\"THE FEAST\"",
-                "target": "\"BOB CRATCHIT\"",
-                "relation_keyword": "\"festivity\"",
-                "edge_data": {
-                    "keyword": "\"festivity\"",
-                    "weight": 8.0,
-                    "description": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "history": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
-                }
-            },
-            {
-                "source": "\"BOB CRATCHIT\"",
-                "target": "\"MRS. CRATCHIT\"",
-                "relation_keyword": "\"shared responsibility\"",
-                "edge_data": {
-                    "keyword": "\"shared responsibility\"",
-                    "weight": 9.0,
-                    "description": "\"Mrs. Cratchit supports Bob and shares his concerns and family responsibilities, particularly evident in their mutual caring for Tiny Tim.\"",
-                    "history": "\"Mrs. Cratchit supports Bob and shares his concerns and family responsibilities, particularly evident in their mutual caring for Tiny Tim.\"",
-                    "source_id": "chunk-1d4b58de5429cd1261370c231c8673e8"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"THE FEAST\"",
-            "\"BOB CRATCHIT\"",
-            "\"MR. SCROOGE'S NEPHEW\""
-        ],
-        "edges": [
-            {
-                "source": "\"THE FEAST\"",
-                "target": "\"BOB CRATCHIT\"",
-                "relation_keyword": "\"festivity\"",
-                "edge_data": {
-                    "keyword": "\"festivity\"",
-                    "weight": 8.0,
-                    "description": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "history": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
-                }
-            },
-            {
-                "source": "\"BOB CRATCHIT\"",
-                "target": "\"MR. SCROOGE'S NEPHEW\"",
-                "relation_keyword": "\"assistance\"",
-                "edge_data": {
-                    "keyword": "\"assistance\"",
-                    "weight": 8.0,
-                    "description": "\"Mr. Scrooge's Nephew encounters Bob Cratchit and expresses sympathy and offers assistance, showing a personal connection and concern.\"",
-                    "history": "\"Mr. Scrooge's Nephew encounters Bob Cratchit and expresses sympathy and offers assistance, showing a personal connection and concern.\"",
-                    "source_id": "chunk-1d4b58de5429cd1261370c231c8673e8"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"THE FEAST\"",
-            "\"BOB CRATCHIT\"",
-            "\"THE CANDLE\""
-        ],
-        "edges": [
-            {
-                "source": "\"THE FEAST\"",
-                "target": "\"BOB CRATCHIT\"",
-                "relation_keyword": "\"festivity\"",
-                "edge_data": {
-                    "keyword": "\"festivity\"",
-                    "weight": 8.0,
-                    "description": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "history": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
-                }
-            },
-            {
-                "source": "\"BOB CRATCHIT\"",
-                "target": "\"THE CANDLE\"",
-                "relation_keyword": "\"resource scarcity\"",
-                "edge_data": {
-                    "keyword": "\"resource scarcity\"",
-                    "weight": 6.0,
-                    "description": "\"The Candle, used by Bob Cratchit in the Counting-House, symbolizes the minimal resources provided by Scrooge and the bleak working conditions.\"",
-                    "history": "\"The Candle, used by Bob Cratchit in the Counting-House, symbolizes the minimal resources provided by Scrooge and the bleak working conditions.\"",
-                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"THE FEAST\"",
-            "\"BOB CRATCHIT\"",
-            "\"CAMDEN TOWN\""
-        ],
-        "edges": [
-            {
-                "source": "\"THE FEAST\"",
-                "target": "\"BOB CRATCHIT\"",
-                "relation_keyword": "\"festivity\"",
-                "edge_data": {
-                    "keyword": "\"festivity\"",
-                    "weight": 8.0,
-                    "description": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "history": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
-                }
-            },
-            {
-                "source": "\"BOB CRATCHIT\"",
-                "target": "\"CAMDEN TOWN\"",
-                "relation_keyword": "\"home\"",
-                "edge_data": {
-                    "keyword": "\"home\"",
-                    "weight": 5.0,
-                    "description": "\"Bob Cratchit rushes home to Camden Town to celebrate Christmas, showing his attachment and significance of this place to him.\"",
-                    "history": "\"Bob Cratchit rushes home to Camden Town to celebrate Christmas, showing his attachment and significance of this place to him.\"",
-                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"THE FEAST\"",
-            "\"BOB CRATCHIT\"",
-            "\"THE GOOSE\""
-        ],
-        "edges": [
-            {
-                "source": "\"THE FEAST\"",
-                "target": "\"BOB CRATCHIT\"",
-                "relation_keyword": "\"festivity\"",
-                "edge_data": {
-                    "keyword": "\"festivity\"",
-                    "weight": 8.0,
-                    "description": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "history": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
-                }
-            },
-            {
-                "source": "\"BOB CRATCHIT\"",
-                "target": "\"THE GOOSE\"",
-                "relation_keyword": "\"family meal preparation\"",
-                "edge_data": {
-                    "keyword": "\"family meal preparation\"",
-                    "weight": 8.0,
-                    "description": "\"Bob Cratchit, along with his children, brought back the goose, which is a centerpiece of their Christmas meal.\"",
-                    "history": "\"Bob Cratchit, along with his children, brought back the goose, which is a centerpiece of their Christmas meal.\"",
-                    "source_id": "chunk-7e2e7ebcc19a53b399dc03aded4743e7"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"THE FEAST\"",
-            "\"BOB CRATCHIT\"",
-            "\"MARTHA CRATCHIT\""
-        ],
-        "edges": [
-            {
-                "source": "\"THE FEAST\"",
-                "target": "\"BOB CRATCHIT\"",
-                "relation_keyword": "\"festivity\"",
-                "edge_data": {
-                    "keyword": "\"festivity\"",
-                    "weight": 8.0,
-                    "description": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "history": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
-                }
-            },
-            {
-                "source": "\"BOB CRATCHIT\"",
-                "target": "\"MARTHA CRATCHIT\"",
-                "relation_keyword": "\"affection\"",
-                "edge_data": {
-                    "keyword": "\"affection\"",
-                    "weight": 7.0,
-                    "description": "\"Bob reacts to Martha’s joke about not coming, showing their familial affection and interaction within their Christmas celebration.\"",
-                    "history": "\"Bob reacts to Martha’s joke about not coming, showing their familial affection and interaction within their Christmas celebration.\"",
-                    "source_id": "chunk-7e2e7ebcc19a53b399dc03aded4743e7"
-                }
-            }
-        ]
-    },
-    {
-        "nodes": [
-            "\"THE FEAST\"",
-            "\"BOB CRATCHIT\"",
-            "\"CORNHILL\""
-        ],
-        "edges": [
-            {
-                "source": "\"THE FEAST\"",
-                "target": "\"BOB CRATCHIT\"",
-                "relation_keyword": "\"festivity\"",
-                "edge_data": {
-                    "keyword": "\"festivity\"",
-                    "weight": 8.0,
-                    "description": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "history": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
-                }
-            },
-            {
-                "source": "\"BOB CRATCHIT\"",
-                "target": "\"CORNHILL\"",
-                "relation_keyword": "\"community engagement\"",
-                "edge_data": {
-                    "keyword": "\"community engagement\"",
-                    "weight": 6.0,
-                    "description": "\"Bob Cratchit and others joyfully engage in sliding down Cornhill, capturing the simple pleasures and community interaction on Christmas Eve.\"",
-                    "history": "\"Bob Cratchit and others joyfully engage in sliding down Cornhill, capturing the simple pleasures and community interaction on Christmas Eve.\"",
-                    "source_id": "chunk-d9aac3484185ac66045df92214d245d5"
+                    "description": "\"Christmas serves as a catalyst for family unity and happiness, fostering positive interactions.\"",
+                    "history": "\"Christmas serves as a catalyst for family unity and happiness, fostering positive interactions.\"",
+                    "source_id": "chunk-54bdd22db1f84a965b5f4c06c9216d8d"
                 }
             }
         ]
@@ -1643,31 +876,138 @@
     {
         "nodes": [
             "\"CHRISTMAS\"",
-            "\"SCROOGE'S NEPHEW\"",
-            "\"CLERK\""
+            "\"THE SHIP\""
         ],
         "edges": [
             {
                 "source": "\"CHRISTMAS\"",
-                "target": "\"SCROOGE'S NEPHEW\"",
-                "relation_keyword": "\"festivity value\"",
+                "target": "\"THE SHIP\"",
+                "relation_keyword": "\"memories\"",
                 "edge_data": {
-                    "keyword": "\"festivity value\"",
-                    "weight": 9.0,
-                    "description": "\"Scrooge's nephew holds a positive view of Christmas, seeing it as a time of generosity and goodwill, contrasting with Scrooge’s negative perception.\"",
-                    "history": "\"Scrooge's nephew holds a positive view of Christmas, seeing it as a time of generosity and goodwill, contrasting with Scrooge’s negative perception.\"",
-                    "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+                    "keyword": "\"memories\"",
+                    "weight": 7.0,
+                    "description": "\"Each crew member recalls past Christmases with fondness and connection.\"",
+                    "history": "\"Each crew member recalls past Christmases with fondness and connection.\"",
+                    "source_id": "chunk-91614df5cb74cbe5e109a338a82041e9"
                 }
-            },
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS\"",
+            "\"THE HUT\""
+        ],
+        "edges": [
             {
-                "source": "\"SCROOGE'S NEPHEW\"",
-                "target": "\"CLERK\"",
-                "relation_keyword": "\"shared festivity\"",
+                "source": "\"CHRISTMAS\"",
+                "target": "\"THE HUT\"",
+                "relation_keyword": "\"celebration venue\"",
                 "edge_data": {
-                    "keyword": "\"shared festivity\"",
+                    "keyword": "\"celebration venue\"",
                     "weight": 6.0,
-                    "description": "\"The clerk aligns more with Scrooge's nephew’s view of Christmas, showing warmth and reception towards festive greetings.\"",
-                    "history": "\"The clerk aligns more with Scrooge's nephew’s view of Christmas, showing warmth and reception towards festive greetings.\"",
+                    "description": "\"The Hut provides a warm setting for the Christmas festivities of the gathered families.\"",
+                    "history": "\"The Hut provides a warm setting for the Christmas festivities of the gathered families.\"",
+                    "source_id": "chunk-91614df5cb74cbe5e109a338a82041e9"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS\"",
+            "\"EBENEZER\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS\"",
+                "target": "\"EBENEZER\"",
+                "relation_keyword": "\"holiday reflection\"",
+                "edge_data": {
+                    "keyword": "\"holiday reflection\"",
+                    "weight": 8.0,
+                    "description": "\"Ebenezer's experiences during Christmas prompt introspection and growth, leading to a change in his outlook.\"",
+                    "history": "\"Ebenezer's experiences during Christmas prompt introspection and growth, leading to a change in his outlook.\"",
+                    "source_id": "chunk-8bc1edd983869352d14cf0886a9175a7"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS\"",
+            "\"FEZZIWIG\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS\"",
+                "target": "\"FEZZIWIG\"",
+                "relation_keyword": "\"festive atmosphere\"",
+                "edge_data": {
+                    "keyword": "\"festive atmosphere\"",
+                    "weight": 9.0,
+                    "description": "\"Fezziwig orchestrates a lively Christmas celebration, imbuing the atmosphere with joy and festivity.\"",
+                    "history": "\"Fezziwig orchestrates a lively Christmas celebration, imbuing the atmosphere with joy and festivity.\"",
+                    "source_id": "chunk-8bc1edd983869352d14cf0886a9175a7"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS\"",
+            "\"THE LAMPLIGHTER\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS\"",
+                "target": "\"THE LAMPLIGHTER\"",
+                "relation_keyword": "\"festive spirit\"",
+                "edge_data": {
+                    "keyword": "\"festive spirit\"",
+                    "weight": 7.0,
+                    "description": "\"The Lamplighter's laughter adds to the festive spirit of Christmas.\"",
+                    "history": "\"The Lamplighter's laughter adds to the festive spirit of Christmas.\"",
+                    "source_id": "chunk-91614df5cb74cbe5e109a338a82041e9"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS\"",
+            "\"OLD MAN AND OLD WOMAN\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS\"",
+                "target": "\"OLD MAN AND OLD WOMAN\"",
+                "relation_keyword": "\"family tradition\"",
+                "edge_data": {
+                    "keyword": "\"family tradition\"",
+                    "weight": 8.0,
+                    "description": "\"The Old Man and Old Woman sing a traditional Christmas song, fostering a sense of familial joy and unity.\"",
+                    "history": "\"The Old Man and Old Woman sing a traditional Christmas song, fostering a sense of familial joy and unity.\"",
+                    "source_id": "chunk-91614df5cb74cbe5e109a338a82041e9"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS\"",
+            "\"MR. SCROOGE\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS\"",
+                "target": "\"MR. SCROOGE\"",
+                "relation_keyword": "\"reluctance\"",
+                "edge_data": {
+                    "keyword": "\"reluctance\"",
+                    "weight": 7.0,
+                    "description": "\"Scrooge's reluctance to engage in Christmas activities portrays a lack of festive spirit.\"",
+                    "history": "\"Scrooge's reluctance to engage in Christmas activities portrays a lack of festive spirit.\"",
                     "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
                 }
             }
@@ -1675,131 +1015,794 @@
     },
     {
         "nodes": [
-            "\"CHRISTMAS MORNING\"",
-            "\"THE POULTERERS' SHOPS\"",
-            "\"THE CITY STREETS\""
+            "\"SPIRIT\"",
+            "\"BLEAK MOOR\""
         ],
         "edges": [
             {
-                "source": "\"CHRISTMAS MORNING\"",
-                "target": "\"THE POULTERERS' SHOPS\"",
-                "relation_keyword": "\"market activity\"",
+                "source": "\"SPIRIT\"",
+                "target": "\"BLEAK MOOR\"",
+                "relation_keyword": "\"atmospheric setting\"",
                 "edge_data": {
-                    "keyword": "\"market activity\"",
+                    "keyword": "\"atmospheric setting\"",
                     "weight": 7.0,
-                    "description": "\"The Poulterers' Shops are part of the vibrant scene described on Christmas Morning, contributing to the joyful atmosphere.\"",
-                    "history": "\"The Poulterers' Shops are part of the vibrant scene described on Christmas Morning, contributing to the joyful atmosphere.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
-                }
-            },
-            {
-                "source": "\"THE POULTERERS' SHOPS\"",
-                "target": "\"THE CITY STREETS\"",
-                "relation_keyword": "\"market activity\"",
-                "edge_data": {
-                    "keyword": "\"market activity\"",
-                    "weight": 8.0,
-                    "description": "\"The Poulterers' Shops contribute to the lively Christmas morning scene in the city streets with open markets and festive offerings.\"",
-                    "history": "\"The Poulterers' Shops contribute to the lively Christmas morning scene in the city streets with open markets and festive offerings.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
+                    "description": "\"The Spirit takes Scrooge to the desolate Bleak Moor, emphasizing its eerie and foreboding atmosphere.\"",
+                    "history": "\"The Spirit takes Scrooge to the desolate Bleak Moor, emphasizing its eerie and foreboding atmosphere.\"",
+                    "source_id": "chunk-91614df5cb74cbe5e109a338a82041e9"
                 }
             }
         ]
     },
     {
         "nodes": [
-            "\"THE FIREPLACE\"",
-            "\"MARLEY'S GHOST\"",
-            "\"THE WINE-MERCHANT'S CELLARS\""
+            "\"FOUNDATION\"",
+            "\"ROYALTY PAYMENTS\""
         ],
         "edges": [
             {
-                "source": "\"THE FIREPLACE\"",
-                "target": "\"MARLEY'S GHOST\"",
-                "relation_keyword": "\"supernatural recognition\"",
+                "source": "\"FOUNDATION\"",
+                "target": "\"ROYALTY PAYMENTS\"",
+                "relation_keyword": "\"financial management\"",
                 "edge_data": {
-                    "keyword": "\"supernatural recognition\"",
-                    "weight": 9.0,
-                    "description": "\"As Marley's Ghost appears, the dying flame in the fireplace leaps up, as if recognizing the ghost.\"",
-                    "history": "\"As Marley's Ghost appears, the dying flame in the fireplace leaps up, as if recognizing the ghost.\"",
-                    "source_id": "chunk-9c43dac2fcd5b578242d907ea6f8fc7b"
-                }
-            },
-            {
-                "source": "\"MARLEY'S GHOST\"",
-                "target": "\"THE WINE-MERCHANT'S CELLARS\"",
-                "relation_keyword": "\"haunting\"",
-                "edge_data": {
-                    "keyword": "\"haunting\"",
+                    "keyword": "\"financial management\"",
                     "weight": 8.0,
-                    "description": "\"Sounds associated with Marley's Ghost, such as the clanking of chains, are heard emanating from the cellars.\"",
-                    "history": "\"Sounds associated with Marley's Ghost, such as the clanking of chains, are heard emanating from the cellars.\"",
-                    "source_id": "chunk-9c43dac2fcd5b578242d907ea6f8fc7b"
+                    "description": "\"The Project Gutenberg Literary Archive Foundation receives royalties and manages donations.\"",
+                    "history": "\"The Project Gutenberg Literary Archive Foundation receives royalties and manages donations.\"",
+                    "source_id": "chunk-af4ae173c561e4594c5aea96198cce9d"
                 }
             }
         ]
     },
     {
         "nodes": [
-            "\"THE FIREPLACE\"",
-            "\"MARLEY'S GHOST\"",
-            "\"THE HEAVY DOOR\""
+            "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
+            "\"INTERNAL REVENUE SERVICE\""
         ],
         "edges": [
             {
-                "source": "\"THE FIREPLACE\"",
-                "target": "\"MARLEY'S GHOST\"",
-                "relation_keyword": "\"supernatural recognition\"",
+                "source": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
+                "target": "\"INTERNAL REVENUE SERVICE\"",
+                "relation_keyword": "\"regulatory approval\"",
                 "edge_data": {
-                    "keyword": "\"supernatural recognition\"",
-                    "weight": 9.0,
-                    "description": "\"As Marley's Ghost appears, the dying flame in the fireplace leaps up, as if recognizing the ghost.\"",
-                    "history": "\"As Marley's Ghost appears, the dying flame in the fireplace leaps up, as if recognizing the ghost.\"",
-                    "source_id": "chunk-9c43dac2fcd5b578242d907ea6f8fc7b"
+                    "keyword": "\"regulatory approval\"",
+                    "weight": 8.0,
+                    "description": "\"The Foundation's tax-exempt status is granted by the Internal Revenue Service, indicating compliance with relevant regulations.\"",
+                    "history": "\"The Foundation's tax-exempt status is granted by the Internal Revenue Service, indicating compliance with relevant regulations.\"",
+                    "source_id": "chunk-85f77f5e3a9aba01133555a2d20e2fd8"
                 }
-            },
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
+            "\"SALT LAKE CITY, UT\""
+        ],
+        "edges": [
             {
-                "source": "\"MARLEY'S GHOST\"",
-                "target": "\"THE HEAVY DOOR\"",
-                "relation_keyword": "\"barrier crossing\"",
+                "source": "\"PROJECT GUTENBERG LITERARY ARCHIVE FOUNDATION\"",
+                "target": "\"SALT LAKE CITY, UT\"",
+                "relation_keyword": "\"headquarters location\"",
                 "edge_data": {
-                    "keyword": "\"barrier crossing\"",
+                    "keyword": "\"headquarters location\"",
                     "weight": 7.0,
-                    "description": "\"Marley's Ghost enters through the heavy door, transcending physical barriers to deliver his message to Scrooge.\"",
-                    "history": "\"Marley's Ghost enters through the heavy door, transcending physical barriers to deliver his message to Scrooge.\"",
-                    "source_id": "chunk-1aa50206d02ed89418f65f97c6441d1c"
+                    "description": "\"The Foundation's business office is located in Salt Lake City, UT, serving as a physical base for operations.\"",
+                    "history": "\"The Foundation's business office is located in Salt Lake City, UT, serving as a physical base for operations.\"",
+                    "source_id": "chunk-85f77f5e3a9aba01133555a2d20e2fd8"
                 }
             }
         ]
     },
     {
         "nodes": [
-            "\"THE DEAD MAN\"",
-            "\"THE FIRST WOMAN\"",
+            "\"MERCER\"",
+            "\"HUMANITY'S RESPONSE\""
+        ],
+        "edges": [
+            {
+                "source": "\"MERCER\"",
+                "target": "\"HUMANITY'S RESPONSE\"",
+                "relation_keyword": "\"role influence\"",
+                "edge_data": {
+                    "keyword": "\"role influence\"",
+                    "weight": 7.0,
+                    "description": "\"Mercer's instincts influence the evolving role of the team.\"",
+                    "history": "\"Mercer's instincts influence the evolving role of the team.\"",
+                    "source_id": "chunk-194cd9680f4967f48bea89678f7ece21"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"MERCER\"",
+            "\"BEEPS\""
+        ],
+        "edges": [
+            {
+                "source": "\"MERCER\"",
+                "target": "\"BEEPS\"",
+                "relation_keyword": "\"instinct influence\"",
+                "edge_data": {
+                    "keyword": "\"instinct influence\"",
+                    "weight": 7.0,
+                    "description": "\"Mercer's instincts lead to actions that affect the team's dynamics and responses to external stimuli.\"",
+                    "history": "\"Mercer's instincts lead to actions that affect the team's dynamics and responses to external stimuli.\"",
+                    "source_id": "chunk-bb21d58d36c6306fd8810ddd51c4a971"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"SAM RIVERA\"",
+            "\"UNKNOWN INTELLIGENCE\""
+        ],
+        "edges": [
+            {
+                "source": "\"SAM RIVERA\"",
+                "target": "\"UNKNOWN INTELLIGENCE\"",
+                "relation_keyword": "\"involvement\"",
+                "edge_data": {
+                    "keyword": "\"involvement\"",
+                    "weight": 7.0,
+                    "description": "\"Sam Rivera's involvement in communication attempts reflects their youthful energy and interest.\"",
+                    "history": "\"Sam Rivera's involvement in communication attempts reflects their youthful energy and interest.\"",
+                    "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"SAM RIVERA\"",
+            "\"COSMIC INTELLIGENCE\""
+        ],
+        "edges": [
+            {
+                "source": "\"SAM RIVERA\"",
+                "target": "\"COSMIC INTELLIGENCE\"",
+                "relation_keyword": "\"cosmic communication\"",
+                "edge_data": {
+                    "keyword": "\"cosmic communication\"",
+                    "weight": 8.0,
+                    "description": "\"Sam Rivera engages with Cosmic Intelligence in a learning process, showing a mix of awe and anxiety.\"",
+                    "history": "\"Sam Rivera engages with Cosmic Intelligence in a learning process, showing a mix of awe and anxiety.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"WASHINGTON\"",
+            "\"THE POOR\""
+        ],
+        "edges": [
+            {
+                "source": "\"WASHINGTON\"",
+                "target": "\"THE POOR\"",
+                "relation_keyword": "\"aid provision\"",
+                "edge_data": {
+                    "keyword": "\"aid provision\"",
+                    "weight": 6.0,
+                    "description": "\"Efforts to aid the Poor are made based on external influences from Washington.\"",
+                    "history": "\"Efforts to aid the Poor are made based on external influences from Washington.\"",
+                    "source_id": "chunk-90d5764e301321c087f5a8f78b73a145"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"A SAVAGE ANIMAL\"",
+            "\"LONDON\""
+        ],
+        "edges": [
+            {
+                "source": "\"A SAVAGE ANIMAL\"",
+                "target": "\"LONDON\"",
+                "relation_keyword": "\"setting influence\"",
+                "edge_data": {
+                    "keyword": "\"setting influence\"",
+                    "weight": 7.0,
+                    "description": "\"London serves as the setting where the savage animal roams, influencing the narrative with its urban backdrop.\"",
+                    "history": "\"London serves as the setting where the savage animal roams, influencing the narrative with its urban backdrop.\"",
+                    "source_id": "chunk-e7637ff18c5ded77a68cce0a87883fad"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"ALEX\"",
+            "\"FIRST CONTACT\""
+        ],
+        "edges": [
+            {
+                "source": "\"ALEX\"",
+                "target": "\"FIRST CONTACT\"",
+                "relation_keyword": "\"leadership\"",
+                "edge_data": {
+                    "keyword": "\"leadership\"",
+                    "weight": 1.0,
+                    "description": "\"Alex leads the team in the initial efforts of establishing contact with an unknown intelligence, acknowledging the significance of their task.\"",
+                    "history": "\"Alex leads the team in the initial efforts of establishing contact with an unknown intelligence, acknowledging the significance of their task.\"",
+                    "source_id": "chunk-f1a4fbcf1ed86864b9bfd5e8dba4c683"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"BOB\"",
+            "\"BOB'S SON\""
+        ],
+        "edges": [
+            {
+                "source": "\"BOB\"",
+                "target": "\"BOB'S SON\"",
+                "relation_keyword": "\"family ties\"",
+                "edge_data": {
+                    "keyword": "\"family ties\"",
+                    "weight": 6.0,
+                    "description": "\"Bob's Son is part of the familial narrative, indicating connections and relationships.\"",
+                    "history": "\"Bob's Son is part of the familial narrative, indicating connections and relationships.\"",
+                    "source_id": "chunk-91572b3cd42786ba4cb2f180ca25cbf4"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"BOB\"",
+            "\"BOB'S DAUGHTERS\""
+        ],
+        "edges": [
+            {
+                "source": "\"BOB\"",
+                "target": "\"BOB'S DAUGHTERS\"",
+                "relation_keyword": "\"family affection\"||8\"",
+                "edge_data": {
+                    "keyword": "\"family affection\"||8\"",
+                    "weight": 1.0,
+                    "description": "\"Bob's daughters demonstrate affection towards Bob, showcasing a strong family bond.\"",
+                    "history": "\"Bob's daughters demonstrate affection towards Bob, showcasing a strong family bond.\"",
+                    "source_id": "chunk-91572b3cd42786ba4cb2f180ca25cbf4"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"BOB\"",
+            "\"PETER\""
+        ],
+        "edges": [
+            {
+                "source": "\"BOB\"",
+                "target": "\"PETER\"",
+                "relation_keyword": "\"family connection\"",
+                "edge_data": {
+                    "keyword": "\"family connection\"",
+                    "weight": 6.0,
+                    "description": "\"Peter shares a moment of handshake with Bob, symbolizing camaraderie and family connection.\"",
+                    "history": "\"Peter shares a moment of handshake with Bob, symbolizing camaraderie and family connection.\"",
+                    "source_id": "chunk-91572b3cd42786ba4cb2f180ca25cbf4"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"BOB\"",
+            "\"SPIRIT OF TINY TIM\""
+        ],
+        "edges": [
+            {
+                "source": "\"BOB\"",
+                "target": "\"SPIRIT OF TINY TIM\"",
+                "relation_keyword": "\"spiritual presence\"",
+                "edge_data": {
+                    "keyword": "\"spiritual presence\"",
+                    "weight": 8.0,
+                    "description": "\"The Spirit of Tiny Tim embodies the memory and essence of Tiny Tim, bringing comfort and reflection.\"",
+                    "history": "\"The Spirit of Tiny Tim embodies the memory and essence of Tiny Tim, bringing comfort and reflection.\"",
+                    "source_id": "chunk-91572b3cd42786ba4cb2f180ca25cbf4"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"BOB CRATCHIT\"",
+            "\"CHRISTMAS FEAST\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"BOB CRATCHIT\"",
+                "relation_keyword": "\"family bonds\"",
+                "edge_data": {
+                    "keyword": "\"family bonds\"",
+                    "weight": 7.0,
+                    "description": "\"Bob Cratchit shares insights about his family's festivities during Christmas, highlighting family bonds.\"",
+                    "history": "\"Bob Cratchit shares insights about his family's festivities during Christmas, highlighting family bonds.\"",
+                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
+                }
+            },
+            {
+                "source": "\"BOB CRATCHIT\"",
+                "target": "\"CHRISTMAS FEAST\"",
+                "relation_keyword": "\"feast preparation\"",
+                "edge_data": {
+                    "keyword": "\"feast preparation\"",
+                    "weight": 8.0,
+                    "description": "\"Bob eagerly participates in the Christmas Feast preparations, adding to the joy and communal spirit of the event.\"",
+                    "history": "\"Bob eagerly participates in the Christmas Feast preparations, adding to the joy and communal spirit of the event.\"",
+                    "source_id": "chunk-7e2e7ebcc19a53b399dc03aded4743e7"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"BOB CRATCHIT\"",
+            "\"CHRISTMAS CELEBRATIONS\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"BOB CRATCHIT\"",
+                "relation_keyword": "\"family bonds\"",
+                "edge_data": {
+                    "keyword": "\"family bonds\"",
+                    "weight": 7.0,
+                    "description": "\"Bob Cratchit shares insights about his family's festivities during Christmas, highlighting family bonds.\"",
+                    "history": "\"Bob Cratchit shares insights about his family's festivities during Christmas, highlighting family bonds.\"",
+                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
+                }
+            },
+            {
+                "source": "\"BOB CRATCHIT\"",
+                "target": "\"CHRISTMAS CELEBRATIONS\"",
+                "relation_keyword": "\"festive participation\"",
+                "edge_data": {
+                    "keyword": "\"festive participation\"",
+                    "weight": 9.0,
+                    "description": "\"Bob actively participates in the Christmas festivities, contributing to the joy and togetherness of the family.\"",
+                    "history": "\"Bob actively participates in the Christmas festivities, contributing to the joy and togetherness of the family.\"",
+                    "source_id": "chunk-7e2e7ebcc19a53b399dc03aded4743e7"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"BOB CRATCHIT\"",
+            "\"PETER CRATCHIT\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"BOB CRATCHIT\"",
+                "relation_keyword": "\"family bonds\"",
+                "edge_data": {
+                    "keyword": "\"family bonds\"",
+                    "weight": 7.0,
+                    "description": "\"Bob Cratchit shares insights about his family's festivities during Christmas, highlighting family bonds.\"",
+                    "history": "\"Bob Cratchit shares insights about his family's festivities during Christmas, highlighting family bonds.\"",
+                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
+                }
+            },
+            {
+                "source": "\"BOB CRATCHIT\"",
+                "target": "\"PETER CRATCHIT\"",
+                "relation_keyword": "\"admiration\"",
+                "edge_data": {
+                    "keyword": "\"admiration\"",
+                    "weight": 7.0,
+                    "description": "\"Peter admires his father, Bob Cratchit, and assists him in the Christmas preparations, showing a familial bond.\"",
+                    "history": "\"Peter admires his father, Bob Cratchit, and assists him in the Christmas preparations, showing a familial bond.\"",
+                    "source_id": "chunk-7e2e7ebcc19a53b399dc03aded4743e7"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"MINERS\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"MINERS\"",
+                "relation_keyword": "\"introduction\"",
+                "edge_data": {
+                    "keyword": "\"introduction\"",
+                    "weight": 7.0,
+                    "description": "\"Scrooge learns about the miners' existence and the Spirit guides him to this location.\"",
+                    "history": "\"Scrooge learns about the miners' existence and the Spirit guides him to this location.\"",
+                    "source_id": "chunk-91614df5cb74cbe5e109a338a82041e9"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"ROOM\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"ROOM\"",
+                "relation_keyword": "\"personal environment\"",
+                "edge_data": {
+                    "keyword": "\"personal environment\"",
+                    "weight": 7.0,
+                    "description": "\"The Room symbolizes a space of familiarity and history for Scrooge, reflecting his personal environment and identity.\"",
+                    "history": "\"The Room symbolizes a space of familiarity and history for Scrooge, reflecting his personal environment and identity.\"",
+                    "source_id": "chunk-91572b3cd42786ba4cb2f180ca25cbf4"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"SCROOGE AND MARLEY\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"SCROOGE AND MARLEY\"",
+                "relation_keyword": "\"business association\"",
+                "edge_data": {
+                    "keyword": "\"business association\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge is part of the business partnership with Marley, known as Scrooge and Marley.\"",
+                    "history": "\"Scrooge is part of the business partnership with Marley, known as Scrooge and Marley.\"",
+                    "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"HAMLET\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"HAMLET\"",
+                "relation_keyword": "\"literary comparison\"||7\"",
+                "edge_data": {
+                    "keyword": "\"literary comparison\"||7\"",
+                    "weight": 1.0,
+                    "description": "\"Hamlet is compared to Scrooge in a literary context, drawing parallels between characters.\"",
+                    "history": "\"Hamlet is compared to Scrooge in a literary context, drawing parallels between characters.\"",
+                    "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"THE PRESENT\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"THE PRESENT\"",
+                "relation_keyword": "\"present awareness\"||7\"",
+                "edge_data": {
+                    "keyword": "\"present awareness\"||7\"",
+                    "weight": 1.0,
+                    "description": "\"Embracing The Present leads Scrooge to a moment of awareness and change, influencing his decisions and actions.\"",
+                    "history": "\"Embracing The Present leads Scrooge to a moment of awareness and change, influencing his decisions and actions.\"",
+                    "source_id": "chunk-91572b3cd42786ba4cb2f180ca25cbf4"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"SCROOGE'S NEPHEW\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"SCROOGE'S NEPHEW\"",
+                "relation_keyword": "\"contrasting viewpoints\"",
+                "edge_data": {
+                    "keyword": "\"contrasting viewpoints\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's Nephew finds amusement in contrasting with Scrooge's perspective on Christmas.\"",
+                    "history": "\"Scrooge's Nephew finds amusement in contrasting with Scrooge's perspective on Christmas.\"",
+                    "source_id": "chunk-773d0df1dd25c356f7b771d780583e09"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"THE GHOST\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"THE GHOST\"",
+                "relation_keyword": "\"interaction\"",
+                "edge_data": {
+                    "keyword": "\"interaction\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge interacts with The Ghost, reflecting on past events and showing emotional responses.\"",
+                    "history": "\"Scrooge interacts with The Ghost, reflecting on past events and showing emotional responses.\"",
+                    "source_id": "chunk-c6c248858d1b13ab7ee9ca13c1aeed6b"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"FRED\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"FRED\"",
+                "relation_keyword": "\"family relationship\"",
+                "edge_data": {
+                    "keyword": "\"family relationship\"",
+                    "weight": 7.0,
+                    "description": "\"Scrooge requests entry to Fred's dinner, showcasing a familial connection.\"",
+                    "history": "\"Scrooge requests entry to Fred's dinner, showcasing a familial connection.\"",
+                    "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"THE GHOST OF CHRISTMAS PRESENT\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"THE GHOST OF CHRISTMAS PRESENT\"",
+                "relation_keyword": "\"guidance\"",
+                "edge_data": {
+                    "keyword": "\"guidance\"",
+                    "weight": 9.0,
+                    "description": "\"Scrooge seeks enlightenment from the spirit, displaying a willingness to learn and change.\"",
+                    "history": "\"Scrooge seeks enlightenment from the spirit, displaying a willingness to learn and change.\"",
+                    "source_id": "chunk-843b5b2f944c7413d9ca876e2e2f151f"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"FORMER SELF\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"FORMER SELF\"",
+                "relation_keyword": "\"self-reflection\"",
+                "edge_data": {
+                    "keyword": "\"self-reflection\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge reflects on his former self and recognizes growth and change.\"",
+                    "history": "\"Scrooge reflects on his former self and recognizes growth and change.\"",
+                    "source_id": "chunk-8bc1edd983869352d14cf0886a9175a7"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"SPIRIT OF CHRISTMAS PAST\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"SPIRIT OF CHRISTMAS PAST\"",
+                "relation_keyword": "\"past reflection\"",
+                "edge_data": {
+                    "keyword": "\"past reflection\"",
+                    "weight": 7.0,
+                    "description": "\"Scrooge interacts with the Spirit of Christmas Past, leading to reflective moments and insights from past experiences.\"",
+                    "history": "\"Scrooge interacts with the Spirit of Christmas Past, leading to reflective moments and insights from past experiences.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
             "\"OLD JOE\""
         ],
         "edges": [
             {
-                "source": "\"THE DEAD MAN\"",
-                "target": "\"THE FIRST WOMAN\"",
-                "relation_keyword": "\"opportunistic actions\"",
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
                 "edge_data": {
-                    "keyword": "\"opportunistic actions\"",
+                    "keyword": "\"holiday transformation\"",
                     "weight": 8.0,
-                    "description": "\"The First Woman discusses taking belongings from The Dead Man, showing a direct connection in her actions towards his possessions.\"",
-                    "history": "\"The First Woman discusses taking belongings from The Dead Man, showing a direct connection in her actions towards his possessions.\"",
-                    "source_id": "chunk-e1f29eeadc1d8ab46dc8a0bbd3c56b64"
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
                 }
             },
             {
-                "source": "\"THE FIRST WOMAN\"",
+                "source": "\"SCROOGE\"",
                 "target": "\"OLD JOE\"",
-                "relation_keyword": "\"business interaction\"",
+                "relation_keyword": "\"interaction\"",
                 "edge_data": {
-                    "keyword": "\"business interaction\"",
-                    "weight": 7.0,
-                    "description": "\"Old Joe interacts with the first woman for the appraisal and possibly purchases of her bundle, demonstrating their business relationship.\"",
-                    "history": "\"Old Joe interacts with the first woman for the appraisal and possibly purchases of her bundle, demonstrating their business relationship.\"",
+                    "keyword": "\"interaction\"",
+                    "weight": 6.0,
+                    "description": "\"Old Joe interacts with Scrooge and the Phantom in his shop.\"",
+                    "history": "\"Old Joe interacts with Scrooge and the Phantom in his shop.\"",
                     "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
                 }
             }
@@ -1807,275 +1810,711 @@
     },
     {
         "nodes": [
-            "\"THE FEAST\"",
-            "\"BOB CRATCHIT\"",
-            "\"MASTER PETER CRATCHIT\"",
-            "\"CRATCHIT'S CHILDREN\""
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"JACOB\""
         ],
         "edges": [
             {
-                "source": "\"THE FEAST\"",
-                "target": "\"BOB CRATCHIT\"",
-                "relation_keyword": "\"festivity\"",
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
                 "edge_data": {
-                    "keyword": "\"festivity\"",
+                    "keyword": "\"holiday transformation\"",
                     "weight": 8.0,
-                    "description": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "history": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
                 }
             },
             {
-                "source": "\"BOB CRATCHIT\"",
-                "target": "\"MASTER PETER CRATCHIT\"",
-                "relation_keyword": "\"economic management\"",
+                "source": "\"SCROOGE\"",
+                "target": "\"JACOB\"",
+                "relation_keyword": "\"reflection\"",
                 "edge_data": {
-                    "keyword": "\"economic management\"",
-                    "weight": 5.0,
-                    "description": "\"Master Peter is wearing his father Bob's shirt, which symbolizes the passing of items within the family due to economic necessity.\"",
-                    "history": "\"Master Peter is wearing his father Bob's shirt, which symbolizes the passing of items within the family due to economic necessity.\"",
-                    "source_id": "chunk-b0f459f5af1c3a5e0b92cbe4ee48b77b"
-                }
-            },
-            {
-                "source": "\"MASTER PETER CRATCHIT\"",
-                "target": "\"CRATCHIT'S CHILDREN\"",
-                "relation_keyword": "\"family interaction\"",
-                "edge_data": {
-                    "keyword": "\"family interaction\"",
-                    "weight": 7.0,
-                    "description": "\"Master Peter Cratchit interacts with his siblings, contributing to the lively family dynamics during the Christmas celebrations.\"",
-                    "history": "\"Master Peter Cratchit interacts with his siblings, contributing to the lively family dynamics during the Christmas celebrations.\"",
-                    "source_id": "chunk-b0f459f5af1c3a5e0b92cbe4ee48b77b"
+                    "keyword": "\"reflection\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences with different characters prompt reflection on his past, including the death of his old partner, Jacob.\"",
+                    "history": "\"Scrooge's experiences with different characters prompt reflection on his past, including the death of his old partner, Jacob.\"",
+                    "source_id": "chunk-f1a4fbcf1ed86864b9bfd5e8dba4c683"
                 }
             }
         ]
     },
     {
         "nodes": [
-            "\"THE FEAST\"",
-            "\"BOB CRATCHIT\"",
-            "\"MRS. CRATCHIT\"",
-            "\"BELINDA CRATCHIT\""
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"THE PAST\""
         ],
         "edges": [
             {
-                "source": "\"THE FEAST\"",
-                "target": "\"BOB CRATCHIT\"",
-                "relation_keyword": "\"festivity\"",
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
                 "edge_data": {
-                    "keyword": "\"festivity\"",
+                    "keyword": "\"holiday transformation\"",
                     "weight": 8.0,
-                    "description": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "history": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
                 }
             },
             {
-                "source": "\"BOB CRATCHIT\"",
-                "target": "\"MRS. CRATCHIT\"",
-                "relation_keyword": "\"shared responsibility\"",
+                "source": "\"SCROOGE\"",
+                "target": "\"THE PAST\"",
+                "relation_keyword": "\"reflective learning\"||8\"",
                 "edge_data": {
-                    "keyword": "\"shared responsibility\"",
+                    "keyword": "\"reflective learning\"||8\"",
+                    "weight": 1.0,
+                    "description": "\"Reflecting on The Past allows Scrooge to learn from his past actions, fostering inner growth and transformation.\"",
+                    "history": "\"Reflecting on The Past allows Scrooge to learn from his past actions, fostering inner growth and transformation.\"",
+                    "source_id": "chunk-91572b3cd42786ba4cb2f180ca25cbf4"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"OLD MARLEY\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"OLD MARLEY\"",
+                "relation_keyword": "\"business partnership\"",
+                "edge_data": {
+                    "keyword": "\"business partnership\"",
+                    "weight": 8.0,
+                    "description": "\"Old Marley is depicted as Scrooge's former partner, influencing the narrative with his legacy.\"",
+                    "history": "\"Old Marley is depicted as Scrooge's former partner, influencing the narrative with his legacy.\"",
+                    "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"BELLE\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"BELLE\"",
+                "relation_keyword": "\"empathy\"||7\"",
+                "edge_data": {
+                    "keyword": "\"empathy\"||7\"",
+                    "weight": 1.0,
+                    "description": "\"Belle demonstrates empathy towards Scrooge, emphasizing the emotional impact of their past relationship.\"",
+                    "history": "\"Belle demonstrates empathy towards Scrooge, emphasizing the emotional impact of their past relationship.\"",
+                    "source_id": "chunk-54bdd22db1f84a965b5f4c06c9216d8d"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"GHOST OF CHRISTMAS PAST\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"GHOST OF CHRISTMAS PAST\"",
+                "relation_keyword": "\"introspection trigger\"",
+                "edge_data": {
+                    "keyword": "\"introspection trigger\"",
                     "weight": 9.0,
-                    "description": "\"Mrs. Cratchit supports Bob and shares his concerns and family responsibilities, particularly evident in their mutual caring for Tiny Tim.\"",
-                    "history": "\"Mrs. Cratchit supports Bob and shares his concerns and family responsibilities, particularly evident in their mutual caring for Tiny Tim.\"",
-                    "source_id": "chunk-1d4b58de5429cd1261370c231c8673e8"
-                }
-            },
-            {
-                "source": "\"MRS. CRATCHIT\"",
-                "target": "\"BELINDA CRATCHIT\"",
-                "relation_keyword": "\"holiday preparation\"",
-                "edge_data": {
-                    "keyword": "\"holiday preparation\"",
-                    "weight": 6.0,
-                    "description": "\"Mrs. Cratchit and Belinda Cratchit work together to prepare for Christmas dinner, showing a familial collaboration.\"",
-                    "history": "\"Mrs. Cratchit and Belinda Cratchit work together to prepare for Christmas dinner, showing a familial collaboration.\"",
-                    "source_id": "chunk-b0f459f5af1c3a5e0b92cbe4ee48b77b"
+                    "description": "\"The Ghost of Christmas Past triggers introspection in Scrooge, leading to a change of heart.\"",
+                    "history": "\"The Ghost of Christmas Past triggers introspection in Scrooge, leading to a change of heart.\"",
+                    "source_id": "chunk-43c9bee23adfa77aa9dedd22401bba7d"
                 }
             }
         ]
     },
     {
         "nodes": [
-            "\"THE FEAST\"",
-            "\"BOB CRATCHIT\"",
-            "\"THE GOOSE\"",
-            "\"THE YOUNG CRATCHITS\""
+            "\"CHRISTMAS DAY\"",
+            "\"TINY TIM\"",
+            "\"THE CRATCHIT FAMILY\""
         ],
         "edges": [
             {
-                "source": "\"THE FEAST\"",
-                "target": "\"BOB CRATCHIT\"",
-                "relation_keyword": "\"festivity\"",
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"TINY TIM\"",
+                "relation_keyword": "\"family unity\"",
                 "edge_data": {
-                    "keyword": "\"festivity\"",
-                    "weight": 8.0,
-                    "description": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
-                    "history": "\"Bob Cratchit directly participates in, contributes to, and discusses the events during The Feast.\"",
+                    "keyword": "\"family unity\"",
+                    "weight": 7.0,
+                    "description": "\"Tiny Tim's participation in the family's Christmas toast symbolizes unity and care within the Cratchit family.\"",
+                    "history": "\"Tiny Tim's participation in the family's Christmas toast symbolizes unity and care within the Cratchit family.\"",
                     "source_id": "chunk-19d72c57ae3408758b18d2568e86dc6b"
                 }
             },
             {
-                "source": "\"BOB CRATCHIT\"",
-                "target": "\"THE GOOSE\"",
-                "relation_keyword": "\"family meal preparation\"",
+                "source": "\"TINY TIM\"",
+                "target": "\"THE CRATCHIT FAMILY\"",
+                "relation_keyword": "\"family inclusion\"",
                 "edge_data": {
-                    "keyword": "\"family meal preparation\"",
+                    "keyword": "\"family inclusion\"",
                     "weight": 8.0,
-                    "description": "\"Bob Cratchit, along with his children, brought back the goose, which is a centerpiece of their Christmas meal.\"",
-                    "history": "\"Bob Cratchit, along with his children, brought back the goose, which is a centerpiece of their Christmas meal.\"",
-                    "source_id": "chunk-7e2e7ebcc19a53b399dc03aded4743e7"
-                }
-            },
-            {
-                "source": "\"THE GOOSE\"",
-                "target": "\"THE YOUNG CRATCHITS\"",
-                "relation_keyword": "\"Christmas feast\"",
-                "edge_data": {
-                    "keyword": "\"Christmas feast\"",
-                    "weight": 8.0,
-                    "description": "\"The Young Cratchits were excited and screaming about the goose they smelt at the baker’s, showing their anticipation and joy for the Christmas feast.\"",
-                    "history": "\"The Young Cratchits were excited and screaming about the goose they smelt at the baker’s, showing their anticipation and joy for the Christmas feast.\"",
-                    "source_id": "chunk-7e2e7ebcc19a53b399dc03aded4743e7"
+                    "description": "\"The Cratchit family includes Tiny Tim, who emanates joy and enthusiasm during the meal.\"",
+                    "history": "\"The Cratchit family includes Tiny Tim, who emanates joy and enthusiasm during the meal.\"",
+                    "source_id": "chunk-503f0bfa5453467c7c61d160a3540eca"
                 }
             }
         ]
     },
     {
         "nodes": [
-            "\"CHRISTMAS MORNING\"",
-            "\"THE POULTERERS' SHOPS\"",
-            "\"THE CITY STREETS\"",
-            "\"THE FRIGIANS' SHOPS\""
+            "\"EBENEZER SCROOGE\"",
+            "\"GHOST\"",
+            "\"MAN WITH WORLDLY MIND\""
         ],
         "edges": [
             {
-                "source": "\"CHRISTMAS MORNING\"",
-                "target": "\"THE POULTERERS' SHOPS\"",
-                "relation_keyword": "\"market activity\"",
+                "source": "\"EBENEZER SCROOGE\"",
+                "target": "\"GHOST\"",
+                "relation_keyword": "\"introspection\"",
                 "edge_data": {
-                    "keyword": "\"market activity\"",
-                    "weight": 7.0,
-                    "description": "\"The Poulterers' Shops are part of the vibrant scene described on Christmas Morning, contributing to the joyful atmosphere.\"",
-                    "history": "\"The Poulterers' Shops are part of the vibrant scene described on Christmas Morning, contributing to the joyful atmosphere.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
-                }
-            },
-            {
-                "source": "\"THE POULTERERS' SHOPS\"",
-                "target": "\"THE CITY STREETS\"",
-                "relation_keyword": "\"market activity\"",
-                "edge_data": {
-                    "keyword": "\"market activity\"",
+                    "keyword": "\"introspection\"",
                     "weight": 8.0,
-                    "description": "\"The Poulterers' Shops contribute to the lively Christmas morning scene in the city streets with open markets and festive offerings.\"",
-                    "history": "\"The Poulterers' Shops contribute to the lively Christmas morning scene in the city streets with open markets and festive offerings.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
+                    "description": "\"Scrooge interacts with the Ghost, discussing beliefs in spirits and the consequences of their actions.\"",
+                    "history": "\"Scrooge interacts with the Ghost, discussing beliefs in spirits and the consequences of their actions.\"",
+                    "source_id": "chunk-359187e7571bda4b0b08b2e0b6581e52"
                 }
             },
             {
-                "source": "\"THE CITY STREETS\"",
-                "target": "\"THE FRIGIANS' SHOPS\"",
-                "relation_keyword": "\"festive activity\"",
+                "source": "\"GHOST\"",
+                "target": "\"MAN WITH WORLDLY MIND\"",
+                "relation_keyword": "\"existential inquiry\"",
                 "edge_data": {
-                    "keyword": "\"festive activity\"",
+                    "keyword": "\"existential inquiry\"",
                     "weight": 7.0,
-                    "description": "\"The activities and offerings at the Frigians' Shops add to the lively atmosphere of the city streets on Christmas morning.\"",
-                    "history": "\"The activities and offerings at the Frigians' Shops add to the lively atmosphere of the city streets on Christmas morning.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
+                    "description": "\"The Man with Worldly Mind engages in dialogue with the Ghost, discussing beliefs and addressing existential questions.\"",
+                    "history": "\"The Man with Worldly Mind engages in dialogue with the Ghost, discussing beliefs and addressing existential questions.\"",
+                    "source_id": "chunk-359187e7571bda4b0b08b2e0b6581e52"
                 }
             }
         ]
     },
     {
         "nodes": [
-            "\"THE DEAD MAN\"",
-            "\"THE FIRST WOMAN\"",
+            "\"CHRISTMAS\"",
+            "\"THE FAMILY\"",
+            "\"PORTER\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS\"",
+                "target": "\"THE FAMILY\"",
+                "relation_keyword": "\"family unity\"",
+                "edge_data": {
+                    "keyword": "\"family unity\"",
+                    "weight": 8.0,
+                    "description": "\"Christmas serves as a catalyst for family unity and happiness, fostering positive interactions.\"",
+                    "history": "\"Christmas serves as a catalyst for family unity and happiness, fostering positive interactions.\"",
+                    "source_id": "chunk-54bdd22db1f84a965b5f4c06c9216d8d"
+                }
+            },
+            {
+                "source": "\"THE FAMILY\"",
+                "target": "\"PORTER\"",
+                "relation_keyword": "\"chaotic environment\"",
+                "edge_data": {
+                    "keyword": "\"chaotic environment\"",
+                    "weight": 7.0,
+                    "description": "\"The Porter's role in the chaotic scene reflects the jovial and energetic nature of the family's activities.\"",
+                    "history": "\"The Porter's role in the chaotic scene reflects the jovial and energetic nature of the family's activities.\"",
+                    "source_id": "chunk-54bdd22db1f84a965b5f4c06c9216d8d"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS\"",
+            "\"THE SHIP\"",
+            "\"THE LIGHTHOUSE\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS\"",
+                "target": "\"THE SHIP\"",
+                "relation_keyword": "\"memories\"",
+                "edge_data": {
+                    "keyword": "\"memories\"",
+                    "weight": 7.0,
+                    "description": "\"Each crew member recalls past Christmases with fondness and connection.\"",
+                    "history": "\"Each crew member recalls past Christmases with fondness and connection.\"",
+                    "source_id": "chunk-91614df5cb74cbe5e109a338a82041e9"
+                }
+            },
+            {
+                "source": "\"THE SHIP\"",
+                "target": "\"THE LIGHTHOUSE\"",
+                "relation_keyword": "\"resilience\"",
+                "edge_data": {
+                    "keyword": "\"resilience\"",
+                    "weight": 9.0,
+                    "description": "\"The Lighthouse stands resilient in stormy seas, offering hope and direction.\"",
+                    "history": "\"The Lighthouse stands resilient in stormy seas, offering hope and direction.\"",
+                    "source_id": "chunk-91614df5cb74cbe5e109a338a82041e9"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS\"",
+            "\"EBENEZER\"",
+            "\"TRANSFORMATION\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS\"",
+                "target": "\"EBENEZER\"",
+                "relation_keyword": "\"holiday reflection\"",
+                "edge_data": {
+                    "keyword": "\"holiday reflection\"",
+                    "weight": 8.0,
+                    "description": "\"Ebenezer's experiences during Christmas prompt introspection and growth, leading to a change in his outlook.\"",
+                    "history": "\"Ebenezer's experiences during Christmas prompt introspection and growth, leading to a change in his outlook.\"",
+                    "source_id": "chunk-8bc1edd983869352d14cf0886a9175a7"
+                }
+            },
+            {
+                "source": "\"EBENEZER\"",
+                "target": "\"TRANSFORMATION\"",
+                "relation_keyword": "\"character development\"",
+                "edge_data": {
+                    "keyword": "\"character development\"",
+                    "weight": 9.0,
+                    "description": "\"Ebenezer undergoes a significant transformation throughout the story, evolving into a more compassionate and caring individual.\"",
+                    "history": "\"Ebenezer undergoes a significant transformation throughout the story, evolving into a more compassionate and caring individual.\"",
+                    "source_id": "chunk-8bc1edd983869352d14cf0886a9175a7"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS\"",
+            "\"FEZZIWIG\"",
+            "\"MRS. FEZZIWIG\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS\"",
+                "target": "\"FEZZIWIG\"",
+                "relation_keyword": "\"festive atmosphere\"",
+                "edge_data": {
+                    "keyword": "\"festive atmosphere\"",
+                    "weight": 9.0,
+                    "description": "\"Fezziwig orchestrates a lively Christmas celebration, imbuing the atmosphere with joy and festivity.\"",
+                    "history": "\"Fezziwig orchestrates a lively Christmas celebration, imbuing the atmosphere with joy and festivity.\"",
+                    "source_id": "chunk-8bc1edd983869352d14cf0886a9175a7"
+                }
+            },
+            {
+                "source": "\"FEZZIWIG\"",
+                "target": "\"MRS. FEZZIWIG\"",
+                "relation_keyword": "\"festive interaction\"",
+                "edge_data": {
+                    "keyword": "\"festive interaction\"",
+                    "weight": 8.0,
+                    "description": "\"Fezziwig dances with Mrs. Fezziwig, demonstrating a lively and festive interaction.\"",
+                    "history": "\"Fezziwig dances with Mrs. Fezziwig, demonstrating a lively and festive interaction.\"",
+                    "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS\"",
+            "\"FEZZIWIG\"",
+            "\"ATTENDEES\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS\"",
+                "target": "\"FEZZIWIG\"",
+                "relation_keyword": "\"festive atmosphere\"",
+                "edge_data": {
+                    "keyword": "\"festive atmosphere\"",
+                    "weight": 9.0,
+                    "description": "\"Fezziwig orchestrates a lively Christmas celebration, imbuing the atmosphere with joy and festivity.\"",
+                    "history": "\"Fezziwig orchestrates a lively Christmas celebration, imbuing the atmosphere with joy and festivity.\"",
+                    "source_id": "chunk-8bc1edd983869352d14cf0886a9175a7"
+                }
+            },
+            {
+                "source": "\"FEZZIWIG\"",
+                "target": "\"ATTENDEES\"",
+                "relation_keyword": "\"generosity\"",
+                "edge_data": {
+                    "keyword": "\"generosity\"",
+                    "weight": 8.0,
+                    "description": "\"Fezziwig's generosity evokes gratitude and Merry Christmas wishes from those attending the ball.\"",
+                    "history": "\"Fezziwig's generosity evokes gratitude and Merry Christmas wishes from those attending the ball.\"",
+                    "source_id": "chunk-b2f98bc7abb0c67d4c86055c7fd72218"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS\"",
+            "\"FEZZIWIG\"",
+            "\"DICK WILKINS\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS\"",
+                "target": "\"FEZZIWIG\"",
+                "relation_keyword": "\"festive atmosphere\"",
+                "edge_data": {
+                    "keyword": "\"festive atmosphere\"",
+                    "weight": 9.0,
+                    "description": "\"Fezziwig orchestrates a lively Christmas celebration, imbuing the atmosphere with joy and festivity.\"",
+                    "history": "\"Fezziwig orchestrates a lively Christmas celebration, imbuing the atmosphere with joy and festivity.\"",
+                    "source_id": "chunk-8bc1edd983869352d14cf0886a9175a7"
+                }
+            },
+            {
+                "source": "\"FEZZIWIG\"",
+                "target": "\"DICK WILKINS\"",
+                "relation_keyword": "\"camaraderie\"",
+                "edge_data": {
+                    "keyword": "\"camaraderie\"",
+                    "weight": 7.0,
+                    "description": "\"Fezziwig engages with Dick Wilkins in the Christmas festivities, fostering a sense of camaraderie.\"",
+                    "history": "\"Fezziwig engages with Dick Wilkins in the Christmas festivities, fostering a sense of camaraderie.\"",
+                    "source_id": "chunk-8bc1edd983869352d14cf0886a9175a7"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS\"",
+            "\"MR. SCROOGE\"",
+            "\"SPIRIT OF CHRISTMAS PRESENT\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS\"",
+                "target": "\"MR. SCROOGE\"",
+                "relation_keyword": "\"reluctance\"",
+                "edge_data": {
+                    "keyword": "\"reluctance\"",
+                    "weight": 7.0,
+                    "description": "\"Scrooge's reluctance to engage in Christmas activities portrays a lack of festive spirit.\"",
+                    "history": "\"Scrooge's reluctance to engage in Christmas activities portrays a lack of festive spirit.\"",
+                    "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+                }
+            },
+            {
+                "source": "\"MR. SCROOGE\"",
+                "target": "\"SPIRIT OF CHRISTMAS PRESENT\"",
+                "relation_keyword": "\"holiday spirit\"",
+                "edge_data": {
+                    "keyword": "\"holiday spirit\"",
+                    "weight": 8.0,
+                    "description": "\"Mr. Scrooge is introduced to the joy and festivity of Christmas through the Spirit of Christmas Present.\"",
+                    "history": "\"Mr. Scrooge is introduced to the joy and festivity of Christmas through the Spirit of Christmas Present.\"",
+                    "source_id": "chunk-da2472b4ef2a535b62908f14d0fb0ca9"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS\"",
+            "\"MR. SCROOGE\"",
+            "\"GENTLEMAN\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS\"",
+                "target": "\"MR. SCROOGE\"",
+                "relation_keyword": "\"reluctance\"",
+                "edge_data": {
+                    "keyword": "\"reluctance\"",
+                    "weight": 7.0,
+                    "description": "\"Scrooge's reluctance to engage in Christmas activities portrays a lack of festive spirit.\"",
+                    "history": "\"Scrooge's reluctance to engage in Christmas activities portrays a lack of festive spirit.\"",
+                    "source_id": "chunk-5dac41b3f9eeaf794f0147400b1718cd"
+                }
+            },
+            {
+                "source": "\"MR. SCROOGE\"",
+                "target": "\"GENTLEMAN\"",
+                "relation_keyword": "\"ideological difference\"",
+                "edge_data": {
+                    "keyword": "\"ideological difference\"",
+                    "weight": 7.0,
+                    "description": "\"Mr. Scrooge and the gentleman have contrasting views on charity and assistance to the poor.\"",
+                    "history": "\"Mr. Scrooge and the gentleman have contrasting views on charity and assistance to the poor.\"",
+                    "source_id": "chunk-90d5764e301321c087f5a8f78b73a145"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"WASHINGTON\"",
+            "\"THE POOR\"",
+            "\"MANSION HOUSE\""
+        ],
+        "edges": [
+            {
+                "source": "\"WASHINGTON\"",
+                "target": "\"THE POOR\"",
+                "relation_keyword": "\"aid provision\"",
+                "edge_data": {
+                    "keyword": "\"aid provision\"",
+                    "weight": 6.0,
+                    "description": "\"Efforts to aid the Poor are made based on external influences from Washington.\"",
+                    "history": "\"Efforts to aid the Poor are made based on external influences from Washington.\"",
+                    "source_id": "chunk-90d5764e301321c087f5a8f78b73a145"
+                }
+            },
+            {
+                "source": "\"THE POOR\"",
+                "target": "\"MANSION HOUSE\"",
+                "relation_keyword": "\"Christmas preparations\"",
+                "edge_data": {
+                    "keyword": "\"Christmas preparations\"",
+                    "weight": 8.0,
+                    "description": "\"The Lord Mayor's staff prepares Christmas celebrations, including provisions for the Poor.\"",
+                    "history": "\"The Lord Mayor's staff prepares Christmas celebrations, including provisions for the Poor.\"",
+                    "source_id": "chunk-90d5764e301321c087f5a8f78b73a145"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"THE GHOST\"",
+            "\"TWELFTH-NIGHT PARTY\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"THE GHOST\"",
+                "relation_keyword": "\"interaction\"",
+                "edge_data": {
+                    "keyword": "\"interaction\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge interacts with The Ghost, reflecting on past events and showing emotional responses.\"",
+                    "history": "\"Scrooge interacts with The Ghost, reflecting on past events and showing emotional responses.\"",
+                    "source_id": "chunk-c6c248858d1b13ab7ee9ca13c1aeed6b"
+                }
+            },
+            {
+                "source": "\"THE GHOST\"",
+                "target": "\"TWELFTH-NIGHT PARTY\"",
+                "relation_keyword": "\"eventful encounter\"",
+                "edge_data": {
+                    "keyword": "\"eventful encounter\"",
+                    "weight": 7.0,
+                    "description": "\"The Twelfth-Night Party is attended by Scrooge and the Ghost, with the event marking a moment of revelation about the Ghost's aging.\"",
+                    "history": "\"The Twelfth-Night Party is attended by Scrooge and the Ghost, with the event marking a moment of revelation about the Ghost's aging.\"",
+                    "source_id": "chunk-e7637ff18c5ded77a68cce0a87883fad"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"FRED\"",
+            "\"MULLED WINE\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"FRED\"",
+                "relation_keyword": "\"family relationship\"",
+                "edge_data": {
+                    "keyword": "\"family relationship\"",
+                    "weight": 7.0,
+                    "description": "\"Scrooge requests entry to Fred's dinner, showcasing a familial connection.\"",
+                    "history": "\"Scrooge requests entry to Fred's dinner, showcasing a familial connection.\"",
+                    "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+                }
+            },
+            {
+                "source": "\"FRED\"",
+                "target": "\"MULLED WINE\"",
+                "relation_keyword": "\"celebratory toast\"",
+                "edge_data": {
+                    "keyword": "\"celebratory toast\"",
+                    "weight": 6.0,
+                    "description": "\"Fred suggests a toast to Uncle Scrooge with a glass of mulled wine during a Christmas celebration.\"",
+                    "history": "\"Fred suggests a toast to Uncle Scrooge with a glass of mulled wine during a Christmas celebration.\"",
+                    "source_id": "chunk-e7637ff18c5ded77a68cce0a87883fad"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
             "\"OLD JOE\"",
-            "\"THE MAN IN FADED BLACK\""
+            "\"JOE\""
         ],
         "edges": [
             {
-                "source": "\"THE DEAD MAN\"",
-                "target": "\"THE FIRST WOMAN\"",
-                "relation_keyword": "\"opportunistic actions\"",
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
                 "edge_data": {
-                    "keyword": "\"opportunistic actions\"",
+                    "keyword": "\"holiday transformation\"",
                     "weight": 8.0,
-                    "description": "\"The First Woman discusses taking belongings from The Dead Man, showing a direct connection in her actions towards his possessions.\"",
-                    "history": "\"The First Woman discusses taking belongings from The Dead Man, showing a direct connection in her actions towards his possessions.\"",
-                    "source_id": "chunk-e1f29eeadc1d8ab46dc8a0bbd3c56b64"
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
                 }
             },
             {
-                "source": "\"THE FIRST WOMAN\"",
+                "source": "\"SCROOGE\"",
                 "target": "\"OLD JOE\"",
-                "relation_keyword": "\"business interaction\"",
+                "relation_keyword": "\"interaction\"",
                 "edge_data": {
-                    "keyword": "\"business interaction\"",
-                    "weight": 7.0,
-                    "description": "\"Old Joe interacts with the first woman for the appraisal and possibly purchases of her bundle, demonstrating their business relationship.\"",
-                    "history": "\"Old Joe interacts with the first woman for the appraisal and possibly purchases of her bundle, demonstrating their business relationship.\"",
+                    "keyword": "\"interaction\"",
+                    "weight": 6.0,
+                    "description": "\"Old Joe interacts with Scrooge and the Phantom in his shop.\"",
+                    "history": "\"Old Joe interacts with Scrooge and the Phantom in his shop.\"",
                     "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
                 }
             },
             {
                 "source": "\"OLD JOE\"",
-                "target": "\"THE MAN IN FADED BLACK\"",
-                "relation_keyword": "\"business\"",
+                "target": "\"JOE\"",
+                "relation_keyword": "\"generosity\"",
                 "edge_data": {
-                    "keyword": "\"business\"",
-                    "weight": 7.0,
-                    "description": "\"Old Joe appraises items brought by the man in faded black, facilitating a commercial transaction.\"",
-                    "history": "\"Old Joe appraises items brought by the man in faded black, facilitating a commercial transaction.\"",
-                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                    "keyword": "\"generosity\"",
+                    "weight": 8.0,
+                    "description": "\"Old Joe reflects on his habit of being generous towards women, reflecting on how it affects him personally.\"",
+                    "history": "\"Old Joe reflects on his habit of being generous towards women, reflecting on how it affects him personally.\"",
+                    "source_id": "chunk-e1f29eeadc1d8ab46dc8a0bbd3c56b64"
                 }
             }
         ]
     },
     {
         "nodes": [
-            "\"THE DEAD MAN\"",
-            "\"THE FIRST WOMAN\"",
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
             "\"OLD JOE\"",
-            "\"MRS. DILBER\""
+            "\"THE CHARWOMAN\""
         ],
         "edges": [
             {
-                "source": "\"THE DEAD MAN\"",
-                "target": "\"THE FIRST WOMAN\"",
-                "relation_keyword": "\"opportunistic actions\"",
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
                 "edge_data": {
-                    "keyword": "\"opportunistic actions\"",
+                    "keyword": "\"holiday transformation\"",
                     "weight": 8.0,
-                    "description": "\"The First Woman discusses taking belongings from The Dead Man, showing a direct connection in her actions towards his possessions.\"",
-                    "history": "\"The First Woman discusses taking belongings from The Dead Man, showing a direct connection in her actions towards his possessions.\"",
-                    "source_id": "chunk-e1f29eeadc1d8ab46dc8a0bbd3c56b64"
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
                 }
             },
             {
-                "source": "\"THE FIRST WOMAN\"",
+                "source": "\"SCROOGE\"",
                 "target": "\"OLD JOE\"",
-                "relation_keyword": "\"business interaction\"",
+                "relation_keyword": "\"interaction\"",
                 "edge_data": {
-                    "keyword": "\"business interaction\"",
-                    "weight": 7.0,
-                    "description": "\"Old Joe interacts with the first woman for the appraisal and possibly purchases of her bundle, demonstrating their business relationship.\"",
-                    "history": "\"Old Joe interacts with the first woman for the appraisal and possibly purchases of her bundle, demonstrating their business relationship.\"",
+                    "keyword": "\"interaction\"",
+                    "weight": 6.0,
+                    "description": "\"Old Joe interacts with Scrooge and the Phantom in his shop.\"",
+                    "history": "\"Old Joe interacts with Scrooge and the Phantom in his shop.\"",
                     "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
                 }
             },
             {
                 "source": "\"OLD JOE\"",
-                "target": "\"MRS. DILBER\"",
-                "relation_keyword": "\"appraisal\"",
+                "target": "\"THE CHARWOMAN\"",
+                "relation_keyword": "\"banter\"",
                 "edge_data": {
-                    "keyword": "\"appraisal\"",
-                    "weight": 8.0,
-                    "description": "\"Old Joe directly interacts with Mrs. Dilber as he appraises and purchases her items, marking a business relationship in dealing with the deceased's belongings.\"",
-                    "history": "\"Old Joe directly interacts with Mrs. Dilber as he appraises and purchases her items, marking a business relationship in dealing with the deceased's belongings.\"",
+                    "keyword": "\"banter\"",
+                    "weight": 7.0,
+                    "description": "\"Old Joe engages with The Charwoman in humorous banter with other characters.\"",
+                    "history": "\"Old Joe engages with The Charwoman in humorous banter with other characters.\"",
                     "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
                 }
             }
@@ -2083,118 +2522,269 @@
     },
     {
         "nodes": [
-            "\"CHRISTMAS MORNING\"",
-            "\"THE POULTERERS' SHOPS\"",
-            "\"THE CITY STREETS\"",
-            "\"THE FRIGIANS' SHOPS\"",
-            "\"NORFOLK BIFFINS\""
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"JACOB\"",
+            "\"MARLEY'S GHOST\""
         ],
         "edges": [
             {
-                "source": "\"CHRISTMAS MORNING\"",
-                "target": "\"THE POULTERERS' SHOPS\"",
-                "relation_keyword": "\"market activity\"",
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
                 "edge_data": {
-                    "keyword": "\"market activity\"",
-                    "weight": 7.0,
-                    "description": "\"The Poulterers' Shops are part of the vibrant scene described on Christmas Morning, contributing to the joyful atmosphere.\"",
-                    "history": "\"The Poulterers' Shops are part of the vibrant scene described on Christmas Morning, contributing to the joyful atmosphere.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
-                }
-            },
-            {
-                "source": "\"THE POULTERERS' SHOPS\"",
-                "target": "\"THE CITY STREETS\"",
-                "relation_keyword": "\"market activity\"",
-                "edge_data": {
-                    "keyword": "\"market activity\"",
+                    "keyword": "\"holiday transformation\"",
                     "weight": 8.0,
-                    "description": "\"The Poulterers' Shops contribute to the lively Christmas morning scene in the city streets with open markets and festive offerings.\"",
-                    "history": "\"The Poulterers' Shops contribute to the lively Christmas morning scene in the city streets with open markets and festive offerings.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
                 }
             },
             {
-                "source": "\"THE CITY STREETS\"",
-                "target": "\"THE FRIGIANS' SHOPS\"",
-                "relation_keyword": "\"festive activity\"",
+                "source": "\"SCROOGE\"",
+                "target": "\"JACOB\"",
+                "relation_keyword": "\"reflection\"",
                 "edge_data": {
-                    "keyword": "\"festive activity\"",
-                    "weight": 7.0,
-                    "description": "\"The activities and offerings at the Frigians' Shops add to the lively atmosphere of the city streets on Christmas morning.\"",
-                    "history": "\"The activities and offerings at the Frigians' Shops add to the lively atmosphere of the city streets on Christmas morning.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
+                    "keyword": "\"reflection\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences with different characters prompt reflection on his past, including the death of his old partner, Jacob.\"",
+                    "history": "\"Scrooge's experiences with different characters prompt reflection on his past, including the death of his old partner, Jacob.\"",
+                    "source_id": "chunk-f1a4fbcf1ed86864b9bfd5e8dba4c683"
                 }
             },
             {
-                "source": "\"THE FRIGIANS' SHOPS\"",
-                "target": "\"NORFOLK BIFFINS\"",
-                "relation_keyword": "\"cultural representation\"",
+                "source": "\"JACOB\"",
+                "target": "\"MARLEY'S GHOST\"",
+                "relation_keyword": "\"6\"",
                 "edge_data": {
-                    "keyword": "\"cultural representation\"",
+                    "keyword": "\"6\"",
                     "weight": 6.0,
-                    "description": "\"Norfolk Biffins, distinctly mentioned among other foods, are part of the offerings at the Frigians' Shops, enhancing the festive appeal.\"",
-                    "history": "\"Norfolk Biffins, distinctly mentioned among other foods, are part of the offerings at the Frigians' Shops, enhancing the festive appeal.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
+                    "description": "\"Jacob references Marley's Ghost, indicating a connection or familiarity between the two spectral entities.\"|>\"reference\"",
+                    "history": "\"Jacob references Marley's Ghost, indicating a connection or familiarity between the two spectral entities.\"|>\"reference\"",
+                    "source_id": "chunk-cb661c37436355ccec2769b1d0350c5f"
                 }
             }
         ]
     },
     {
         "nodes": [
-            "\"CHRISTMAS MORNING\"",
-            "\"THE POULTERERS' SHOPS\"",
-            "\"THE CITY STREETS\"",
-            "\"THE FRIGIANS' SHOPS\"",
-            "\"SPANISH ONIONS\""
+            "\"CHRISTMAS\"",
+            "\"FEZZIWIG\"",
+            "\"MRS. FEZZIWIG\"",
+            "\"MR. FEZZIWIG\""
         ],
         "edges": [
             {
-                "source": "\"CHRISTMAS MORNING\"",
-                "target": "\"THE POULTERERS' SHOPS\"",
-                "relation_keyword": "\"market activity\"",
+                "source": "\"CHRISTMAS\"",
+                "target": "\"FEZZIWIG\"",
+                "relation_keyword": "\"festive atmosphere\"",
                 "edge_data": {
-                    "keyword": "\"market activity\"",
-                    "weight": 7.0,
-                    "description": "\"The Poulterers' Shops are part of the vibrant scene described on Christmas Morning, contributing to the joyful atmosphere.\"",
-                    "history": "\"The Poulterers' Shops are part of the vibrant scene described on Christmas Morning, contributing to the joyful atmosphere.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
+                    "keyword": "\"festive atmosphere\"",
+                    "weight": 9.0,
+                    "description": "\"Fezziwig orchestrates a lively Christmas celebration, imbuing the atmosphere with joy and festivity.\"",
+                    "history": "\"Fezziwig orchestrates a lively Christmas celebration, imbuing the atmosphere with joy and festivity.\"",
+                    "source_id": "chunk-8bc1edd983869352d14cf0886a9175a7"
                 }
             },
             {
-                "source": "\"THE POULTERERS' SHOPS\"",
-                "target": "\"THE CITY STREETS\"",
-                "relation_keyword": "\"market activity\"",
+                "source": "\"FEZZIWIG\"",
+                "target": "\"MRS. FEZZIWIG\"",
+                "relation_keyword": "\"festive interaction\"",
                 "edge_data": {
-                    "keyword": "\"market activity\"",
+                    "keyword": "\"festive interaction\"",
                     "weight": 8.0,
-                    "description": "\"The Poulterers' Shops contribute to the lively Christmas morning scene in the city streets with open markets and festive offerings.\"",
-                    "history": "\"The Poulterers' Shops contribute to the lively Christmas morning scene in the city streets with open markets and festive offerings.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
+                    "description": "\"Fezziwig dances with Mrs. Fezziwig, demonstrating a lively and festive interaction.\"",
+                    "history": "\"Fezziwig dances with Mrs. Fezziwig, demonstrating a lively and festive interaction.\"",
+                    "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
                 }
             },
             {
-                "source": "\"THE CITY STREETS\"",
-                "target": "\"THE FRIGIANS' SHOPS\"",
-                "relation_keyword": "\"festive activity\"",
+                "source": "\"MRS. FEZZIWIG\"",
+                "target": "\"MR. FEZZIWIG\"",
+                "relation_keyword": "\"partnership\"",
                 "edge_data": {
-                    "keyword": "\"festive activity\"",
+                    "keyword": "\"partnership\"",
                     "weight": 7.0,
-                    "description": "\"The activities and offerings at the Frigians' Shops add to the lively atmosphere of the city streets on Christmas morning.\"",
-                    "history": "\"The activities and offerings at the Frigians' Shops add to the lively atmosphere of the city streets on Christmas morning.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
+                    "description": "\"Mrs. Fezziwig and Mr. Fezziwig share a joyful and harmonious partnership, symbolizing unity and togetherness.\"",
+                    "history": "\"Mrs. Fezziwig and Mr. Fezziwig share a joyful and harmonious partnership, symbolizing unity and togetherness.\"",
+                    "source_id": "chunk-8bc1edd983869352d14cf0886a9175a7"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"OLD JOE\"",
+            "\"JOE\"",
+            "\"FIRST WOMAN\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
                 }
             },
             {
-                "source": "\"THE FRIGIANS' SHOPS\"",
-                "target": "\"SPANISH ONIONS\"",
-                "relation_keyword": "\"cultural representation\"",
+                "source": "\"SCROOGE\"",
+                "target": "\"OLD JOE\"",
+                "relation_keyword": "\"interaction\"",
                 "edge_data": {
-                    "keyword": "\"cultural representation\"",
+                    "keyword": "\"interaction\"",
                     "weight": 6.0,
-                    "description": "\"The Spanish Onions, described with lively and engaging attributes, are part of the offerings at the Frigians' Shops, contributing to the festive scene.\"",
-                    "history": "\"The Spanish Onions, described with lively and engaging attributes, are part of the offerings at the Frigians' Shops, contributing to the festive scene.\"",
-                    "source_id": "chunk-99b0ec7f7e006561352b5d65e849611d"
+                    "description": "\"Old Joe interacts with Scrooge and the Phantom in his shop.\"",
+                    "history": "\"Old Joe interacts with Scrooge and the Phantom in his shop.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
+            },
+            {
+                "source": "\"OLD JOE\"",
+                "target": "\"JOE\"",
+                "relation_keyword": "\"generosity\"",
+                "edge_data": {
+                    "keyword": "\"generosity\"",
+                    "weight": 8.0,
+                    "description": "\"Old Joe reflects on his habit of being generous towards women, reflecting on how it affects him personally.\"",
+                    "history": "\"Old Joe reflects on his habit of being generous towards women, reflecting on how it affects him personally.\"",
+                    "source_id": "chunk-e1f29eeadc1d8ab46dc8a0bbd3c56b64"
+                }
+            },
+            {
+                "source": "\"JOE\"",
+                "target": "\"FIRST WOMAN\"",
+                "relation_keyword": "\"assertiveness\"",
+                "edge_data": {
+                    "keyword": "\"assertiveness\"",
+                    "weight": 7.0,
+                    "description": "\"The first woman interacts with Joe and requests him to undo her bundle, showcasing assertiveness.\"",
+                    "history": "\"The first woman interacts with Joe and requests him to undo her bundle, showcasing assertiveness.\"",
+                    "source_id": "chunk-e1f29eeadc1d8ab46dc8a0bbd3c56b64"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"OLD JOE\"",
+            "\"JOE\"",
+            "\"WOMAN\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"OLD JOE\"",
+                "relation_keyword": "\"interaction\"",
+                "edge_data": {
+                    "keyword": "\"interaction\"",
+                    "weight": 6.0,
+                    "description": "\"Old Joe interacts with Scrooge and the Phantom in his shop.\"",
+                    "history": "\"Old Joe interacts with Scrooge and the Phantom in his shop.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
+            },
+            {
+                "source": "\"OLD JOE\"",
+                "target": "\"JOE\"",
+                "relation_keyword": "\"generosity\"",
+                "edge_data": {
+                    "keyword": "\"generosity\"",
+                    "weight": 8.0,
+                    "description": "\"Old Joe reflects on his habit of being generous towards women, reflecting on how it affects him personally.\"",
+                    "history": "\"Old Joe reflects on his habit of being generous towards women, reflecting on how it affects him personally.\"",
+                    "source_id": "chunk-e1f29eeadc1d8ab46dc8a0bbd3c56b64"
+                }
+            },
+            {
+                "source": "\"JOE\"",
+                "target": "\"WOMAN\"",
+                "relation_keyword": "\"humorous conversation\"",
+                "edge_data": {
+                    "keyword": "\"humorous conversation\"",
+                    "weight": 6.0,
+                    "description": "\"Joe engages in a humorous conversation about bed-curtains with a woman.\"",
+                    "history": "\"Joe engages in a humorous conversation about bed-curtains with a woman.\"",
+                    "source_id": "chunk-89777b838d5447c7bd1ec11282c4ee89"
+                }
+            }
+        ]
+    },
+    {
+        "nodes": [
+            "\"CHRISTMAS DAY\"",
+            "\"SCROOGE\"",
+            "\"OLD JOE\"",
+            "\"THE CHARWOMAN\"",
+            "\"THE UNDERTAKER'S MAN\""
+        ],
+        "edges": [
+            {
+                "source": "\"CHRISTMAS DAY\"",
+                "target": "\"SCROOGE\"",
+                "relation_keyword": "\"holiday transformation\"",
+                "edge_data": {
+                    "keyword": "\"holiday transformation\"",
+                    "weight": 8.0,
+                    "description": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "history": "\"Scrooge's experiences on Christmas Day lead to a shift in perspective towards generosity and joy.\"",
+                    "source_id": "chunk-90b95db5c53e4364a6bee36b7aa4d70f"
+                }
+            },
+            {
+                "source": "\"SCROOGE\"",
+                "target": "\"OLD JOE\"",
+                "relation_keyword": "\"interaction\"",
+                "edge_data": {
+                    "keyword": "\"interaction\"",
+                    "weight": 6.0,
+                    "description": "\"Old Joe interacts with Scrooge and the Phantom in his shop.\"",
+                    "history": "\"Old Joe interacts with Scrooge and the Phantom in his shop.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
+            },
+            {
+                "source": "\"OLD JOE\"",
+                "target": "\"THE CHARWOMAN\"",
+                "relation_keyword": "\"banter\"",
+                "edge_data": {
+                    "keyword": "\"banter\"",
+                    "weight": 7.0,
+                    "description": "\"Old Joe engages with The Charwoman in humorous banter with other characters.\"",
+                    "history": "\"Old Joe engages with The Charwoman in humorous banter with other characters.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
+                }
+            },
+            {
+                "source": "\"THE CHARWOMAN\"",
+                "target": "\"THE UNDERTAKER'S MAN\"",
+                "relation_keyword": "\"interaction\"",
+                "edge_data": {
+                    "keyword": "\"interaction\"",
+                    "weight": 6.0,
+                    "description": "\"The Charwoman and The Undertaker's Man interact with each other and other characters in the shop.\"",
+                    "history": "\"The Charwoman and The Undertaker's Man interact with each other and other characters in the shop.\"",
+                    "source_id": "chunk-60fc063c79fc0d4acc91a57e79de04dc"
                 }
             }
         ]

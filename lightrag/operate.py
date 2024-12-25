@@ -431,18 +431,6 @@ async def extract_entities(
             )
         )
     for node_data in all_entities_data:
-        # 构建指向自己的边并存到数据库中
-        all_relationships_data.append(
-            dict(
-                src_id=node_data["entity_name"],
-                tgt_id=node_data["entity_name"],
-                keyword=node_data["entity_name"],
-                description=node_data["description"],
-                history=node_data["history"],
-                weight = len(await knowledge_graph_inst.get_node_edges(node_data["entity_name"])) if await knowledge_graph_inst.get_node_edges(node_data["entity_name"]) is not None else 0,
-                source_id=node_data["source_id"],
-            )
-        )
         entity_name = node_data["entity_name"]
         history = node_data["history"]
         all_description = await _handle_entity_relation_summary(
@@ -457,6 +445,18 @@ async def extract_entities(
             history=node_data["history"],
             source_id=node_data["source_id"],
             ),
+        )
+        # 构建指向自己的边并存到数据库中
+        all_relationships_data.append(
+            dict(
+                src_id=node_data["entity_name"],
+                tgt_id=node_data["entity_name"],
+                keyword=node_data["entity_name"],
+                description=node_data["description"],
+                history=node_data["history"],
+                weight = len(await knowledge_graph_inst.get_node_edges(node_data["entity_name"])) if await knowledge_graph_inst.get_node_edges(node_data["entity_name"]) is not None else 0,
+                source_id=node_data["source_id"],
+            )
         )
         # 更新all_entities_data中的description
         node_data["description"] = all_description
